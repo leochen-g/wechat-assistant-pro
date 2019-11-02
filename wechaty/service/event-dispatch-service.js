@@ -84,13 +84,13 @@ async function dispatchEventContent(eName, msg,name,id,avatar) {
 async function dispatchAiBot(bot, msg, name, id) {
   let res;
   switch (bot) {
-    case '0':
+    case 0:
       res = await api.getResByTX(msg, id);
       break;
-    case '1':
+    case 1:
       res = await api.getResByTXTL(msg, id);
       break;
-    case '2':
+    case 2:
       res = await api.getResByTL(msg, id);
       break;
     default:
