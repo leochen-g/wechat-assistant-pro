@@ -1,7 +1,7 @@
 {
   "apps": [
     {
-      "name": "wechaty-koa",
+      "name": "wechaty-koa-pro",
       "cwd": "./koa",
       "script": "./bin/www",
       "log_date_format": "YYYY-MM-DD HH:mm Z",
