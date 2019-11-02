@@ -1,0 +1,51 @@
+{
+    "name": "wechat-assistant",
+    "version": "2.1.5",
+    "description": "微信小助手2.0",
+    "main": "index.js",
+    "scripts": {
+        "dev": "cross-env NODE_ENV=development ./node_modules/.bin/nodemon koa/bin/www",
+        "pm2": "pm2 start koa/pm2.json",
+        "pm2-wechaty": "pm2 start wechaty/pm2.json",
+        "koa": "cross-env NODE_ENV=product node koa/bin/www",
+        "start": "node wechaty/index.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Leo_chen",
+    "license": "MIT",
+    "keywords": [
+        "koa",
+        "mongodb",
+        "wechaty",
+        "mongoose",
+        "微信机器人",
+        "微信助手",
+        "node",
+        "js"
+    ],
+    "dependencies": {
+        "cheerio": "^1.0.0-rc.3",
+        "cross-env": "^5.2.0",
+        "crypto": "^1.0.1",
+        "file-box": "^0.8.27",
+        "koa": "^2.7.0",
+        "koa-bodyparser": "^4.2.1",
+        "koa-router": "^7.4.0",
+        "mongoose": "^5.4.20",
+        "node-machine-id": "^1.1.12",
+        "node-schedule": "^1.3.2",
+        "qrcode-terminal": "^0.12.0",
+        "superagent": "^5.0.2",
+        "wechaty": "^0.28.3"
+    },
+    "devDependencies": {
+        "@microsoft/recognizers-text-suite": "~1.2.7",
+        "auto-reload": "^0.1.0",
+        "bosonnlp": "^0.1.0",
+        "debug": "^4.1.1",
+        "extend": "^3.0.2",
+        "koa-compress": "^3.0.0",
+        "koa-static": "^5.0.0",
+        "nodemon": "^1.19.1"
+    }
+}

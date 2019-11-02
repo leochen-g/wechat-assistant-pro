@@ -1,0 +1,26 @@
+*.vscode
+*/.settings
+*/target
+*target
+*/.settings
+*/target
+*.project
+*.classpath
+*.idea
+*.iml
+*.DS_Store
+*.log
+/build/
+/bin/
+*/output
+*node_modules
+*/log
+.env
+*.memory-card.json
+package-lock.json
+wechat.config.js
+# Runtime data
+pids
+*.pid
+*.seed
+*/file
