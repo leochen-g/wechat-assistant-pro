@@ -1,6 +1,6 @@
 
 module.exports = {
-  KOAHOST: 'http://127.0.0.1:5001/api',// koa服务接口host 如果koa端口更换，此处也需更换
+  KOAHOST: 'http://127.0.0.1:9091/api',// koa服务接口host 如果koa端口更换，此处也需更换
   ONE: 'http://wufazhuce.com/', // 每日一句网址
   TULING: 'http://openapi.tuling123.com/openapi/api/v2', // 图灵api
   MOJI: 'https://tianqi.moji.com/weather/china/', // 墨迹天气官网

@@ -84,10 +84,10 @@ router.get("/api/restart", async (ctx,next) =>{
   try{
       deploy(path.resolve(__dirname, './bash/restart.sh'),[])
       console.log('success');
-      ctx.body='重启成功'
+    ctx.body = { code: 200, msg: "ok", data: {}};
   }catch(e){
     console.log('error'+e);
-    ctx.body='重启失败 '+ e
+    ctx.body = { code: 400, msg: "fail", data: {}};
   }
 })
 
