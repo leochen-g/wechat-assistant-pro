@@ -26,7 +26,7 @@ async function onRoomjoin (room, inviteeList, inviter){
       console.log(`群名： ${roomName} ，加入新成员： ${nameList}, 邀请人： ${inviter}`)
       room.say(`${roomName}：欢迎新朋友 @${nameList}，<br>${config.ROOMJOINLIST[roomIndex].welcome}`)
       if(config.ROOMJOINLIST[roomIndex].fileObj){
-        const fileBox2 = FileBox.fromFile(path.resolve(__dirname,config.ROOMJOINLIST[roomIndex].fileObj.path))
+        const fileBox2 = FileBox.fromFile(path.resolve(__dirname,config.ROOMJOINLIST[roomIndex].fileObj))
         await room.say(fileBox2)
       }
   }
