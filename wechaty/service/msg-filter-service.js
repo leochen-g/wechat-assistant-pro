@@ -74,7 +74,7 @@ async function filterFriendMsg(msg, name, id,avatar) {
     obj.content = '我在呢'
     return obj;
   }
-  if (msg.includes(DELETEFRIEND) ||WEIXINOFFICIAL.includes(name) ||msg.length > 40) {
+  if (msg.includes(DELETEFRIEND) ||WEIXINOFFICIAL.includes(name) ||msg.length > 200) {
     console.log('字符超40字符，或无效及官方消息，不做回复');
     obj.type ='text'
     obj.content = ''
