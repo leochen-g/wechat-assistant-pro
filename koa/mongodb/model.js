@@ -1,4 +1,4 @@
-const { Assistant, Config } = require("./schema");
+const { Assistant, Config, Contact } = require("./schema");
 
 // create a document
 module.exports = {
@@ -61,5 +61,35 @@ module.exports = {
         });
       });
     }
+  },
+  Contact:{
+    findOne: conditions =>{
+      // 获取指定用户信息
+      return new Promise((resolve, reject) => {
+        Config.findOne(conditions, (err, doc) => {
+            if (err) return reject(err);
+            return resolve(doc);
+          });
+      })
+    },
+    insert: conditions => {
+      // 添加用户信息
+      return new Promise((resolve, reject) => {
+        Contact.create(conditions, (err, doc) => {
+          if (err) return reject(err);
+          console.log("创建成功");
+          return resolve(doc);
+        });
+      });
+    },
+    update: conditions => {
+      // 更新用户信息
+      return new Promise((resolve, reject) => {
+        Contact.updateOne(conditions, (err, doc) => {
+          if (err) return reject(err);
+          return resolve(doc);
+        });
+      });
+    },
   }
 };

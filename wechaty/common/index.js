@@ -152,10 +152,49 @@ async function getRoomTextReply(content,name,id,avatar){
     }
   }
 }
+/**
+ * 更新用户信息
+ */
+async function updateContactInfo(that){
+  try{
+    const contactList = await that.Contact.findAll()
+    let res = []
+    let realContact = contactList.filter(item => item.payload.type == 1)
+    for(let i of realContact){
+      let contact = i.payload
+      let avatar = await i.avatar()
+      await avatar.toFile('../wechat-assistant-pro/koa/pubilc/static/avatar/'+contact.id+'.jpg')
+      let obj ={
+        randomId:contact.id,
+        name:contact.name,
+        alias:contact.alias,
+        gender:contact.gender,
+        province:contact.province,
+        city:contact.city,
+        avatar:'static/avatar/'+contact.id+'.jpg',
+        isFriend:contact.friend,
+        address:contact.address,
+        signature:contact.signature,
+        star:contact.star,
+        type:contact.type,
+        weixin:contact.weixin
+      }
+      res.push(obj)
+      console.log('obj.name',obj.name,res.length)
+      await api.insertUser(obj)
+      await lib.delay(500)
+    }
+    console.log('res[0]',res[33])
+    console.log('res.length',res.length)
+  }catch(e){
+    console.log('e',e)
+  }
+}
 
 module.exports = {
   getEveryDayContent,
   getEveryDayRoomContent,
   getContactTextReply,
-  getRoomTextReply
+  getRoomTextReply,
+  updateContactInfo
 };

@@ -5,6 +5,7 @@ const onLogout = require('./listeners/on-logout')
 const onFriend = require('./listeners/on-friend')
 const onRoomjoin = require('./listeners/on-roomjoin')
 const onMessage = require('./listeners/on-message')
+const onReady = require('./listeners/on-ready')
 
 const bot = new Wechaty({ name: 'WechatEveryDay' });
 
@@ -15,6 +16,7 @@ bot.on('logout', onLogout);
 bot.on('friendship', onFriend);
 bot.on('room-join', onRoomjoin);
 bot.on('message', onMessage);
+bot.on('ready', onReady);
 
 
 bot

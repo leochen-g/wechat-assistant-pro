@@ -21,6 +21,7 @@ async function deploy(file,param){
   }
 }
 
+app.use(bodyParser({jsonLimit: '50mb',formLimit:'50mb'}));
 app.use(compress({threshold:2048}));
 app.use(bodyParser());
 app.use(serve(
@@ -53,6 +54,15 @@ router.post("/api/updateSchedule", async (ctx, next) => {
   next();
 });
 
+router.post("/api/addContact", async (ctx, next) => {
+  // 添加用户信息
+  let body = ctx.request.body;
+  let res = model.Contact.insert(body);
+  ctx.body = { code: 200, msg: "ok", data: res };
+  next();
+});
+
+
 router.get("/api/getConfig", async (ctx, next) => {
   // 获取配置信息
   let res = await model.Config.find();
@@ -79,7 +89,7 @@ router.post("/api/updateConfig", async (ctx, next) => {
   }
   next();
 });
-
+// 重启小助手
 router.get("/api/restart", async (ctx,next) =>{
   try{
       deploy(path.resolve(__dirname, './bash/restart.sh'),[])

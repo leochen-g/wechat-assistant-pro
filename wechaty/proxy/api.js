@@ -654,7 +654,7 @@ async  function restart(){
   try {
     let option = {
       method:"GET",
-      url:apiConfig.KOAHOST + '/restart'
+      url:apiConfig.KOAHOST + '/restart',
     }
     let res = await req(option)
     let content = parseBody(res);
@@ -662,6 +662,26 @@ async  function restart(){
     return data
   }catch (e) {
     console.log('重启失败', e);
+  }
+}
+
+/**
+ * 插入用户
+ * @returns {Promise<*>}
+ */
+async  function insertUser(data){
+  try {
+    let option = {
+      method:"POST",
+      url:apiConfig.KOAHOST + '/addContact',
+      params: data,
+    }
+    let res = await req(option)
+    let content = parseBody(res);
+    let result = '成功'
+    return result
+  }catch (e) {
+    console.log('插入失败', e);
   }
 }
 module.exports = {
@@ -689,5 +709,6 @@ module.exports = {
   getEmo,
   getMeiNv,
   getConfig,
-  restart
+  restart,
+  insertUser
 };

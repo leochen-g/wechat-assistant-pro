@@ -141,7 +141,6 @@ async function initSchedule(that, scheduleList, daySayList, RoomSayList,RoomTask
     }
 }
 
-
 /**
  * 登录成功监听事件
  * @param {*} user 登录用户
