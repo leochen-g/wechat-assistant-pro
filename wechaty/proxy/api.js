@@ -542,6 +542,7 @@ async function getShortUrl(url) {
 /**
  * 获取自定义头像
  * @param {*} base
+ * @param type
  */
 async function getAvatar(base, type){
 
@@ -558,6 +559,7 @@ async function getAvatar(base, type){
 
     let res = await req(option);
     let content = parseBody(res);
+    console.log('自定义头像', content)
     if (content.code === 200) {
       let item = content.newslist[0];
       let fileObj = FileBox.fromUrl(item.picurl)
