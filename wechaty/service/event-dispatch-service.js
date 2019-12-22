@@ -40,12 +40,14 @@ async function dispatchEventContent(eName, msg,name,id,avatar) {
       break;
     case 'avatar':
       let type;
+      console.log('msg', msg)
       if(msg.includes('圣诞')){
         type = 2
       }
       if(msg.includes('国旗')){
         type = 1
       }
+      console.log('type', type)
       let base64Text =  await avatar.toBase64()
       let ava = await api.getAvatar(base64Text, type)
       content = {
