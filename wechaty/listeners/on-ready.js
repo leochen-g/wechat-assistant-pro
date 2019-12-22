@@ -5,7 +5,7 @@ const common = require('../common/index');
  */
 async function onReady (){
     console.log(`所有数据准备完毕`)
-    common.updateContactInfo(this)
+    // common.updateContactInfo(this)
 }
 
 module.exports = onReady
