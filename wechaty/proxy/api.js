@@ -545,7 +545,6 @@ async function getShortUrl(url) {
  * @param type
  */
 async function getAvatar(base, type){
-
   try{
     let option = {
       method:'POST',
@@ -556,7 +555,7 @@ async function getAvatar(base, type){
         img:'data:image/jpeg;base64,'+base
       }
     }
-
+    console.log('type', type)
     let res = await req(option);
     let content = parseBody(res);
     console.log('自定义头像', content)
