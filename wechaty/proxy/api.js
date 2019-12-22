@@ -555,10 +555,8 @@ async function getAvatar(base, type){
         img:'data:image/jpeg;base64,'+base
       }
     }
-    console.log('type', type)
     let res = await req(option);
     let content = parseBody(res);
-    console.log('自定义头像', content)
     if (content.code === 200) {
       let item = content.newslist[0];
       let fileObj = FileBox.fromUrl(item.picurl)
