@@ -356,7 +356,7 @@ async function getMingYan() {
     let content = parseBody(res);
     if (content.code === 200) {
       let newList = content.newslist;
-      let news =`${newList[0].content}<br>——————————${newList[0].author}` 
+      let news =`${newList[0].content}<br>——————————${newList[0].author}`
       return news;
     }
   } catch (error) {
@@ -403,7 +403,7 @@ async function getXing(name) {
     let content = parseBody(res);
     if (content.code === 200) {
       let newList = content.newslist;
-      let news =`${newList[0].content}` 
+      let news =`${newList[0].content}`
       return news;
     }
   } catch (error) {
@@ -425,7 +425,7 @@ async function getSkl() {
     let content = parseBody(res);
     if (content.code === 200) {
       let newList = content.newslist;
-      let news =`${newList[0].content}` 
+      let news =`${newList[0].content}`
       return news;
     }
   } catch (error) {
@@ -447,7 +447,7 @@ async function getLunar(date) {
     let content = parseBody(res);
     if (content.code === 200) {
       let item = content.newslist[0];
-      let news =`<br>阳历：${item.gregoriandate}<br>阴历：${item.lunardate}<br>节日：${item.lunar_festival}<br>适宜：${item.fitness}<br>不宜：${item.taboo}<br>神位：${item.shenwei}<br>胎神：${item.taishen}<br>冲煞：${item.chongsha}<br>岁煞：${item.suisha}` 
+      let news =`<br>阳历：${item.gregoriandate}<br>阴历：${item.lunardate}<br>节日：${item.lunar_festival}<br>适宜：${item.fitness}<br>不宜：${item.taboo}<br>神位：${item.shenwei}<br>胎神：${item.taishen}<br>冲煞：${item.chongsha}<br>岁煞：${item.suisha}`
       return news;
     }
   } catch (error) {
@@ -469,7 +469,7 @@ async function getGoldReply() {
     let content = parseBody(res);
     if (content.code === 200) {
       let item = content.newslist[0];
-      let news =`标题："${item.title}"<br>回复：${item.content}` 
+      let news =`标题："${item.title}"<br>回复：${item.content}`
       return news;
     }
   } catch (error) {
@@ -490,7 +490,7 @@ async function getXhy() {
     let content = parseBody(res);
     if (content.code === 200) {
       let item = content.newslist[0];
-      let news =`${item.quest}————${item.result}` 
+      let news =`${item.quest}————${item.result}`
       return news;
     }
   } catch (error) {
@@ -511,7 +511,7 @@ async function getRkl() {
     let content = parseBody(res);
     if (content.code === 200) {
       let item = content.newslist[0];
-      let news =`${item.content}` 
+      let news =`${item.content}`
       return news;
     }
   } catch (error) {
@@ -532,7 +532,7 @@ async function getShortUrl(url) {
     let content = parseBody(res);
     if (content.code === 200) {
       let item = content.newslist[0];
-      let shorturl = item.shorturl 
+      let shorturl = item.shorturl
       return shorturl;
     }
   } catch (error) {
@@ -541,20 +541,21 @@ async function getShortUrl(url) {
 }
 /**
  * 获取自定义头像
- * @param {*} base 
+ * @param {*} base
  */
-async function getAvatar(base){
- 
+async function getAvatar(base, type){
+
   try{
     let option = {
       method:'POST',
       url:apiConfig.TXAVATAR,
       params:{
         key: config.TXAPIKEY,
+        type: type || 2,
         img:'data:image/jpeg;base64,'+base
       }
     }
-  
+
     let res = await req(option);
     let content = parseBody(res);
     if (content.code === 200) {
@@ -568,7 +569,7 @@ async function getAvatar(base){
 }
 /**
  * 获取表情包
- * @param {*} msg 
+ * @param {*} msg
  */
 async function getEmo(msg) {
   try {
@@ -599,7 +600,7 @@ async function getEmo(msg) {
         }else{
           return FileBox.fromUrl('http://dl.weshineapp.com/gif/20190902/401ed8e703984d504ca1e49ffd4ed8ac.jpg')
         }
-        
+
       }else{
         fileObj = FileBox.fromUrl('http://dl.weshineapp.com/gif/20190902/401ed8e703984d504ca1e49ffd4ed8ac.jpg')
       }

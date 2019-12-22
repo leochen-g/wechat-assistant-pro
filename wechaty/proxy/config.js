@@ -20,7 +20,7 @@ module.exports = {
   TXXHY: 'http://api.tianapi.com/txapi/xiehou/',// 天行歇后语
   TXRKL: 'http://api.tianapi.com/txapi/rkl/',// 天行绕口令
   TXSHORTURL: 'http://api.tianapi.com/txapi/turl/',//天行短链
-  TXAVATAR: 'http://api.tianapi.com/handle/imgtx/',//自定义头像
+  TXAVATAR: 'http://api.tianapi.com/txapi/imgtx/index',//自定义头像
   TXMEINV:'http://api.tianapi.com/meinv/',//天行美女高清图
   EMOHOST:'http://www.weshineapp.com/api/v1/index/search/' //表情包接口
-} 
+}

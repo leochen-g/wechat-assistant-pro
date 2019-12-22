@@ -39,8 +39,12 @@ async function dispatchEventContent(eName, msg,name,id,avatar) {
       content = await api.getRkl(msg);
       break;
     case 'avatar':
+      let type;
+      if(msg.includes('圣诞')){
+        type = 2
+      }
       let base64Text =  await avatar.toBase64()
-      let ava = await api.getAvatar(base64Text)
+      let ava = await api.getAvatar(base64Text, type)
       content = {
         type:'fileBox',
         src: ava
