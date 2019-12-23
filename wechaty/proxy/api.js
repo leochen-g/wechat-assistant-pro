@@ -136,7 +136,7 @@ async function getResByTXTL(word, id) {
     let option = {
       method: 'GET',
       url: apiConfig.TXTLBOT,
-      params: { key: config.TXAPIKEY, question: word, userid: uniqueId }
+      params: { key: config.TXAPIKEY, question: word, user: uniqueId }
     };
     let res = await req(option);
     let content = parseBody(res);
