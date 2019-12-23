@@ -551,7 +551,7 @@ async function getAvatar(base, type){
       url:apiConfig.TXAVATAR,
       params:{
         key: config.TXAPIKEY,
-        type: type || 2,
+        createid: type || 2,
         img:'data:image/jpeg;base64,'+base
       }
     }
