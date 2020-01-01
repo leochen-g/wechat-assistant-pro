@@ -18,7 +18,7 @@ function roomHasConfig(arr,name){
 /**
  * 群中有新人进入
  */
-async function onRoomjoin (room, inviteeList, inviter){
+async function onRoomjoin (room, inviteeList, inviter, date){
   const nameList = inviteeList.map(c => c.name()).join(',')
   const roomName = await room.topic()
   const roomIndex = roomHasConfig(config.ROOMJOINLIST,roomName)

@@ -1,84 +1,77 @@
 const api = require('../proxy/api');
-const lib = require('../lib');
+const {getConfig} = require('../proxy/aibotk')
+
+const {getConstellation, msgArr} = require('../lib');
 
 /**
  * 根据事件名称分配不同的api处理，并获取返回内容
  * @param {string} eName 事件名称
  * @param {string} msg 消息内容
+ * @param name
+ * @param id
+ * @param avatar
  * @returns {string} 内容
  */
-async function dispatchEventContent(eName, msg,name,id,avatar) {
-  let content;
-  switch (eName) {
-    case 'rubbish':
-      content = await api.getRubbishType(msg);
-      break;
-    case 'mingyan':
-      content = await api.getMingYan();
-      break;
-    case 'star':
-      let xing = lib.getConstellation(msg)
-      content = await api.getStar(xing);
-      break;
-    case 'xing':
-      content = await api.getXing(msg);
-      break;
-    case 'skl':
-      content = await api.getSkl(msg);
-      break;
-    case 'lunar':
-      content = await api.getLunar(msg);
-      break;
-    case 'goldreply':
-      content = await api.getGoldReply(msg);
-      break;
-    case 'xhy':
-      content = await api.getXhy(msg);
-      break;
-    case 'rkl':
-      content = await api.getRkl(msg);
-      break;
-    case 'avatar':
-      let type;
-      if(msg.includes('圣诞')){
-        type = 2
-      }
-      if(msg.includes('国旗')){
-        type = 1
-      }
-      let base64Text =  await avatar.toBase64()
-      let ava = await api.getAvatar(base64Text, type)
-      content = {
-        type:'fileBox',
-        src: ava
-      }
-      break;
-    case 'emo':
-      let emo = await api.getEmo(msg)
-      content = {
-        type:'fileBox',
-        src: emo
-      }
-      break;
-    case 'meinv':
-      let meinv = await api.getMeiNv()
-      content = {
-        type:'fileBox',
-        src: meinv
-      }
-      break;
-    case 'updateConfig':
-      let updateConfig = await api.getConfig()
-      content = '更新成功，请稍等两分钟后生效'
-      break;
-    case 'restart':
-      let restart = await api.restart()
-      content = '更新成功，请稍等两分钟后生效'
-      break;
-    default:
-      break;
-  }
-  return content;
+async function dispatchEventContent(eName, msg, name, id, avatar) {
+    let content = '', type = 1, url = '';
+    switch (eName) {
+        case 'rubbish':
+            content = await api.getRubbishType(msg);
+            break;
+        case 'mingyan':
+            content = await api.getMingYan();
+            break;
+        case 'star':
+            let xing = getConstellation(msg)
+            content = await api.getStar(xing);
+            break;
+        case 'xing':
+            content = await api.getXing(msg);
+            break;
+        case 'skl':
+            content = await api.getSkl(msg);
+            break;
+        case 'lunar':
+            content = await api.getLunar(msg);
+            break;
+        case 'goldreply':
+            content = await api.getGoldReply(msg);
+            break;
+        case 'xhy':
+            content = await api.getXhy(msg);
+            break;
+        case 'rkl':
+            content = await api.getRkl(msg);
+            break;
+        case 'avatarGuo':
+            let base64Text = await avatar.toBase64()
+            url = await api.getAvatar(base64Text, 1)
+            type = 2
+            break;
+        case 'avatarShengDan':
+            let base64 = await avatar.toBase64()
+            url = await api.getAvatar(base64, 2)
+            type = 2
+            break;
+        case 'emo':
+            url = await api.getEmo(msg)
+            type = 2
+            break;
+        case 'meinv':
+            url = await api.getMeiNv()
+            type = 2
+            break;
+        case 'updateConfig':
+            await getConfig()
+            content = '更新成功，请稍等两分钟后生效'
+            break;
+        case 'restart':
+            content = '更新成功，请稍等两分钟后生效'
+            break;
+        default:
+            break;
+    }
+    return msgArr(type, content, url)
 }
 
 /**
@@ -89,25 +82,25 @@ async function dispatchEventContent(eName, msg,name,id,avatar) {
  * @param {*} id 发消息人id
  */
 async function dispatchAiBot(bot, msg, name, id) {
-  let res;
-  switch (bot) {
-    case 0:
-      res = await api.getResByTX(msg, id);
-      break;
-    case 1:
-      res = await api.getResByTXTL(msg, id);
-      break;
-    case 2:
-      res = await api.getResByTL(msg, id);
-      break;
-    default:
-      res = '';
-      break;
-  }
-  return res;
+    let res;
+    switch (bot) {
+        case 0:
+            res = await api.getResByTX(msg, id);
+            break;
+        case 1:
+            res = await api.getResByTXTL(msg, id);
+            break;
+        case 2:
+            res = await api.getResByTL(msg, id);
+            break;
+        default:
+            res = '';
+            break;
+    }
+    return res;
 }
 
 module.exports = {
-  dispatchEventContent,
-  dispatchAiBot
+    dispatchEventContent,
+    dispatchAiBot
 };

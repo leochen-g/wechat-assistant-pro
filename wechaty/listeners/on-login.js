@@ -1,10 +1,10 @@
-const api = require('../proxy/api');
-const lib = require('../lib');
+const {getConfig, getScheduleList, updateSchedule, sendAvatar, putqn} = require('../proxy/aibotk')
+const {setLocalSchedule,delay,putb64} = require('../lib');
 const common = require('../common/index');
 const reload = require('auto-reload')
-const config = reload('../../wechat.config.js')
+const {dayTaskSchedule, roomTaskSchedule, roomNewsSchedule} = reload('../../wechat.config.js')
 const path = require('path')
-const { FileBox } = require('file-box')
+const {FileBox} = require('file-box')
 
 
 /**
@@ -21,13 +21,13 @@ async function setRoomTask(that, item) {
             return
         } else {
             console.log(`群：“${item.roomName}”设置定时任务成功`)
-            lib.setSchedule(time, async () => {
-                if(item.contentType == 1){
+            setLocalSchedule(time, async () => {
+                if (item.contentType == 1) {
                     let content = item.content
                     console.log('群定时任务开始发送，内容：', content);
                     await room.say(content);
-                }else if(item.contentType == 2){
-                    const fileBox2 = FileBox.fromFile(path.resolve(__dirname,item.content))
+                } else if (item.contentType == 2) {
+                    const fileBox2 = FileBox.fromFile(path.resolve(__dirname, item.content))
                     console.log('群定时任务开始发送文件，文件');
                     await room.say(fileBox2)
                 }
@@ -52,10 +52,10 @@ async function setEveryDayRoomSayTask(that, item) {
             return
         } else {
             console.log(`群：“${item.roomName}”设置资讯任务成功`)
-            lib.setSchedule(time, async () => {
+            setLocalSchedule(time, async () => {
                 let content = await common.getEveryDayRoomContent(item.sortId, item.endWord);
                 console.log('新闻咨询开始发送，内容：', content);
-                lib.delay(10000);
+                await delay(10000);
                 await room.say(content);
             });
         }
@@ -78,10 +78,10 @@ async function setEveryDayTask(that, item) {
             return
         } else {
             console.log(`设置用户：“${item.name}|${item.alias}”每日说任务成功`)
-            lib.setSchedule(time, async () => {
+            setLocalSchedule(time, async () => {
                 let content = await common.getEveryDayContent(item.memorialDay, item.city, item.endWord);
                 console.log('每日说任务开始工作,发送内容：', content);
-                lib.delay(10000);
+                await delay(10000);
                 await contact.say(content);
             });
         }
@@ -97,13 +97,13 @@ async function setEveryDayTask(that, item) {
  */
 async function setScheduleTask(that, item) {
     let time = item.isLoop ? item.time : new Date(item.time);
-    lib.setSchedule(time, async () => {
+    setLocalSchedule(time, async () => {
         try {
             let contact = await that.Contact.find({name: item.subscribe});
             console.log(`${item.subscribe}的专属提醒开启啦！`);
             await contact.say(item.content);
             if (!item.isLoop) {
-                await api.updateSchedule(item._id);
+                await updateSchedule(item.id);
             }
         } catch (error) {
             console.log('设置定时任务错误', error);
@@ -118,7 +118,7 @@ async function setScheduleTask(that, item) {
  * @param {*} daySayList 每日说任务列表
  * @param {*} RoomSayList 群资讯任务列表
  */
-async function initSchedule(that, scheduleList, daySayList, RoomSayList,RoomTaskList) {
+async function initSchedule(that, scheduleList, daySayList, RoomSayList, RoomTaskList) {
     if (scheduleList && scheduleList.length > 0) {
         for (let item of scheduleList) {
             setScheduleTask(that, item);
@@ -147,12 +147,17 @@ async function initSchedule(that, scheduleList, daySayList, RoomSayList,RoomTask
  */
 async function onLogin(user) {
     console.log(`贴心助理${user}登录了`);
-    setTimeout(async ()=>{
-        await api.getConfig()
-        let scheduleList = await api.getScheduleList()
-        await lib.delay(6000)
-        console.log('提醒任务列表',scheduleList)
-        initSchedule(this, scheduleList,config.DAYLIST,config.ROOMLIST,config.ROOMTASKLIST);
+    setTimeout(async () => {
+        const file = await user.avatar()
+        console.log(file)
+        const base = await file.toBase64()
+        const avatarUrl = await putqn(base,user.name())
+        await sendAvatar(avatarUrl)
+        await getConfig()
+        let scheduleList = await getScheduleList()
+        await delay(6000)
+        console.log('提醒任务列表', scheduleList)
+        initSchedule(this, scheduleList, dayTaskSchedule, roomNewsSchedule, roomTaskSchedule);
     }, 4000)
 }
 

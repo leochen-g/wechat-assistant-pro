@@ -18,7 +18,6 @@
 .env
 *.memory-card.json
 package-lock.json
-wechat.config.js
 # Runtime data
 pids
 *.pid
