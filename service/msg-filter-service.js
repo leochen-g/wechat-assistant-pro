@@ -1,5 +1,5 @@
-const reload = require('auto-reload')
-const {roomJoinKeywords, replyKeywords, eventKeywords, autoReply, defaultBot} = reload('../../wechat.config');
+// const {roomJoinKeywords, replyKeywords, eventKeywords, autoReply, defaultBot} = reload('../../wechat.config');
+const config = require('../wechat.config');
 const dispatch = require('./event-dispatch-service');
 const {setSchedule, updateSchedule} = require('../proxy/aibotk')
 const {getToday, convertTime, delay, contactSay, addRoom, contentDistinguish, setLocalSchedule, isRealDate} = require('../lib')
@@ -41,8 +41,8 @@ async function addSchedule(that, obj) {
  * @returns {Promise<*>}
  */
 function keywordsReply(msg) {
-    if (replyKeywords && replyKeywords.length > 0) {
-        for (let item of replyKeywords) {
+    if (config.replyKeywords && config.replyKeywords.length > 0) {
+        for (let item of config.replyKeywords) {
             if (item.reg === 2 && item.keywords.includes(msg)) {
                 console.log(`精确匹配到关键词${msg},正在回复用户`);
                 return item.replys;
@@ -99,8 +99,8 @@ async function filterFriendMsg(that, contact, msg) {
         return msgArr;
     }
     // 进群邀请
-    if (roomJoinKeywords && roomJoinKeywords.length > 0) {
-        for (const item of roomJoinKeywords) {
+    if (config.roomJoinKeywords && config.roomJoinKeywords.length > 0) {
+        for (const item of config.roomJoinKeywords) {
             if (item.reg === 2 && item.keywords.includes(msg)) {
                 console.log(`精确匹配到加群关键词${msg},正在邀请用户进群`);
                 await addRoom(that, contact, item.roomName, item.replys)
@@ -143,11 +143,11 @@ async function filterFriendMsg(that, contact, msg) {
         }
     }
     // 事件回复
-    if (eventKeywords && eventKeywords.length > 0) {
-        for (let item of eventKeywords) {
+    if (config.eventKeywords && config.eventKeywords.length > 0) {
+        for (let item of config.eventKeywords) {
             for (let key of item.keywords) {
-                if (item.position === 'start' && msg.startsWith(key) || item.position === 'end' && msg.endsWith(key) || item.position === 'middle' && msg.includes(key)) {
-                    msg = msg.replace(item.key, '')
+                if (item.reg === 2 && item.keywords.includes(msg) || item.reg === 1 && msg === key) {
+                    msg = msg.replace(key, '')
                     let res = await getEventReply(item.event, msg, name, id, avatar)
                     return res;
                 }
@@ -155,15 +155,15 @@ async function filterFriendMsg(that, contact, msg) {
         }
     }
     // 关键词处理
-    msgArr = keywordsReply(msg)
+    msgArr = keywordsReply(msg) || []
     if (msgArr.length > 0) {
         return msgArr
     }
 
-    if (autoReply) {
+    if (config.autoReply) {
         console.log('开启了机器人自动回复功能')
         obj.type = 1
-        obj.content = await dispatch.dispatchAiBot(defaultBot, msg, name, id)
+        obj.content = await dispatch.dispatchAiBot(config.defaultBot, msg, name, id)
     } else {
         console.log('没有开启机器人自动回复功能')
         obj.type = 1
@@ -199,8 +199,8 @@ async function filterRoomMsg(msg, name, id, avatar) {
         return msgArr
     }
     // 事件回复
-    if (eventKeywords && eventKeywords.length > 0) {
-        for (let item of eventKeywords) {
+    if (config.eventKeywords && config.eventKeywords.length > 0) {
+        for (let item of config.eventKeywords) {
             for (let key of item.keywords) {
                 if (item.position === 'start' && msg.startsWith(key) || item.position === 'end' && msg.endsWith(key) || item.position === 'middle' && msg.includes(key)) {
                     msg = msg.replace(item.key, '')
@@ -210,10 +210,10 @@ async function filterRoomMsg(msg, name, id, avatar) {
             }
         }
     }
-    if (autoReply) {
+    if (config.autoReply) {
         console.log('开启了机器人自动回复功能')
         obj.type = 1
-        obj.content = await dispatch.dispatchAiBot(defaultBot, msg, name, id)
+        obj.content = await dispatch.dispatchAiBot(config.defaultBot, msg, name, id)
     } else {
         console.log('没有开启机器人自动回复功能')
         obj.type = 1

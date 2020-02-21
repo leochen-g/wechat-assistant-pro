@@ -1,8 +1,7 @@
 const cheerio = require('cheerio');
 const {req, txReq} = require('./superagent');
 const {EMOHOST, TULING, ONE} = require('./config');
-const reload = require('auto-reload')
-const {tuLingKey} = reload('../../wechat.config');
+const {tuLingKey} = require('../wechat.config');
 const {FileBox} = require('file-box')
 const {randomRange, parseBody, MD5} = require('../lib/index')
 

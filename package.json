@@ -4,15 +4,13 @@
     "description": "微信小助手2.0",
     "main": "index.js",
     "scripts": {
-        "pm2": "pm2 start wechaty/pm2.json",
-        "start": "node wechaty/index.js",
+        "pm2": "pm2 start pm2.json",
+        "start": "node index.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "Leo_chen",
     "license": "MIT",
     "keywords": [
-        "koa",
-        "mongodb",
         "wechaty",
         "mongoose",
         "微信机器人",

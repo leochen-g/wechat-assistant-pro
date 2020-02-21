@@ -1,7 +1,6 @@
 const superagent = require('superagent');
 const {getFormatQuery} = require('../lib/index')
-const reload = require('auto-reload')
-const {txApiKey} = reload('../../wechat.config');
+const {txApiKey} = require('../wechat.config');
 const {apiKey, apiSecret} = require('../env')
 const {AIBOTK, TXHOST} = require('./config');
 

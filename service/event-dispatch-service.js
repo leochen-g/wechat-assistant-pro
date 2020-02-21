@@ -1,7 +1,9 @@
 const api = require('../proxy/api');
 const {getConfig} = require('../proxy/aibotk')
-
 const {getConstellation, msgArr} = require('../lib');
+const fs = require('fs')
+const path = require('path')
+const basePath = path.join(__dirname, '../')
 
 /**
  * 根据事件名称分配不同的api处理，并获取返回内容
@@ -62,10 +64,8 @@ async function dispatchEventContent(eName, msg, name, id, avatar) {
             type = 2
             break;
         case 'updateConfig':
-            await getConfig()
-            content = '更新成功，请稍等两分钟后生效'
-            break;
-        case 'restart':
+            let data = `// ${new Date()}: 重启`
+            fs.writeFileSync(path.join(basePath, './reload-action.js'), data)
             content = '更新成功，请稍等两分钟后生效'
             break;
         default:

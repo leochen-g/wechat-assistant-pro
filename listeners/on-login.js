@@ -1,8 +1,7 @@
-const {getConfig, getScheduleList, updateSchedule, sendAvatar, putqn} = require('../proxy/aibotk')
+const {getConfig, getScheduleList, updateSchedule, sendAvatar, putqn, sendError} = require('../proxy/aibotk')
 const {setLocalSchedule,delay,putb64} = require('../lib');
 const common = require('../common/index');
-const reload = require('auto-reload')
-const {dayTaskSchedule, roomTaskSchedule, roomNewsSchedule} = reload('../../wechat.config.js')
+const {dayTaskSchedule, roomTaskSchedule, roomNewsSchedule} = require('../wechat.config.js')
 const path = require('path')
 const {FileBox} = require('file-box')
 
@@ -147,9 +146,9 @@ async function initSchedule(that, scheduleList, daySayList, RoomSayList, RoomTas
  */
 async function onLogin(user) {
     console.log(`贴心助理${user}登录了`);
+    await sendError('')
     setTimeout(async () => {
         const file = await user.avatar()
-        console.log(file)
         const base = await file.toBase64()
         const avatarUrl = await putqn(base,user.name())
         await sendAvatar(avatarUrl)

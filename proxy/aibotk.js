@@ -2,7 +2,7 @@ const {aiBotReq, req} = require('./superagent');
 const {parseBody} = require('../lib/index')
 const fs = require('fs')
 const path = require('path')
-const basePath = path.join(__dirname, '../../')
+const basePath = path.join(__dirname, '../')
 
 /**
  * 获取配置文件
@@ -55,7 +55,7 @@ async function setSchedule(obj) {
         let option = {
             method: 'POST',
             url: '/task',
-            params: data
+            params: obj
         };
         let res = await aiBotReq(option)
         let content = parseBody(res);
@@ -134,16 +134,16 @@ async function sendError(error) {
             params: {qrError: error}
         };
         let res = await aiBotReq(option)
-        console.log('推送错误成功');
-    } catch (error) {
-        console.log('推送错误失败', error);
+        console.log('推送错误成功',error);
+    } catch (e) {
+        console.log('推送错误失败', e);
     }
 }
 
 /**
  * 更新头像
  * @returns {Promise<void>}
- * @param base
+ * @param url
  */
 async function sendAvatar(url) {
     try {
@@ -172,7 +172,6 @@ async function getQiToken() {
         }
         let res = await aiBotReq(option)
         let content = parseBody(res);
-        console.log('content', content)
         return content.data.token
     } catch (e) {
         console.log('token error', e)

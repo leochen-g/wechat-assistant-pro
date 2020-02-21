@@ -1,6 +1,6 @@
 const {Friendship} = require('wechaty')
 const {delay,contactSay} = require('../lib')
-const {acceptFriendKeyWords, autoAcceptFriend, newFriendReply} = require('../../wechat.config');
+const {acceptFriendKeyWords, autoAcceptFriend, newFriendReply} = require('../wechat.config');
 /**
  * 好友添加
  */
