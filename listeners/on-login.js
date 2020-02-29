@@ -77,6 +77,7 @@ async function setEveryDayTask(that, item) {
             return
         } else {
             console.log(`设置用户：“${item.name}|${item.alias}”每日说任务成功`)
+            console.log(item)
             setLocalSchedule(time, async () => {
                 let content = await common.getEveryDayContent(item.memorialDay, item.city, item.endWord);
                 console.log('每日说任务开始工作,发送内容：', content);
