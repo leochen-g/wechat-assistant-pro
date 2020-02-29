@@ -29,5 +29,7 @@
         "superagent": "^5.0.2",
         "wechaty": "^0.32.2"
     },
-    "devDependencies": {}
+    "devDependencies": {
+        "pm2": "^4.2.3"
+    }
 }
