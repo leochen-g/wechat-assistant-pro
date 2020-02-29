@@ -1,4 +1,5 @@
-const config = require('../wechat.config.js')
+const reload = require('auto-reload')
+const config = reload('../wechat.config');
 const { FileBox } = require('file-box')
 const path = require('path')
 /**

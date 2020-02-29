@@ -1,5 +1,6 @@
 // const {roomJoinKeywords, replyKeywords, eventKeywords, autoReply, defaultBot} = reload('../../wechat.config');
-const config = require('../wechat.config');
+const reload = require('auto-reload')
+const config = reload('../wechat.config');
 const dispatch = require('./event-dispatch-service');
 const {setSchedule, updateSchedule} = require('../proxy/aibotk')
 const {getToday, convertTime, delay, contactSay, addRoom, contentDistinguish, setLocalSchedule, isRealDate} = require('../lib')

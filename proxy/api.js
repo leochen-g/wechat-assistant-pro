@@ -1,8 +1,8 @@
 const cheerio = require('cheerio');
 const {req, txReq} = require('./superagent');
 const {EMOHOST, TULING, ONE} = require('./config');
-const {tuLingKey} = require('../wechat.config');
-const {FileBox} = require('file-box')
+const reload = require('auto-reload')
+const config = reload('../wechat.config');
 const {randomRange, parseBody, MD5} = require('../lib/index')
 
 /**
@@ -107,7 +107,7 @@ async function getResByTL(word, id) {
                 }
             },
             userInfo: {
-                apiKey: tuLingKey,
+                apiKey: config.tuLingKey,
                 userId: uniqueId
             }
         };

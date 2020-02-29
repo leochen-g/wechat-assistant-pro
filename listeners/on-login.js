@@ -1,7 +1,8 @@
 const {getConfig, getScheduleList, updateSchedule, sendAvatar, putqn, sendError} = require('../proxy/aibotk')
 const {setLocalSchedule,delay,putb64} = require('../lib');
 const common = require('../common/index');
-const {dayTaskSchedule, roomTaskSchedule, roomNewsSchedule} = require('../wechat.config.js')
+const reload = require('auto-reload')
+const config = reload('../wechat.config');
 const path = require('path')
 const {FileBox} = require('file-box')
 
@@ -157,7 +158,7 @@ async function onLogin(user) {
         let scheduleList = await getScheduleList()
         await delay(6000)
         console.log('提醒任务列表', scheduleList)
-        initSchedule(this, scheduleList, dayTaskSchedule, roomNewsSchedule, roomTaskSchedule);
+        initSchedule(this, scheduleList, config.dayTaskSchedule, config.roomNewsSchedule, config.roomTaskSchedule);
     }, 4000)
 }
 

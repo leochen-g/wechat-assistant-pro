@@ -1,6 +1,7 @@
 const superagent = require('superagent');
 const {getFormatQuery} = require('../lib/index')
-const {txApiKey} = require('../wechat.config');
+const reload = require('auto-reload')
+const config = reload('../wechat.config');
 const {apiKey, apiSecret} = require('../env')
 const {AIBOTK, TXHOST} = require('./config');
 
@@ -57,7 +58,7 @@ function req(option) {
 function txReq(option) {
     if (!option) return;
     const params = {
-        key: txApiKey,
+        key: config.txApiKey,
         ...option.params
     }
     if (option.method === 'POST') {

@@ -1,6 +1,7 @@
 const {Friendship} = require('wechaty')
 const {delay,contactSay} = require('../lib')
-const {acceptFriendKeyWords, autoAcceptFriend, newFriendReply} = require('../wechat.config');
+const reload = require('auto-reload')
+const config = reload('../wechat.config');
 /**
  * 好友添加
  */
@@ -11,21 +12,21 @@ async function onFriend(friendship) {
     hello = friendship.hello()
     logMsg = name + '，发送了好友请求';
     console.log(logMsg);
-    if(autoAcceptFriend){
+    if(config.autoAcceptFriend){
       switch (friendship.type()) {
         case Friendship.Type.Receive:
-          if (acceptFriendKeyWords.length === 0) {
+          if (config.acceptFriendKeyWords.length === 0) {
             console.log('无认证关键词,10秒后将会自动通过好友请求')
             await delay(10000);
             await friendship.accept();
-            newFriendReply.forEach(item=>{
+            config.newFriendReply.forEach(item=>{
               contactSay(friendship.contact(), item)
             })
-          } else if (acceptFriendKeyWords.length>0&&acceptFriendKeyWords.includes(hello)) {
+          } else if (config.acceptFriendKeyWords.length>0&&config.acceptFriendKeyWords.includes(hello)) {
             console.log(`触发关键词${hello},10秒后自动通过好友请求`)
             await delay(10000);
             await friendship.accept();
-            newFriendReply.forEach(item=>{
+            config.newFriendReply.forEach(item=>{
               contactSay(friendship.contact(), item)
             })
           }else {
