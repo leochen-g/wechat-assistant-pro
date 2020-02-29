@@ -1,7 +1,6 @@
 const {getNews, getOne, getTXweather, getSweetWord} = require('../proxy/api');
 const {formatDate, getDay, setLocalSchedule, delay, isRealDate} = require('../lib');
 const service = require('../service/msg-filter-service');
-const {FileBox} = require('file-box');
 
 /**
  * 获取每日新闻内容

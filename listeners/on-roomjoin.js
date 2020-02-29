@@ -1,6 +1,6 @@
 const reload = require('auto-reload')
 const config = reload('../wechat.config');
-const { FileBox } = require('file-box')
+const { FileBox } = require('wechaty')
 const path = require('path')
 /**
  * 判断配置中是否存在此群

@@ -4,7 +4,7 @@ const common = require('../common/index');
 const reload = require('auto-reload')
 const config = reload('../wechat.config');
 const path = require('path')
-const {FileBox} = require('file-box')
+const {FileBox} = require('wechaty')
 
 
 /**
