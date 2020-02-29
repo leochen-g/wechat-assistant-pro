@@ -17,3 +17,11 @@
 
 ## 配置端
 `env.js` 文件中填入智能微秘书的apiKey 和 apiSecret [注册地址](https://wechat.aibotk.com/#/signup)
+
+## 运行
+
+项目根目录
+
+第一步 `npm install`
+
+第二步 `npm run pm2`(如果报错pm2找不到，请执行`npm install pm2 -g` 后重新执行此步骤)
