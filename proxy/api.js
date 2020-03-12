@@ -484,28 +484,26 @@ async function getAvatar(base, type) {
 async function getEmo(msg) {
     try {
         let option = {
-            method: 'GET',
-            url: EMOHOST + encodeURI(msg),
-            contentType: 'application/json, text/plain, */*',
+            method: 'POST',
+            url: EMOHOST,
+            contentType: 'application/json;charset=UTF-8',
             params: {
-                offset: 0,
-                limit: randomRange(10, 40),
-                block: 'list'
+                name:msg
             }
         }
         let res = await req(option);
         let content = parseBody(res);
-        if (content.meta.status === 200) {
+        if (content.code === 1) {
             if (content.data && content.data.length > 0) {
                 let arr = []
                 for (let i of content.data) {
-                    if (i.url.includes('.jpg')) {
+                    if (i.path.includes('.jpg')) {
                         arr.push(i)
                     }
                 }
                 let item = arr[randomRange(0, arr.length)];
-                if (item.url) {
-                    return item.url
+                if (item.path) {
+                    return 'http://image.bqber.com/' + item.path
                 } else {
                     return 'http://dl.weshineapp.com/gif/20190902/401ed8e703984d504ca1e49ffd4ed8ac.jpg'
                 }
@@ -554,7 +552,53 @@ async function getMeiNv() {
         console.log('获取美女图片失败', e);
     }
 }
-
+/**
+ * 获取疫情信息
+ * @returns {Promise<string>}
+ */
+async function getNcov() {
+    try {
+      let option = {
+        method: 'GET',
+        url: '/txapi/ncov/index',
+      }
+      let res = await txReq(option);
+      let content = parseBody(res);
+      if (content.code === 200) {
+        let newList = content.newslist[0].news;
+        let desc = content.newslist.desc
+        let news = '';
+        for (let i in newList) {
+          let num = parseInt(i) + 1;
+          news = `${news}<br>>>${newList[i].pubDateStr}: ${newList[i].title}<br><br>${newList[i].summary}----------------${newList[i].infoSource}<br><br>`;
+        }
+        return `${news}<br>`;
+      }
+    } catch(e) {
+        console.log('获取疫情数据失败', e)
+    }
+  }
+/**
+ * 天行网络取名
+ */
+async function getCname() {
+    try {
+        let option = {
+            method: 'GET',
+            url: '/txapi/cname/index ',
+            params: {url: url}
+        };
+        let res = await txReq(option);
+        let content = parseBody(res);
+        if (content.code === 200) {
+            let item = content.newslist[0];
+            let cname = item.name
+            return cname;
+        }
+    } catch (error) {
+        console.log('获取天行短连接失败', error);
+    }
+}
 module.exports = {
     getOne,
     getResByTXTL,
@@ -574,5 +618,7 @@ module.exports = {
     getRkl,
     getAvatar,
     getEmo,
-    getMeiNv
+    getMeiNv,
+    getNcov,
+    getCname
 };

@@ -1,6 +1,5 @@
 const common = require('../common');
-const {delay, contactSay} = require('../lib/index');
-
+const {delay, contactSay, roomSay} = require('../lib/index');
 
 /**
  * 根据消息类型过滤私聊消息事件
@@ -64,21 +63,23 @@ async function dispatchRoomFilterByMsgType(that, room, msg) {
     const contactName = contact.name()
     const roomName = await room.topic()
     const type = msg.type();
-    const mentionSelf = await msg.mentionSelf()
+    const userSelfName = that.userSelf().name()
     let content = '';
     let replys = '';
-    let contactId = contact.id
+    let contactId = contact.id || '111'
     let contactAvatar = await contact.avatar();
     switch (type) {
         case that.Message.Type.Text:
             content = msg.text();
+            const mentionSelf = content.includes(`@${userSelfName}`)
             console.log(`群名: ${roomName} 发消息人: ${contactName} 内容: ${content}`)
+            console.log('是否提及',mentionSelf)
             if (mentionSelf) {
                 content = content.replace(/@[^,，：:\s@]+/g, '').trim()
                 replys = await common.getRoomTextReply(content, contactName, contactId, contactAvatar);
                 for (let reply of replys) {
                     await delay(1000)
-                    await contactSay(contact, reply, true)
+                    await roomSay(room, contact, reply)
                 }
             }
             break;

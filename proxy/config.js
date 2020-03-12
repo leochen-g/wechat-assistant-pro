@@ -5,5 +5,5 @@ module.exports = {
   TULING: 'http://openapi.tuling123.com/openapi/api/v2', // 图灵api
   MOJI: 'https://tianqi.moji.com/weather/china/', // 墨迹天气官网
   TXHOST: 'http://api.tianapi.com', // 天行host
-  EMOHOST:'http://www.weshineapp.com/api/v1/index/search/' //表情包接口
+  EMOHOST:'https://www.bqber.com/api/expressions/list?pageNum=1&pageSize=10' //表情包接口
 }

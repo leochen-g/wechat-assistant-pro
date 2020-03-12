@@ -47,7 +47,7 @@ function keywordsReply(msg) {
             if (item.reg === 2 && item.keywords.includes(msg)) {
                 console.log(`精确匹配到关键词${msg},正在回复用户`);
                 return item.replys;
-            } else {
+            } else if(item.reg === 1){
                 for (let key of item.keywords) {
                     if (msg.includes(key)) {
                         console.log(`模糊匹配到关键词${msg},正在回复用户`);
@@ -56,6 +56,8 @@ function keywordsReply(msg) {
                 }
             }
         }
+    }else {
+        return []
     }
 }
 
@@ -147,7 +149,7 @@ async function filterFriendMsg(that, contact, msg) {
     if (config.eventKeywords && config.eventKeywords.length > 0) {
         for (let item of config.eventKeywords) {
             for (let key of item.keywords) {
-                if (item.reg === 2 && item.keywords.includes(msg) || item.reg === 1 && msg === key) {
+             if (item.reg === 1 && msg.includes(key) || item.reg === 2 && msg === key) {
                     msg = msg.replace(key, '')
                     let res = await getEventReply(item.event, msg, name, id, avatar)
                     return res;
@@ -194,22 +196,22 @@ async function filterRoomMsg(msg, name, id, avatar) {
         msgArr.push(obj)
         return msgArr;
     }
-    // 关键词处理
-    msgArr = keywordsReply(msg)
-    if (msgArr.length > 0) {
-        return msgArr
-    }
     // 事件回复
     if (config.eventKeywords && config.eventKeywords.length > 0) {
         for (let item of config.eventKeywords) {
             for (let key of item.keywords) {
-                if (item.position === 'start' && msg.startsWith(key) || item.position === 'end' && msg.endsWith(key) || item.position === 'middle' && msg.includes(key)) {
-                    msg = msg.replace(item.key, '')
+                if (item.reg === 1 && msg.includes(key) || item.reg === 2 && msg === key) {
+                    msg = msg.replace(key, '')
                     let res = await getEventReply(item.event, msg, name, id, avatar)
                     return res;
                 }
             }
         }
+    }
+    // 关键词处理
+    msgArr = keywordsReply(msg) || []
+    if (msgArr.length > 0) {
+        return msgArr
     }
     if (config.autoReply) {
         console.log('开启了机器人自动回复功能')

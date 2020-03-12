@@ -63,6 +63,12 @@ async function dispatchEventContent(eName, msg, name, id, avatar) {
             url = await api.getMeiNv()
             type = 2
             break;
+        case 'ncov':
+            content = await api.getNcov()
+            break;  
+        case 'cname':
+            content = await api.getCname()
+            break;    
         case 'updateConfig':
             let data = `// ${new Date()}: 重启`
             fs.writeFileSync(path.join(basePath, './reload-action.js'), data)

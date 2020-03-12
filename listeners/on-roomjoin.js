@@ -10,7 +10,7 @@ const { addRoomWelcomeSay} = require('../lib/index');
 function roomHasConfig(arr,name){
   if(arr.length == 0) return -1
   for(let i in arr){
-    if (arr[i].name == name) return i
+    if (arr[i].roomName == name) return i
    }
    return -1
 }
@@ -21,11 +21,12 @@ async function onRoomjoin (room, inviteeList, inviter, date){
   const nameList = inviteeList.map(c => c.name()).join(',')
   const roomName = await room.topic()
   const roomIndex = roomHasConfig(config.roomJoinKeywords,roomName)
+  console.log('jinqun', roomName, roomIndex, nameList)
   if (roomIndex>-1) {
       const { welcomes } = config.roomJoinKeywords[roomIndex]
       console.log(`群名： ${roomName} ，加入新成员： ${nameList}, 邀请人： ${inviter}`)
       for(const item of welcomes) {
-        await addRoomWelcomeSay(room,nameList, item)
+        await addRoomWelcomeSay(room, roomName,nameList, item)
       }
   }
 }
