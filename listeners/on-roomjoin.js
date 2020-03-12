@@ -1,7 +1,6 @@
 const reload = require('auto-reload')
 const config = reload('../wechat.config');
-const { FileBox } = require('wechaty')
-const path = require('path')
+const { addRoomWelcomeSay} = require('../lib/index');
 /**
  * 判断配置中是否存在此群
  * @param {*} arr 配置的群组
@@ -21,13 +20,12 @@ function roomHasConfig(arr,name){
 async function onRoomjoin (room, inviteeList, inviter, date){
   const nameList = inviteeList.map(c => c.name()).join(',')
   const roomName = await room.topic()
-  const roomIndex = roomHasConfig(config.ROOMJOINLIST,roomName)
+  const roomIndex = roomHasConfig(config.roomJoinKeywords,roomName)
   if (roomIndex>-1) {
+      const { welcomes } = config.roomJoinKeywords[roomIndex]
       console.log(`群名： ${roomName} ，加入新成员： ${nameList}, 邀请人： ${inviter}`)
-      room.say(`${roomName}：欢迎新朋友 @${nameList}，<br>${config.ROOMJOINLIST[roomIndex].welcome}`)
-      if(config.ROOMJOINLIST[roomIndex].fileObj){
-        const fileBox2 = FileBox.fromFile(path.resolve(__dirname,config.ROOMJOINLIST[roomIndex].fileObj))
-        await room.say(fileBox2)
+      for(const item of welcomes) {
+        await addRoomWelcomeSay(room,nameList, item)
       }
   }
 }
