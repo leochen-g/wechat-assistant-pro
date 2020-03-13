@@ -71,7 +71,7 @@ async function dispatchEventContent(eName, msg, name, id, avatar) {
             break;    
         case 'updateConfig':
             let data = `// ${new Date()}: 重启`
-            fs.writeFileSync(path.join(basePath, './reload-action.js'), data)
+            fs.writeFileSync(path.join(basePath, './reload/reload-action.js'), data)
             content = '更新成功，请稍等两分钟后生效'
             break;
         default:
