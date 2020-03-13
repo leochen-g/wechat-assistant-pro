@@ -14,7 +14,10 @@
       "max_restarts": 100,
       "watch": ["reload"],
       "watch_delay": 1000,
-      "ignore_watch": ["node_modules", "logs", "wechat.config.js"]
+      "ignore_watch": ["node_modules", "logs", "wechat.config.js"],
+      "watch_options": { 
+        "followSymlinks": false 
+      } 
     }
   ]
 }
