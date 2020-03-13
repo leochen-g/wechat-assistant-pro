@@ -11,10 +11,10 @@
       "autorestart": true,
       "instances": 1,
       "min_uptime": "60s",
-      "max_restarts": 30,
-      "watch": ["./reload-action.js"],
+      "max_restarts": 100,
+      "watch": ["reload"],
       "watch_delay": 1000,
-      "ignore_watch": ["node_modules", "logs"]
+      "ignore_watch": ["node_modules", "logs", "wechat.config.js"]
     }
   ]
 }
