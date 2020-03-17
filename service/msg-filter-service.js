@@ -7,6 +7,7 @@ const {getToday, convertTime, delay, contactSay, addRoom, contentDistinguish, se
 const WEIXINOFFICIAL = ['朋友推荐消息', '微信支付', '微信运动', '微信团队']; // 微信官方账户，针对此账户不做任何回复
 const DELETEFRIEND = '开启了朋友验证'; // 被人删除后，防止重复回复
 const REMINDKEY = '提醒'
+const NEWADDFRIEND = '你已添加';
 
 /**
  * 添加定时提醒
@@ -101,6 +102,12 @@ async function filterFriendMsg(that, contact, msg) {
         msgArr.push(obj)
         return msgArr;
     }
+    // 新增好友回复
+    if (msg.includes(NEWADDFRIEND)) {
+        console.log(`新添加好友：${name}，默认回复`);
+        msgArr = config.newFriendReplys || []
+        return msgArr;
+      }
     // 进群邀请
     if (config.roomJoinKeywords && config.roomJoinKeywords.length > 0) {
         for (const item of config.roomJoinKeywords) {
