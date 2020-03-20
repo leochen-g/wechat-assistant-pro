@@ -585,8 +585,7 @@ async function getCname() {
     try {
         let option = {
             method: 'GET',
-            url: '/txapi/cname/index ',
-            params: {url: url}
+            url: '/txapi/cname/index '
         };
         let res = await txReq(option);
         let content = parseBody(res);
