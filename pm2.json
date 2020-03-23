@@ -1,7 +1,7 @@
 {
   "apps": [
     {
-      "name": "wechaty-pro",
+      "name": "wechaty-ipad-pro",
       "cwd": "./",
       "script": "./index.js",
       "log_date_format": "YYYY-MM-DD HH:mm Z",
