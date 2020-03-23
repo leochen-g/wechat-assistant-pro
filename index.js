@@ -1,3 +1,4 @@
+const { ipadToken } = require('./env')
 const { Wechaty } = require('wechaty');
 const onScan = require('./listeners/on-scan')
 const onLogin = require('./listeners/on-login')
@@ -10,8 +11,16 @@ const onHeartbeat = require('./listeners/on-heartbeat')
 const onError = require('./listeners/on-error')
 const onRoomtopic = require('./listeners/on-roomtopic')
 const onRoomleave = require('./listeners/on-roomleave')
-
-const bot = new Wechaty({ name: 'WechatEveryDay' });
+let bot
+if(ipadToken){
+  const { PuppetPadplus } = require('wechaty-puppet-padplus')
+  const puppet = new PuppetPadplus({
+    token:ipadToken,
+  })
+  bot = new Wechaty({puppet, name: 'WechatEveryDay' });
+}else  {
+  bot = new Wechaty({ name: 'WechatEveryDay' });
+}
 
 
 bot.on('scan', onScan);

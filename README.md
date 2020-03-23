@@ -25,3 +25,22 @@
 第一步 `npm install`
 
 第二步 `npm run pm2`(如果报错pm2找不到，请执行`npm install pm2 -g` 后重新执行此步骤)
+
+## 高级配置
+
+如果你拥有了wechaty发放的ipad token，那么也可以直接使用本项目
+
+### 提前安装依赖
+
+```
+npm i -g node-gyp
+```
+
+如果是win平台，还需进行
+
+
+``` 
+npm i -g windows-build-tools 
+```
+
+### 配置ipad token
