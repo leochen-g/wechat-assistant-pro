@@ -70,7 +70,7 @@ module.exports = {
 二、拉取镜像
 
 ```shell script
-docker push aibotk/wechat-assistant
+docker pull aibotk/wechat-assistant
 ```
 
 三、运行镜像
