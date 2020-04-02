@@ -85,6 +85,7 @@ docker run -v 绝对路径/env.js:/home/app/env.js -d  aibotk/wechat-assistant
 ## 提前体验
 
 如果很不幸你的微信无法登录网页端，同时`ipadtoken`还没有申请通过，请不要伤心，你还有我的小助手可以用来抚慰心伤，扫描下方二维码，我的智能微秘书会自动通过你的申请
+
 ![](https://user-gold-cdn.xitu.io/2019/2/28/1693401c6c3e6b02?w=430&h=430&f=png&s=53609)
 
 
@@ -97,5 +98,9 @@ docker run -v 绝对路径/env.js:/home/app/env.js -d  aibotk/wechat-assistant
 
 捐助方法如下：
 
+
+<div style="display: flex;justify-content: flex-start">
 <img width="300" height="350" src="http://image.xkboke.com/web-inn/aibotk-weixin.png" />
 <img width="300" height="350" src="http://image.xkboke.com/web-inn/aibotk-alipay.png" />
+</div>
+
