@@ -15,20 +15,24 @@
 
 同时自带微信机器人功能，群资讯消息定时发送，群定时提醒功能，群机器人聊天，垃圾分类，天气查询，土情话查询，老黄历查询，顺口溜查询等众多功能
 
-## 说明
+## 项目说明
 
 本项目是基于[wechaty](https://github.com/Chatie/wechaty)的个人开源项目，更多关于`wechaty`项目说明及api文档可以移步：[wechaty介绍](https://wechaty.js.org/v/zh/)
+
+## 更多功能说明
+移步：[https://www.xkboke.com/web-inn/secretary/client.html](https://www.xkboke.com/web-inn/secretary/client.html)
 
 ## 配置
 `env.js` 文件中填入智能微秘书的apiKey 和 apiSecret [注册地址](https://wechat.aibotk.com/#/signup)
 
 ## 运行
 
-项目根目录
+克隆本项目，并进入项目根目录
 
 第一步 `npm install`
 
 第二步 `npm run pm2`(如果报错pm2找不到，请执行`npm install pm2 -g` 后重新执行此步骤)
+
 
 ## 高级功能(无法登录微信网页端朋友的福音)
 
@@ -50,7 +54,7 @@ npm i -g windows-build-tools
 ### 配置ipad token
 在`env.js`里填入你的ipadtoken即可
 
-## docker 部署
+## docker 部署 （推荐）
 
 一、创建一个`env.js`，并在`env.js`中填入相关的配置参数如下
 
@@ -101,3 +105,6 @@ docker run -v 绝对路径/env.js:/home/app/env.js -d  aibotk/wechat-assistant
 <img width="300" height="350" src="http://image.xkboke.com/web-inn/aibotk-alipay.png" />
 </div>
 
+## 更新日志
+
+[更新日志](./CHANGELOG.md)
