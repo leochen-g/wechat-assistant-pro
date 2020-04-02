@@ -1,0 +1,17 @@
+*node_modules
+npm-debug.log
+.git
+README.md
+.idea
+*.memory-card.json
+*/.settings
+*/target
+*target
+*/.settings
+*/target
+*.project
+*.classpath
+*.idea
+*.vscode
+*.iml
+*.DS_Store
