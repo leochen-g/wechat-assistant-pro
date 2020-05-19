@@ -207,9 +207,7 @@ async function getTXweather(city) {
                 weatherTips: todayInfo.tips,
                 todayWeather: `今天:${todayInfo.weather}<br>温度:${todayInfo.lowest}/${
                     todayInfo.highest
-                }<br>${todayInfo.wind} ${todayInfo.windspeed}<br>空气:${
-                    todayInfo.air_level
-                }${todayInfo.air}<br>`
+                }<br>${todayInfo.wind} ${todayInfo.windspeed}<br><br>`
             };
             return obj;
         } else {
@@ -236,7 +234,7 @@ async function getNews(id) {
         if (content.code === 200) {
             let newList = content.newslist;
             let news = '';
-            let shortUrl = await getShortUrl('https://www.tianapi.com/weixin/news/?col=' + id)
+            let shortUrl = 'https://www.tianapi.com/weixin/news/?col=' + id
             for (let i in newList) {
                 let num = parseInt(i) + 1;
                 news = `${news}<br>${num}.${newList[i].title}`;
