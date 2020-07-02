@@ -1,0 +1,40 @@
+{
+  "id": 13,
+  "autoAcceptFriend": true,
+  "autoReply": true,
+  "defaultBot": 2,
+  "newFriendReplys": [],
+  "tuLingKey": "1065ca6daa614c12b15d730f3a2b33dd",
+  "txApiKey": "d7132ee772da7dfe77f6487056f8aa21",
+  "acceptFriendKeyWords": [],
+  "dayTaskSchedule": [],
+  "roomTaskSchedule": [],
+  "roomNewsSchedule": [],
+  "roomJoinKeywords": [],
+  "replyKeywords": [
+    {
+      "reg": 2,
+      "keywords": [
+        "你好"
+      ],
+      "replys": [
+        {
+          "id": "pyg7v2jnq8jw3nxr",
+          "name": "你好",
+          "content": "你也好啊",
+          "updatedAt": "2020-05-30T16:49:32.000Z",
+          "type": 1
+        }
+      ]
+    }
+  ],
+  "eventKeywords": [
+    {
+      "event": "updateConfig",
+      "keywords": [
+        "更新"
+      ],
+      "reg": 2
+    }
+  ]
+}
