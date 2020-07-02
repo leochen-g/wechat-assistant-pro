@@ -23,3 +23,6 @@ pids
 *.pid
 *.seed
 */file
+env.json
+wechat.config.json
+

@@ -1,7 +1,7 @@
 {
   "apps": [
     {
-      "name": "wechaty-ipad-pro",
+      "name": "wechaty-pro",
       "cwd": "./",
       "script": "./index.js",
       "log_date_format": "YYYY-MM-DD HH:mm Z",
@@ -11,13 +11,7 @@
       "autorestart": true,
       "instances": 1,
       "min_uptime": "60s",
-      "max_restarts": 100,
-      "watch": ["reload"],
-      "watch_delay": 1000,
-      "ignore_watch": ["node_modules", "logs", "wechat.config.js"],
-      "watch_options": { 
-        "followSymlinks": false 
-      } 
+      "max_restarts": 100
     }
   ]
 }
