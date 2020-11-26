@@ -1,28 +1,182 @@
 {
-  "id": 13,
+  "id": 1,
   "autoAcceptFriend": true,
   "autoReply": true,
   "defaultBot": 2,
-  "newFriendReplys": [],
+  "newFriendReplys": [
+    {
+      "id": "g08rez5x653mdyw9",
+      "name": "新加好友默认回复",
+      "content": "您好！很高兴能与您成为好友！为了能够体验更好的智能服务，你可以发送“帮助”来查看智能微秘书的功能。或者点击https://www.xkboke.com/web-inn/secretary/client.html#%E4%BD%93%E9%AA%8C%E4%B8%8E%E6%8A%80%E6%9C%AF%E4%BA%A4%E6%B5%81 查看详细功能<br>1、联系作者请回复“联系作者”<br>2、加群请回复你所了解的加群关键词<br>",
+      "updatedAt": "2020-03-20T06:44:59.000Z",
+      "type": 1
+    }
+  ],
   "tuLingKey": "1065ca6daa614c12b15d730f3a2b33dd",
   "txApiKey": "d7132ee772da7dfe77f6487056f8aa21",
   "acceptFriendKeyWords": [],
-  "dayTaskSchedule": [],
+  "dayTaskSchedule": [
+    {
+      "name": "嗯哼",
+      "alias": "A兔子",
+      "memorialDay": "2015/04/18",
+      "city": "上海",
+      "endWord": "最爱你的庚",
+      "date": "43 10 08 * * *"
+    },
+    {
+      "name": "Leo_chen",
+      "alias": "Leo_chen",
+      "memorialDay": "2019/02/12",
+      "city": "上海",
+      "endWord": "智能微秘书",
+      "date": "31 40 08 * * *"
+    }
+  ],
   "roomTaskSchedule": [],
-  "roomNewsSchedule": [],
-  "roomJoinKeywords": [],
+  "roomNewsSchedule": [
+    {
+      "roomName": "微信每日说",
+      "sortId": 7,
+      "endWord": "智能微秘书",
+      "date": "04 00 08 * * *"
+    },
+    {
+      "roomName": "每日资讯群",
+      "sortId": 13,
+      "endWord": "智能微秘书",
+      "date": "46 09 08 * * *"
+    },
+    {
+      "roomName": "测试群",
+      "sortId": 8,
+      "endWord": "智能微秘书",
+      "date": "06 00 11 * * *"
+    }
+  ],
+  "roomJoinKeywords": [
+    {
+      "roomName": "微信每日说",
+      "reg": 2,
+      "keywords": [
+        "微信每日说",
+        "加群"
+      ],
+      "replys": [],
+      "welcomes": [
+        {
+          "id": "q6w2m8kqy504rp7d",
+          "name": "每日说进群欢迎词",
+          "content": "欢迎来到微信每日说，有什么问题都可以群里提出，大家都是很热情的!<br><br>如遇到网页微信不可登录等问题，暂时没有解决办法，微信对2017年后注册的号已经禁止登录网页版微信了。17年之前的号也有很大几率无法登录，群主也没办法解决，有认识张小龙的可以打个招呼看看能不能放开微信网页端，哈哈（17年之前的可以尝试过一段时间后多试几次，或许有几率可以登录）",
+          "updatedAt": "2020-03-10T12:09:51.000Z",
+          "type": 1
+        }
+      ]
+    },
+    {
+      "roomName": "微信机器人小助手交流",
+      "reg": 2,
+      "keywords": [
+        "小助手"
+      ],
+      "replys": [],
+      "welcomes": []
+    },
+    {
+      "roomName": "智能微秘书内测群",
+      "reg": 2,
+      "keywords": [
+        "智能秘书"
+      ],
+      "replys": [
+        {
+          "id": "m1p6eojm0k87rx3n",
+          "name": "邀请进群通知",
+          "content": "正在邀请入群，请勿重复回复.....",
+          "updatedAt": "2020-03-20T06:33:53.000Z",
+          "type": 1
+        }
+      ],
+      "welcomes": [
+        {
+          "id": "0x3qe2k2p58r1zmw",
+          "name": "微秘书进群欢迎词",
+          "content": "欢迎进入智能微秘书交流群，请勿在本群分享任何与技术无关的链接，谢谢配合！如有项目运行上的问题，请首先根据此说明进行自查： https://www.xkboke.com/web-inn/secretary/client.html#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95  如若以上未解决你的问题，请详细说明你遇到的问题，并通知群主",
+          "updatedAt": "2020-03-20T06:37:26.000Z",
+          "type": 1
+        }
+      ]
+    },
+    {
+      "roomName": "wechaty web panel plugin交流群",
+      "reg": 2,
+      "keywords": [
+        "plugin",
+        "插件"
+      ],
+      "replys": [
+        {
+          "id": "2yn0mz5897k8x6g3",
+          "name": "插件群邀请",
+          "content": "正在邀请，请稍等....",
+          "updatedAt": "2020-05-31T10:56:15.000Z",
+          "type": 1
+        }
+      ],
+      "welcomes": [
+        {
+          "id": "0qymz1j0z8k693v2",
+          "name": "plugin 进群欢迎词",
+          "content": "欢迎加入wechat web panel plugin交流群，如果有任何关于此插件的问题，都可以在此群提出，如果你有更好的想法和点子也欢迎与大家分享。更多关于此插件的最新更新情况，请查看 https://github.com/gengchen528/wechaty-web-panel",
+          "updatedAt": "2020-05-31T10:59:18.000Z",
+          "type": 1
+        }
+      ]
+    }
+  ],
   "replyKeywords": [
     {
       "reg": 2,
       "keywords": [
-        "你好"
+        "联系作者"
       ],
       "replys": [
         {
-          "id": "pyg7v2jnq8jw3nxr",
-          "name": "你好",
-          "content": "你也好啊",
-          "updatedAt": "2020-05-30T16:49:32.000Z",
+          "id": "8pzglqk1957310ye",
+          "name": "联系作者",
+          "content": "微信号：CG12104410 请备注‘来自小助手’",
+          "updatedAt": "2020-03-10T12:11:36.000Z",
+          "type": 1
+        }
+      ]
+    },
+    {
+      "reg": 2,
+      "keywords": [
+        "帮助"
+      ],
+      "replys": [
+        {
+          "id": "6vwnlrjvgjxy23g7",
+          "name": "帮助",
+          "content": "你需要什么帮助呢？如果是很难的问题，小助手可能无法回答的，我建议你可以回复'加群'进入交流群，那里有一群很厉害的人可以帮助你解决问题",
+          "updatedAt": "2020-03-10T12:11:48.000Z",
+          "type": 1
+        }
+      ]
+    },
+    {
+      "reg": 2,
+      "keywords": [
+        "你好",
+        "您好"
+      ],
+      "replys": [
+        {
+          "id": "lm96nzjlv5gwv03d",
+          "name": "你好回复",
+          "content": "你好啊！我是小助手雷欧，有什么可以帮助你的呢",
+          "updatedAt": "2020-03-10T12:12:35.000Z",
           "type": 1
         }
       ]
@@ -30,10 +184,109 @@
   ],
   "eventKeywords": [
     {
-      "event": "updateConfig",
       "keywords": [
-        "更新"
+        "是什么垃圾"
       ],
+      "event": "rubbish",
+      "reg": 1
+    },
+    {
+      "keywords": [
+        "名人名言"
+      ],
+      "event": "mingyan",
+      "reg": 2
+    },
+    {
+      "keywords": [
+        "美女图"
+      ],
+      "event": "meinv",
+      "reg": 2
+    },
+    {
+      "keywords": [
+        "表情包"
+      ],
+      "event": "emo",
+      "reg": 1
+    },
+    {
+      "keywords": [
+        "姓"
+      ],
+      "event": "xing",
+      "reg": 1
+    },
+    {
+      "keywords": [
+        "疫情"
+      ],
+      "event": "ncov",
+      "reg": 1
+    },
+    {
+      "keywords": [
+        "网名"
+      ],
+      "event": "cname",
+      "reg": 1
+    },
+    {
+      "keywords": [
+        "？",
+        "?"
+      ],
+      "event": "rubbish",
+      "reg": 1
+    },
+    {
+      "keywords": [
+        "神回复"
+      ],
+      "event": "goldreply",
+      "reg": 2
+    },
+    {
+      "keywords": [
+        "姓"
+      ],
+      "event": "xing",
+      "reg": 1
+    },
+    {
+      "keywords": [
+        "*"
+      ],
+      "event": "star",
+      "reg": 1
+    },
+    {
+      "keywords": [
+        "顺口溜"
+      ],
+      "event": "skl",
+      "reg": 2
+    },
+    {
+      "keywords": [
+        "绕口令"
+      ],
+      "event": "rkl",
+      "reg": 2
+    },
+    {
+      "keywords": [
+        "黄历"
+      ],
+      "event": "lunar",
+      "reg": 1
+    },
+    {
+      "keywords": [
+        "重新加载"
+      ],
+      "event": "updateConfig",
       "reg": 2
     }
   ]
