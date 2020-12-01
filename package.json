@@ -1,10 +1,10 @@
 {
   "name": "wechat-assistant",
-  "version": "3.3.0",
-  "description": "微信小助手3.3",
+  "version": "3.4.0",
+  "description": "微信小助手3.4",
   "main": "index.js",
   "scripts": {
-    "pm2": "pm2 start pm2.json --no-daemon",
+    "pm2": "pm2 start pm2.json",
     "stop": "pm2 stop wechaty-pro",
     "restart": "pm2 restart wechat-pro",
     "start": "node index.js",
