@@ -8,6 +8,6 @@ bot = new Wechaty({
 });
 
 bot
-  .use(WechatyWebPanelPlugin())
+  .use(WechatyWebPanelPlugin({apiKey: '', apiSecret:''}))
   .start()
   .catch((e) => console.error(e));

@@ -23,8 +23,8 @@
   ],
   "dependencies": {
     "qrcode-terminal": "^0.12.0",
-    "wechaty": "^0.51.4",
-    "wechaty-web-panel": "0.0.10"
+    "wechaty": "^0.50.7",
+    "wechaty-web-panel": "^0.1.1"
   },
   "devDependencies": {
     "pm2": "^4.2.3"
