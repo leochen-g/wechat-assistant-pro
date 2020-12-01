@@ -1,12 +1,12 @@
-[![ 由Wechaty提供 ](https://img.shields.io/badge/Powered%20By-Wechaty-blue.svg)](https://github.com/chatie/wechaty)
+[![ 由Wechaty提供 ](https://img.shields.io/badge/Powered%20By-Wechaty-blue.svg)](https://github.com/wechaty/wechaty)
 [![node version](https://img.shields.io/badge/node-%3E%3D12-blue.svg)](http://nodejs.cn/download/)
-[![node version](https://img.shields.io/badge/wechaty-%3E%3D0.41.2-blue.svg)](https://github.com/Chatie/wechaty)
+[![node version](https://img.shields.io/badge/wechaty-%3E%3D0.50.7-blue.svg)](https://github.com/wechaty/wechaty)
 ![](https://img.shields.io/badge/Window-green.svg)
 ![](https://img.shields.io/badge/Mac-yellow.svg)
 ![](https://img.shields.io/badge/Centos-blue.svg)
 [![](https://img.shields.io/badge/Docker-red.svg)]()
 
-## 智能微秘书
+## 智能微秘书-插件版
 
 让你闲置的微信号成为你的日常小秘书（没有闲置的也没关系，添加我的小助手微信号，给你分配一个小秘书）。
 
@@ -16,7 +16,7 @@
 
 ## 项目说明
 
-本项目是基于[wechaty](https://github.com/Chatie/wechaty)的个人开源项目，更多关于`wechaty`项目说明及 api 文档可以移步：[wechaty 介绍](https://wechaty.js.org/v/zh/)
+本项目是基于[wechaty](https://github.com/wechaty/wechaty)的个人开源项目，更多关于`wechaty`项目说明及 api 文档可以移步：[wechaty 介绍](https://wechaty.js.org/v/zh/)
 
 ## 更多功能说明
 
@@ -49,33 +49,50 @@ npm i -g node-gyp
 ```
 npm i -g windows-build-tools
 ```
+## 正常部署
 
-### 配置 ipad token
+一、 安装依赖
+```shell script
+npm install
+```
 
-在`env.js`里填入你的 ipadtoken 即可
+二、 配置`APIKEY`和`APISECRET`
+
+```
+const { Wechaty } = require('wechaty');
+const WechatyWebPanelPlugin = require('wechaty-web-panel');
+const name = 'wechat-assistant-pro';
+const token = '';
+let bot = '';
+bot = new Wechaty({
+  name, // generate xxxx.memory-card.json and save login data for the next login
+});
+
+bot
+  .use(WechatyWebPanelPlugin({apiKey: '配置APIKEY', apiSecret:'配置apiSecret'})) 
+  .start()
+  .catch((e) => console.error(e));
+
+```
+
+三、运行
+
+```shell script
+npm run start
+```
 
 ## docker 部署 （推荐）
 
-一、创建一个`env.js`，并在`env.js`中填入相关的配置参数如下
-
-```javascript
-module.exports = {
-  apiKey: '', //智能微秘书平台APIKEY （必填）
-  apiSecret: '', //智能微秘书平台APISECRET （必填）
-  ipadToken: '', // 如果有wechaty的ipad token可以填到此处，没有的话就不用填写 （非必填）
-};
-```
-
-二、拉取镜像
+一、拉取镜像
 
 ```shell script
-docker pull aibotk/wechat-assistant
+docker pull wechaty/wechaty
 ```
 
-三、运行镜像
+二、运行镜像
 
 ```shell script
-docker run -v 绝对路径/env.js:/home/app/env.js -d  aibotk/wechat-assistant
+docker run -ti --rm --volume="$(pwd)":/bot wechaty/wechaty index.js
 ```
 
 四、登录智能微助手平台扫码登录即可
