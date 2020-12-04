@@ -22,43 +22,23 @@
 
 移步：[https://www.xkboke.com/web-inn/secretary/client.html](https://www.xkboke.com/web-inn/secretary/client.html)
 
-## 配置
 
-`env.js` 文件中填入智能微秘书的 apiKey 和 apiSecret [注册地址](https://wechat.aibotk.com/#/signup)
+## 以web协议运行
 
-## 运行
+1、 注册微秘书平台账号
 
-克隆本项目，并进入项目根目录
+[注册地址：https://wechat.aibotk.com/#/signup](https://wechat.aibotk.com/#/signup)
 
-第一步 `npm install`
+注册后个人中心获取`APIKEY`和`APISECRET`备用
 
-第二步 `npm run pm2`(如果报错 pm2 找不到，请执行`npm install pm2 -g` 后重新执行此步骤)
+2、 克隆本项目，并进入项目根目录
 
-## 高级功能(无法登录微信网页端朋友的福音)
+执行 `npm install`安装项目依赖
 
-如果你拥有了[wechaty](https://github.com/wechaty/wechaty)发放的 ipad token，那么也可以直接使用本项目 （[ipad token 申请地址](https://github.com/juzibot/Welcome/wiki/Everything-about-Wechaty)）
+3、配置`APIKEY`和`APISECRET`
 
-### 提前安装依赖
-
-```
-npm i -g node-gyp
-```
-
-如果是 win 平台，还需进行
-
-```
-npm i -g windows-build-tools
-```
-## 正常部署
-
-一、 安装依赖
-```shell script
-npm install
-```
-
-二、 配置`APIKEY`和`APISECRET`
-
-```
+代码中配置`APIKEY`和`APISECRET`
+```javascript
 const { Wechaty } = require('wechaty');
 const WechatyWebPanelPlugin = require('wechaty-web-panel');
 const name = 'wechat-assistant-pro';
@@ -69,17 +49,87 @@ bot = new Wechaty({
 });
 
 bot
-  .use(WechatyWebPanelPlugin({apiKey: '配置APIKEY', apiSecret:'配置apiSecret'})) 
+  .use(WechatyWebPanelPlugin({apiKey: '配置配置微秘书平台APIKEY', apiSecret:'配置配置微秘书平台APISECRET'}))
   .start()
   .catch((e) => console.error(e));
 
 ```
 
-三、运行
+4、运行
 
-```shell script
-npm run start
+执行命令`npm run start`，终端会显示二维码，可以直接扫码，也可以到[智能微秘书](https://wechat.aibotk.com)（小助手配置->登录状态中进行扫码登录）
+
+5、配置你需要的功能
+
+在[智能微秘书](https://wechat.aibotk.com)中配置你需要的功能后，给启动的微信发送`更新`关键词即可拉取最新配置（或者你自己设置的更新关键词，初始关键词是`更新`）
+
+
+## 其他协议运行
+
+如果你拥有了[wechaty](https://github.com/wechaty/wechaty)发放的其他协议token，那么也可以直接使用本项目 （[token申请地址](https://github.com/juzibot/Welcome/wiki/Everything-about-Wechaty)）
+
+1、 注册微秘书平台账号
+
+[注册地址：https://wechat.aibotk.com/#/signup](https://wechat.aibotk.com/#/signup)
+
+注册后个人中心获取`APIKEY`和`APISECRET`备用
+
+2、提前安装依赖
+
 ```
+npm i -g node-gyp
+```
+
+如果是 win 平台，还需进行
+
+```
+npm i -g windows-build-tools
+```
+
+3、拉取项目，并进到项目根目录
+
+安装依赖 `npm install`
+
+4、配置`APIKEY`和`APISECRET`以及`token`
+  
+  代码中配置`APIKEY`和`APISECRET`以及`token`
+  ```javascript
+  const { Wechaty } = require('wechaty');
+  const WechatyWebPanelPlugin = require('wechaty-web-panel');
+  const name = 'wechat-assistant-pro';
+  let bot = '';
+  // 1、如果没有token请使用以下代码
+  // bot = new Wechaty({
+    //name, // generate xxxx.memory-card.json and save login data for the next login
+  //});
+  //
+  // // 2、如果有token请使用一下配置
+   bot = new Wechaty(
+       {
+         name,
+         puppet: 'wechaty-puppet-hostie',
+         puppetOptions: {
+           token: '配置你获取的token'
+         }
+       }
+   )
+  
+  bot
+    .use(WechatyWebPanelPlugin({apiKey: '配置微秘书平台APIKEY', apiSecret:'配置配置微秘书平台APISECRET'}))
+    .start()
+    .catch((e) => console.error(e));
+
+  
+  ```
+
+5、运行
+  
+  执行命令`npm run start`，终端会显示二维码，可以直接扫码，也可以到[智能微秘书](https://wechat.aibotk.com)（小助手配置->登录状态中进行扫码登录）
+
+6、配置你需要的功能
+
+在[智能微秘书](https://wechat.aibotk.com)中配置你需要的功能后，给启动的微信发送`更新`关键词即可拉取最新配置（或者你自己设置的更新关键词，初始关键词是`更新`）
+
 
 ## docker 部署 （推荐）
 
