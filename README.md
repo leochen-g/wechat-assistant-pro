@@ -22,6 +22,8 @@
 
 移步：[https://www.xkboke.com/web-inn/secretary/client.html](https://www.xkboke.com/web-inn/secretary/client.html)
 
+## 注意
+node 版本需要 >=12
 
 ## 以web协议运行
 
