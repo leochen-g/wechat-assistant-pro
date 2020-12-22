@@ -135,17 +135,7 @@ npm i -g windows-build-tools
 
 ## docker 部署 （推荐）
 
-一、拉取镜像
-
-```shell script
-docker pull wechaty/wechaty
-```
-
-二、运行镜像
-
-```shell script
-docker run -ti --rm --volume="$(pwd)":/bot wechaty/wechaty index.js
-```
+后续更新...
 
 四、登录智能微助手平台扫码登录即可
 
