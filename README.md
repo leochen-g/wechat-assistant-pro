@@ -35,7 +35,7 @@ node 版本需要 >=12
 
 2、 克隆本项目，并进入项目根目录
 
-执行 `npm install`安装项目依赖
+执行 `npm install`安装项目依赖(如果安装比较慢，可以使用` npm i --canvas_binary_host_mirror=https://npm.taobao.org/mirrors/node-canvas-prebuilt/`)
 
 3、配置`APIKEY`和`APISECRET`
 
@@ -90,7 +90,7 @@ npm i -g windows-build-tools
 
 3、拉取项目，并进到项目根目录
 
-安装依赖 `npm install`
+安装依赖 `npm install` (如果安装比较慢，可以使用` npm i --canvas_binary_host_mirror=https://npm.taobao.org/mirrors/node-canvas-prebuilt/`)
 
 4、配置`APIKEY`和`APISECRET`以及`token`
   

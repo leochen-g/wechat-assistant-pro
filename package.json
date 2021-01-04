@@ -1,6 +1,6 @@
 {
   "name": "wechat-assistant",
-  "version": "3.4.4",
+  "version": "3.4.5",
   "description": "微信小助手3.4.2",
   "main": "index.js",
   "scripts": {
@@ -25,7 +25,7 @@
     "qrcode-terminal": "^0.12.0",
     "wechaty": "^0.53.1",
     "wechaty-puppet-hostie": "^0.13.1",
-    "wechaty-web-panel": "^0.1.6"
+    "wechaty-web-panel": "^0.1.8"
   },
   "devDependencies": {
     "pm2": "^4.2.3"
