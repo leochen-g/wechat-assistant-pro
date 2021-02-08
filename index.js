@@ -5,6 +5,7 @@ let bot = '';
 // 1、如果没有token请使用以下代码
 bot = new Wechaty({
   name, // generate xxxx.memory-card.json and save login data for the next login
+  puppet: 'wechaty-puppet-puppeteer',
 });
 //
 // // 2、如果有token请使用一下配置
