@@ -1,10 +1,14 @@
 [![ 由Wechaty提供 ](https://img.shields.io/badge/Powered%20By-Wechaty-blue.svg)](https://github.com/wechaty/wechaty)
 [![node version](https://img.shields.io/badge/node-%3E%3D12-blue.svg)](http://nodejs.cn/download/)
-[![node version](https://img.shields.io/badge/wechaty-%3E%3D0.50.7-blue.svg)](https://github.com/wechaty/wechaty)
+[![node version](https://img.shields.io/badge/wechaty-%3E%3D0.57.719blue.svg)](https://github.com/wechaty/wechaty)
 ![](https://img.shields.io/badge/Window-green.svg)
 ![](https://img.shields.io/badge/Mac-yellow.svg)
 ![](https://img.shields.io/badge/Centos-blue.svg)
 [![](https://img.shields.io/badge/Docker-red.svg)]()
+
+# 最新通知 喜大普奔
+
+由于wechaty的升级，现已支持所有微信登录，就算你的微信之前不能登录web版，现在也可以用了，赶快来体验吧。
 
 ## 智能微秘书-插件版
 
