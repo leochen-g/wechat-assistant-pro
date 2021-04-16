@@ -29,6 +29,15 @@
 ## 注意
 node 版本需要 >=12
 
+## 自行构建docker镜像（推荐）
+
+需要提前安装 docker 环境，并且配置好`index.js`中内容
+
+```shell script
+docker build -t wechat-assistant .
+docker run wechat-assistant
+```
+
 ## 以web协议运行
 
 1、 注册微秘书平台账号

@@ -1,0 +1,1 @@
+FROM wechaty/onbuild:next
