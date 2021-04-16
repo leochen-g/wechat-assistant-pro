@@ -146,10 +146,6 @@ npm i -g windows-build-tools
 在[智能微秘书](https://wechat.aibotk.com)中配置你需要的功能后，给启动的微信发送`更新`关键词即可拉取最新配置（或者你自己设置的更新关键词，初始关键词是`更新`）
 
 
-## docker 部署 （推荐）
-
-后续更新...
-
 四、登录智能微助手平台扫码登录即可
 
 登录地址：[https://wechat.aibotk.com/](https://wechat.aibotk.com/)
