@@ -1,6 +1,5 @@
 [![ 由Wechaty提供 ](https://img.shields.io/badge/Powered%20By-Wechaty-blue.svg)](https://github.com/wechaty/wechaty)
 [![node version](https://img.shields.io/badge/node-%3E%3D12-blue.svg)](http://nodejs.cn/download/)
-[![node version](https://img.shields.io/badge/wechaty-%3E%3D0.57.719blue.svg)](https://github.com/wechaty/wechaty)
 ![](https://img.shields.io/badge/Window-green.svg)
 ![](https://img.shields.io/badge/Mac-yellow.svg)
 ![](https://img.shields.io/badge/Centos-blue.svg)
@@ -20,94 +19,138 @@
 
 ## 项目说明
 
-本项目是基于[wechaty](https://github.com/wechaty/wechaty)的个人开源项目，更多关于`wechaty`项目说明及 api 文档可以移步：[wechaty 介绍](https://wechaty.js.org/v/zh/)
+本项目是基于[wechaty](https://github.com/wechaty/wechaty) 的个人开源智能机器人项目，更多关于`wechaty`项目说明及 api 文档可以移步：[wechaty 介绍](https://wechaty.js.org/docs/howto/)
 
 ## 更多功能说明
 
-移步：[https://www.xkboke.com/web-inn/secretary/client.html](https://www.xkboke.com/web-inn/secretary/client.html)
+- [x] 微信每日说,定时给女朋友发送每日天气提醒，以及每日一句
 
-## 注意
-node 版本需要 >=12
+* 定时提醒
 
-## 自行构建docker镜像（推荐）
+- [x] 当天定时提醒 例："提醒 我 18:00 下班了，记得带好随身物品"
+- [x] 每天定时提醒 例："提醒 我 每天 18:00 下班了，记得带好随身物品"
+- [x] 指定日期提醒 例："提醒 我 2019-05-10 8:00 还有 7 天是女朋友生日了，准备一下"
 
-需要提前安装 docker 环境，并且配置好`index.js`中内容
+* 智能机器人
+
+- [x] 天行机器人
+- [x] 图灵机器人
+- [x] 腾讯闲聊机器人
+- [ ] 更多
+
+* 群定时任务
+
+- [x] 群新闻定时发送
+- [x] 群消息定时发送
+- [ ] 更多功能等你来 pr
+
+* 关键词
+
+- [x] 关键词加好友
+- [x] 关键词加群
+- [x] 关键词回复
+- [x] 关键词事件
+    - [x] 天气查询 例："上海天气"
+    - [x] 垃圾分类 例："?香蕉皮"
+    - [x] 名人名言 例： "名人名言"
+    - [x] 老黄历查询 例： "黄历 2019-6-13"
+    - [x] 姓氏起源 例： "姓陈"
+    - [x] 星座运势 例： "\*双子座"
+    - [x] 神回复 例： "神回复"
+    - [x] 获取表情包 例： "表情包你好坏"
+    - [x] 获取美女图 例： "美女图"
+    - [x] 群合影 例： "群合影"
+    - [x] 牛年头像 例： "牛气冲天"
+    - [ ] 更多待你发现
+- [x] 进群自动欢迎
+- [x] 加好友自动回复
+
+* 自动更新配置文件，无需重启
+
+- [x] 默认给机器人发送 ‘更新’ 触发拉取新配置文件操作，可在面板`小助手配置->关键词回复->关键词事件`进行修改关键词
+
+* 特色功能
+
+- [x] 群合影
+
+更多详情介绍：[传送门](https://www.xkboke.com/web-inn/secretary/client.html#%E5%B0%8F%E5%8A%A9%E6%89%8B%E5%8A%9F%E8%83%BD%E4%B8%80%E8%A7%88)
+
+## 提前准备
+
+### 注册智能微秘书管理账号
+
+1. 注册：[智能微秘书](https://wechat.aibotk.com/#/signup)
+
+2. 初始化配置文件`小助手配置->基础配置`，修改后保存
+
+3. 个人中心获取`APIKEY`和`APISECRET`，后续配置用到
+
+![](./doc/img/user-center.png)
+
+### 注册天行数据账号
+
+由于本项目大部分定时资讯和一些天气接口来自于天行数据，所以需要提前准备好天行数据的账号，同时申请好相关接口的权限
+
+1、注册: [天行数据](https://www.tianapi.com/source/865c0f3bfa)
+
+2、申请接口权限
+
+必选接口
+* [天行机器人](https://www.tianapi.com/apiview/47)
+* [天气](https://www.tianapi.com/apiview/72)
+* [新闻](https://www.tianapi.com/apiview/51)
+* [垃圾分类](https://www.tianapi.com/apiview/97)
+
+可选接口（如果想使用相应的功能还是必须申请的），但是如果默认使用了天行机器人，以下功能接口无需申请也可以，机器人会直接返回对应信息
+
+* [土味情话](https://www.tianapi.com/apiview/80)
+* [名人名言](https://www.tianapi.com/apiview/92)
+* [星座运势](https://www.tianapi.com/apiview/78)
+* [姓氏起源](https://www.tianapi.com/apiview/94)
+* [顺口溜](https://www.tianapi.com/apiview/54)
+* [老黄历](https://www.tianapi.com/apiview/45)
+* [神回复](https://www.tianapi.com/apiview/39)
+* [歇后语](https://www.tianapi.com/apiview/38)
+* [绕口令](https://www.tianapi.com/apiview/37)
+* [疫情](https://www.tianapi.com/apiview/169)
+* [网络取名](https://www.tianapi.com/apiview/36)
+
+## 开始
+
+### 直接运行
+
+#### Step 1: 安装
+
+克隆本项目，并进入项目根目录执行 `npm install`安装项目依赖(如果安装比较慢，可以使用` npm i --canvas_binary_host_mirror=https://npm.taobao.org/mirrors/node-canvas-prebuilt/`)
+
+#### Step 2: 配置
+
+`index.js`代码中配置`APIKEY`和`APISECRET`
+
+#### Step 3: 运行
+
+执行命令`npm run start`，终端会显示二维码，可以直接扫码，也可以到[智能微秘书](https://wechat.aibotk.com)（小助手配置->登录状态中进行扫码登录）
+
+#### Step 4: 配置相应功能
+
+在[智能微秘书](https://wechat.aibotk.com)中配置你需要的功能后，给启动的微信发送`更新`关键词即可拉取最新配置（或者你自己设置的更新关键词，初始关键词是`更新`，**每次修改配置后，请记得一定发送关键词更新配置**
+
+
+### 自行构建docker镜像（推荐）
+
+需要提前安装 docker 环境，并且配置好`index.js`中`APIKEY`和`APISECRET`
 
 ```shell script
 docker build -t wechat-assistant .
 docker run wechat-assistant
 ```
 
-## 以web协议运行
+其他步骤同上
 
-1、 注册微秘书平台账号
+### 其他协议运行
 
-[注册地址：https://wechat.aibotk.com/#/signup](https://wechat.aibotk.com/#/signup)
-
-注册后个人中心获取`APIKEY`和`APISECRET`备用
-
-2、 克隆本项目，并进入项目根目录
-
-执行 `npm install`安装项目依赖(如果安装比较慢，可以使用` npm i --canvas_binary_host_mirror=https://npm.taobao.org/mirrors/node-canvas-prebuilt/`)
-
-3、配置`APIKEY`和`APISECRET`
-
-代码中配置`APIKEY`和`APISECRET`
-```javascript
-const { Wechaty } = require('wechaty');
-const WechatyWebPanelPlugin = require('wechaty-web-panel');
-const name = 'wechat-assistant-pro';
-const token = '';
-let bot = '';
-bot = new Wechaty({
-  name, // generate xxxx.memory-card.json and save login data for the next login
-});
-
-bot
-  .use(WechatyWebPanelPlugin({apiKey: '配置配置微秘书平台APIKEY', apiSecret:'配置配置微秘书平台APISECRET'}))
-  .start()
-  .catch((e) => console.error(e));
-
-```
-
-4、运行
-
-执行命令`npm run start`，终端会显示二维码，可以直接扫码，也可以到[智能微秘书](https://wechat.aibotk.com)（小助手配置->登录状态中进行扫码登录）
-
-5、配置你需要的功能
-
-在[智能微秘书](https://wechat.aibotk.com)中配置你需要的功能后，给启动的微信发送`更新`关键词即可拉取最新配置（或者你自己设置的更新关键词，初始关键词是`更新`）
-
-
-## 其他协议运行
-
-如果你拥有了[wechaty](https://github.com/wechaty/wechaty)发放的其他协议token，那么也可以直接使用本项目 （[token申请地址](https://github.com/juzibot/Welcome/wiki/Everything-about-Wechaty)）
-
-1、 注册微秘书平台账号
-
-[注册地址：https://wechat.aibotk.com/#/signup](https://wechat.aibotk.com/#/signup)
-
-注册后个人中心获取`APIKEY`和`APISECRET`备用
-
-2、提前安装依赖
-
-```
-npm i -g node-gyp
-```
-
-如果是 win 平台，还需进行
-
-```
-npm i -g windows-build-tools
-```
-
-3、拉取项目，并进到项目根目录
-
-安装依赖 `npm install` (如果安装比较慢，可以使用` npm i --canvas_binary_host_mirror=https://npm.taobao.org/mirrors/node-canvas-prebuilt/`)
-
-4、配置`APIKEY`和`APISECRET`以及`token`
-  
   代码中配置`APIKEY`和`APISECRET`以及`token`
+
   ```javascript
   const { Wechaty } = require('wechaty');
   const WechatyWebPanelPlugin = require('wechaty-web-panel');
@@ -122,7 +165,7 @@ npm i -g windows-build-tools
    bot = new Wechaty(
        {
          name,
-         puppet: 'wechaty-puppet-hostie',
+         puppet: 'wechaty-puppet-hostie', // 修改token 对应的puppet
          puppetOptions: {
            token: '配置你获取的token'
          }
@@ -137,28 +180,15 @@ npm i -g windows-build-tools
   
   ```
 
-5、运行
-  
-  执行命令`npm run start`，终端会显示二维码，可以直接扫码，也可以到[智能微秘书](https://wechat.aibotk.com)（小助手配置->登录状态中进行扫码登录）
+## 体验与交流
 
-6、配置你需要的功能
-
-在[智能微秘书](https://wechat.aibotk.com)中配置你需要的功能后，给启动的微信发送`更新`关键词即可拉取最新配置（或者你自己设置的更新关键词，初始关键词是`更新`）
-
-
-四、登录智能微助手平台扫码登录即可
-
-登录地址：[https://wechat.aibotk.com/](https://wechat.aibotk.com/)
-
-## 提前体验
-
-如果很不幸你的微信无法登录网页端，同时`ipadtoken`还没有申请通过，请不要伤心，你还有我的小助手可以用来抚慰心伤，扫描下方二维码，我的智能微秘书会自动通过你的申请
+扫描下方二维码，添加智能微秘书，体验以上所有功能，发送加群关键词即可进入交流群
 
 ![](https://user-gold-cdn.xitu.io/2019/2/28/1693401c6c3e6b02?w=430&h=430&f=png&s=53609)
 
 ## 捐助
 
-如果您认为这个项目对你有所帮助，是否可以为它捐助一点资金呢？
+如果您认为这个项目对你有所帮助，可以扫描以下二维码进行捐助，
 
 不管钱多钱少，您的捐助将会激励我持续开发新的功能！🎉
 
@@ -174,3 +204,19 @@ npm i -g windows-build-tools
 ## 更新日志
 
 [更新日志](./CHANGELOG.md)
+
+## 常见问题处理
+
+参见[https://www.xkboke.com/web-inn/wechatBot/#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86](https://www.xkboke.com/web-inn/wechatBot/#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86)
+
+## 免责声明
+
+本软件依据github上开源项目 Wechaty
+
+通过简单的设置UI和交互，运行微信机器人。
+
+仅为个人试玩，简单尝试即可，软件免费。
+
+请遵守国家法律政策，请勿用于非法犯罪行为！
+
+请合理使用，一切不良行为和后果均与作者无关！
