@@ -125,7 +125,7 @@
 
 #### Step 2: 配置
 
-`index.js`代码中配置`APIKEY`和`APISECRET`
+`src/index.js`代码中配置`APIKEY`和`APISECRET`
 
 #### Step 3: 运行
 
@@ -135,10 +135,25 @@
 
 在[智能微秘书](https://wechat.aibotk.com)中配置你需要的功能后，给启动的微信发送`更新`关键词即可拉取最新配置（或者你自己设置的更新关键词，初始关键词是`更新`，**每次修改配置后，请记得一定发送关键词更新配置**
 
+### 直接拉取镜像（推荐）
 
-### 自行构建docker镜像（推荐）
+由于自己构建部分依赖安装比较慢，或者经常会卡住，所以本项目已经提前构建好发布到dockerhub了，直接pull就行了
 
-需要提前安装 docker 环境，并且配置好`index.js`中`APIKEY`和`APISECRET`
+需要提前安装 docker 环境，并且配置好`src/index.js`中`APIKEY`和`APISECRET`
+
+所有操作请在项目根目录执行
+
+```shell
+docker pull aibotk/wechat-assistant
+
+docker run --name=wechatBot --volume="$(pwd)/src/":/bot/src aibotk/wechat-assistant
+
+```
+
+
+### 自行构建docker镜像
+
+需要提前安装 docker 环境，并且配置好`src/index.js`中`APIKEY`和`APISECRET`
 
 ```shell script
 docker build -t wechat-assistant .
@@ -149,7 +164,7 @@ docker run wechat-assistant
 
 ### 其他协议运行
 
-  代码中配置`APIKEY`和`APISECRET`以及`token`
+  `src/index.js`代码中配置`APIKEY`和`APISECRET`以及`token`
 
   ```javascript
   const { Wechaty } = require('wechaty');
