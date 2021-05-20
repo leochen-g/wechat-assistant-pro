@@ -19,7 +19,8 @@
 
 ## 项目说明
 
-本项目是基于[wechaty](https://github.com/wechaty/wechaty) 的个人开源智能机器人项目，更多关于`wechaty`项目说明及 api 文档可以移步：[wechaty 介绍](https://wechaty.js.org/docs/howto/)
+本项目是基于[wechaty](https://github.com/wechaty/wechaty) 的个人开源智能机器人项目，更多关于`wechaty`项目说明及 api
+文档可以移步：[wechaty 介绍](https://wechaty.js.org/docs/howto/)
 
 ## 更多功能说明
 
@@ -96,6 +97,7 @@
 2、申请接口权限
 
 必选接口
+
 * [天行机器人](https://www.tianapi.com/apiview/47)
 * [天气](https://www.tianapi.com/apiview/72)
 * [新闻](https://www.tianapi.com/apiview/51)
@@ -121,7 +123,8 @@
 
 #### Step 1: 安装
 
-克隆本项目，并进入项目根目录执行 `npm install`安装项目依赖(如果安装比较慢，可以使用` npm i --canvas_binary_host_mirror=https://npm.taobao.org/mirrors/node-canvas-prebuilt/`)
+克隆本项目，并进入项目根目录执行 `npm install`安装项目依赖(
+如果安装比较慢，可以使用` npm i --canvas_binary_host_mirror=https://npm.taobao.org/mirrors/node-canvas-prebuilt/`)
 
 #### Step 2: 配置
 
@@ -133,25 +136,49 @@
 
 #### Step 4: 配置相应功能
 
-在[智能微秘书](https://wechat.aibotk.com)中配置你需要的功能后，给启动的微信发送`更新`关键词即可拉取最新配置（或者你自己设置的更新关键词，初始关键词是`更新`，**每次修改配置后，请记得一定发送关键词更新配置**
+在[智能微秘书](https://wechat.aibotk.com)中配置你需要的功能后，给启动的微信发送`更新`关键词即可拉取最新配置（或者你自己设置的更新关键词，初始关键词是`更新`，**
+每次修改配置后，请记得一定发送关键词更新配置**
 
 ### 直接拉取镜像（推荐）
 
 由于自己构建部分依赖安装比较慢，或者经常会卡住，所以本项目已经提前构建好发布到dockerhub了，直接pull就行了
 
-需要提前安装 docker 环境，并且配置好`src/index.js`中`APIKEY`和`APISECRET`
-
-所有操作请在项目根目录执行
+#### step1： 拉取镜像
 
 ```shell
+
 docker pull aibotk/wechat-assistant
+
+```
+
+#### step2： 配置`APIKEY`和`APISECRET`
+
+目录`src/index.js`中`APIKEY`和`APISECRET`填写好
+
+#### step3： 启动docker
+
+以下两个命令自己选择一个执行就行，执行的时候会下载puppet，可能会比较慢，耐心等待一下即可
+
+1、请在项目根目录执行，这个命令是前台执行可以直接看到log日志的，但是没法关闭，只能销毁终端实例
+
+```shell
 
 docker run --name=wechatBot --volume="$(pwd)/src/":/bot/src aibotk/wechat-assistant
 
 ```
 
+2、这个命令可以在后台运行，多了一个`-d`
 
-### 自行构建docker镜像
+```shell
+
+docker run -d --name=wechatBot --volume="$(pwd)/src/":/bot/src aibotk/wechat-assistant
+
+```
+
+
+[如何查看docker日志](https://www.cnblogs.com/mydesky2012/p/11430394.html)
+
+### 自行构建docker镜像 （不建议）
 
 需要提前安装 docker 环境，并且配置好`src/index.js`中`APIKEY`和`APISECRET`
 
@@ -164,36 +191,36 @@ docker run wechat-assistant
 
 ### 其他协议运行
 
-  `src/index.js`代码中配置`APIKEY`和`APISECRET`以及`token`
+`src/index.js`代码中配置`APIKEY`和`APISECRET`以及`token`
 
   ```javascript
-  const { Wechaty } = require('wechaty');
-  const WechatyWebPanelPlugin = require('wechaty-web-panel');
-  const name = 'wechat-assistant-pro';
-  let bot = '';
-  // 1、如果没有token请使用以下代码
-  // bot = new Wechaty({
-    //name, // generate xxxx.memory-card.json and save login data for the next login
-  //});
-  //
-  // // 2、如果有token请使用一下配置
-   bot = new Wechaty(
-       {
-         name,
-         puppet: 'wechaty-puppet-hostie', // 修改token 对应的puppet
-         puppetOptions: {
-           token: '配置你获取的token'
-         }
-       }
-   )
-  
-  bot
-    .use(WechatyWebPanelPlugin({apiKey: '配置微秘书平台APIKEY', apiSecret:'配置配置微秘书平台APISECRET'}))
+  const {Wechaty} = require('wechaty');
+const WechatyWebPanelPlugin = require('wechaty-web-panel');
+const name = 'wechat-assistant-pro';
+let bot = '';
+// 1、如果没有token请使用以下代码
+// bot = new Wechaty({
+//name, // generate xxxx.memory-card.json and save login data for the next login
+//});
+//
+// // 2、如果有token请使用一下配置
+bot = new Wechaty(
+    {
+        name,
+        puppet: 'wechaty-puppet-hostie', // 修改token 对应的puppet
+        puppetOptions: {
+            token: '配置你获取的token'
+        }
+    }
+)
+
+bot
+    .use(WechatyWebPanelPlugin({apiKey: '配置微秘书平台APIKEY', apiSecret: '配置配置微秘书平台APISECRET'}))
     .start()
     .catch((e) => console.error(e));
 
-  
-  ```
+
+```
 
 ## 体验与交流
 
