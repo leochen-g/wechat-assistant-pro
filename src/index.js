@@ -12,7 +12,7 @@ bot = new Wechaty({
 
 // 2、如果有token请使用一下配置
 // const puppet = new PuppetPadlocal({
-//     token: 'puppet_padlocal_0a3e8f46974d4de2816ad15f328b6f84',
+//     token: '**************',
 // });
 // bot = new Wechaty({
 //     name,
