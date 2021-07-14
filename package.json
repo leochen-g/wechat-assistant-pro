@@ -24,6 +24,7 @@
   "dependencies": {
     "qrcode-terminal": "^0.12.0",
     "wechaty": "^0.63.3",
+    "wechaty-puppet": "^0.41.4",
     "wechaty-puppet-padlocal": "^0.2.35",
     "wechaty-puppet-wechat": "^0.27.1",
     "wechaty-web-panel": "^0.2.0"
