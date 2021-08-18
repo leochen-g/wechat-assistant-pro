@@ -22,8 +22,8 @@ bot = new Wechaty({
 bot
     .use(
         WechatyWebPanelPlugin({
-            apiKey: 'apiKey',
-            apiSecret: 'apiSecret',
+            apiKey: '',
+            apiSecret: '',
         })
     )
     .start()

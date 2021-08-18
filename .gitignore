@@ -25,4 +25,4 @@ pids
 */file
 env.json
 wechat.config.json
-
+*.template.js

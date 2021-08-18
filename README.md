@@ -157,19 +157,14 @@ docker pull aibotk/wechat-assistant
 
 ```
 
-#### step2： 配置`APIKEY`和`APISECRET`
-
-目录`src/index.js`中`APIKEY`和`APISECRET`填写好
-
-#### step3： 启动docker
+#### step2： 启动docker
 
 以下两个命令自己选择一个执行就行，执行的时候会下载puppet，可能会比较慢，耐心等待一下即可
 
 1、请在项目根目录执行，这个命令是前台执行可以直接看到log日志的，但是没法关闭，只能销毁终端实例
 
 ```shell
-
-docker run --name=wechatBot --volume="$(pwd)/src/":/bot/src aibotk/wechat-assistant
+docker run -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatBot
 
 ```
 
@@ -177,7 +172,7 @@ docker run --name=wechatBot --volume="$(pwd)/src/":/bot/src aibotk/wechat-assist
 
 ```shell
 
-docker run -d --name=wechatBot --volume="$(pwd)/src/":/bot/src aibotk/wechat-assistant
+docker run -d -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatBot
 
 ```
 
@@ -186,11 +181,11 @@ docker run -d --name=wechatBot --volume="$(pwd)/src/":/bot/src aibotk/wechat-ass
 
 ### 自行构建docker镜像 （不建议）
 
-需要提前安装 docker 环境，并且配置好`src/index.js`中`APIKEY`和`APISECRET`
+需要提前安装 docker 环境，项目根目录执行一下命令
 
 ```shell script
 docker build -t wechat-assistant .
-docker run wechat-assistant
+docker run -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" wechat-assistant 
 ```
 
 其他步骤同上
