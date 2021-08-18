@@ -1,0 +1,35 @@
+name: Docker Image CI
+
+on:
+    push:
+        # 每次 push tag 时进行构建，不需要每次 push 都构建。使用通配符匹配每次 tag 的提交，记得 tag 名一定要以 v 开头
+        tags:
+          - v*
+    release:
+        types: [published]
+        
+env:
+  # 设置 docker 镜像名
+  IMAGE_NAME: aibotk/wechat-assistant
+  
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Log into registry
+      run: echo "${{ secrets.ACCESS_TOKEN }}" | docker login -u aibotk --password-stdin
+    - name: Get the version
+      id: vars
+      run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
+    - name: Build the tagged Docker image
+      run: docker build . --file Dockerfile --tag $IMAGE_NAME:${{steps.vars.outputs.tag}}
+    - name: Push the tagged Docker image
+      run: docker push $IMAGE_NAME:${{steps.vars.outputs.tag}}
+    - name: Build the latest Docker image
+      run: docker build . --file Dockerfile --tag $IMAGE_NAME:latest
+    - name: Push the latest Docker image
+      run: docker push $IMAGE_NAME:latest
