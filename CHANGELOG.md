@@ -1,5 +1,5 @@
 ## 更新日志
-### V3.5.6(2021-07-09)
+### V3.5.7(2021-07-09)
 
 一、更新weChaty，wechaty-web-panel, wechaty-puppet-wechat版本，优化头像处理更灵活
 
