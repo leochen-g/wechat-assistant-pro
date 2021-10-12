@@ -25,7 +25,7 @@
     "wechaty": "^0.68.1",
     "wechaty-puppet-padlocal": "^0.2.35",
     "wechaty-puppet-wechat": "^0.30.1",
-    "wechaty-web-panel": "^0.2.12"
+    "wechaty-web-panel": "^0.2.14"
   },
   "devDependencies": {
     "pm2": "^4.2.3"
