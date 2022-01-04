@@ -1,13 +1,17 @@
 [![ 由Wechaty提供 ](https://img.shields.io/badge/Powered%20By-Wechaty-blue.svg)](https://github.com/wechaty/wechaty)
-[![node version](https://img.shields.io/badge/node-%3E%3D12-blue.svg)](http://nodejs.cn/download/)
+[![node version](https://img.shields.io/badge/node-%3E%3D14-blue.svg)](http://nodejs.cn/download/)
 ![](https://img.shields.io/badge/Window-green.svg)
 ![](https://img.shields.io/badge/Mac-yellow.svg)
 ![](https://img.shields.io/badge/Centos-blue.svg)
 [![](https://img.shields.io/badge/Docker-red.svg)]()
 
-# 最新通知 喜大普奔
+# ~~最新通知 喜大普奔~~
 
-由于Wechaty的升级，现已支持所有微信登录，就算你的微信之前不能登录web版，现在也可以用了，赶快来体验吧。
+~~由于Wechaty的升级，现已支持所有微信登录，就算你的微信之前不能登录web版，现在也可以用了，赶快来体验吧。~~
+
+# 遗憾的通知
+
+由于UOS桌面版协议微信已经关闭了，没法再继续用桌面版协议登录了，现在只能换回web协议了。可以登录网页版微信的账号可以继续用，不能登录网页版协议的就不能用了。或者你可以申请Wechaty 的ipad local协议的token可以免费试用7天 。申请地址:  https://github.com/padlocal/wechaty-puppet-padlocal
 
 ## 智能微秘书-插件版
 
@@ -18,6 +22,10 @@
 同时自带微信机器人功能，群资讯消息定时发送，群定时提醒功能，群机器人聊天，垃圾分类，天气查询，土情话查询，老黄历查询，顺口溜查询等众多功能。
 
 此项目直接使用的是Wechaty的面板插件，当然这个插件也是作者开发的，如果有兴趣研究源码，可以移步[插件源码](https://github.com/leochen-g/wechaty-web-panel) ，觉得有用记得点个star
+
+## 依赖
+
+node 版本 14.17.6 ，不要太高，太高安装依赖会有问题
 
 ## 项目说明
 
@@ -163,16 +171,28 @@ docker pull aibotk/wechat-assistant
 
 1、请在项目根目录执行，这个命令是前台执行可以直接看到log日志的，但是没法关闭，只能销毁终端实例
 
+web协议启动
 ```shell
 docker run -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatBot aibotk/wechat-assistant
 
 ```
 
-2、这个命令可以在后台运行，多了一个`-d`
-
+ipadlocal 协议启动
 ```shell
+docker run -e PAD_LOCAL_TOKEN="你申请的ipdalocaltoken" AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatBot aibotk/wechat-assistant
 
+```
+
+2、这个命令可以在后台运行，多了一个`-d`
+web协议启动
+```shell
 docker run -d -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatBot aibotk/wechat-assistant
+
+```
+
+ipadlocal 协议启动
+```shell
+docker run -d -e PAD_LOCAL_TOKEN="你申请的ipdalocaltoken" AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatBot aibotk/wechat-assistant
 
 ```
 
@@ -185,40 +205,64 @@ docker run -d -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecr
 
 ```shell script
 docker build -t wechat-assistant .
+#web协议
 docker run -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" wechat-assistant 
+#ipadlocal协议
+docker run -d -e PAD_LOCAL_TOKEN="你申请的ipdalocaltoken" AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" wechat-assistant 
+
 ```
 
 其他步骤同上
 
 ### 其他协议运行
 
+```shell
+npm i wechaty-puppet-padlocal
+```
 `src/index.js`代码中配置`APIKEY`和`APISECRET`以及`token`
 
   ```javascript
-  const {Wechaty} = require('wechaty');
+const {Wechaty} = require('wechaty');
+const {PuppetPadlocal} = require('wechaty-puppet-padlocal');
+
 const WechatyWebPanelPlugin = require('wechaty-web-panel');
+
 const name = 'wechat-assistant-pro';
 let bot = '';
-// 1、如果没有token请使用以下代码
-// bot = new Wechaty({
-//name, // generate xxxx.memory-card.json and save login data for the next login
-//});
-//
-// // 2、如果有token请使用一下配置
-bot = new Wechaty(
-    {
-        name,
-        puppet: 'wechaty-puppet-hostie', // 修改token 对应的puppet
-        puppetOptions: {
-            token: '配置你获取的token'
-        }
-    }
-)
+let padLocalToken = '' // 如果申请了ipadlocal的token,可以直接填入
+
+if (process.env['PAD_LOCAL_TOKEN']) {
+  console.log('读取到环境变量中的ipadLocalToken')
+  padLocalToken = process.env['PAD_LOCAL_TOKEN']
+}
+
+if (padLocalToken) {
+  console.log('读取到你已经配置ipadLocalToken，启用ipad协议')
+  const puppet = new PuppetPadlocal({
+    token: padLocalToken,
+  });
+  bot = new Wechaty({
+    name,
+    puppet,
+  });
+} else {
+  console.log('默认使用web版微信协议，如无法登录，请检测自己的微信是否能登陆网页版协议')
+  bot = new Wechaty({
+    name, // generate xxxx.memory-card.json and save login data for the next login
+    puppet: 'wechaty-puppet-wechat',
+  });
+}
+
 
 bot
-    .use(WechatyWebPanelPlugin({apiKey: '配置微秘书平台APIKEY', apiSecret: '配置配置微秘书平台APISECRET'}))
-    .start()
-    .catch((e) => console.error(e));
+        .use(
+                WechatyWebPanelPlugin({
+                  apiKey: '智能微秘书平台的apiKey',
+                  apiSecret: '智能微秘书平台的apiSecret',
+                })
+        )
+        .start()
+        .catch((e) => console.error(e));
 
 
 ```
