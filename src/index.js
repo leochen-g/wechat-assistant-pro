@@ -1,6 +1,4 @@
 const {Wechaty} = require('wechaty');
-const {PuppetPadlocal} = require('wechaty-puppet-padlocal');
-
 const WechatyWebPanelPlugin = require('wechaty-web-panel');
 
 const name = 'wechat-assistant-pro';
@@ -14,12 +12,12 @@ if (process.env['PAD_LOCAL_TOKEN']) {
 
 if (padLocalToken) {
     console.log('读取到你已经配置ipadLocalToken，启用ipad协议')
-    const puppet = new PuppetPadlocal({
-        token: padLocalToken,
-    });
     bot = new Wechaty({
         name,
-        puppet,
+        puppet: 'wechaty-puppet-padlocal',
+        puppetOptions: {
+            token: padLocalToken
+        }
     });
 } else {
     console.log('默认使用web版微信协议，如无法登录，请检测自己的微信是否能登陆网页版协议')

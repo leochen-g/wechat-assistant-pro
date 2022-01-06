@@ -1,4 +1,8 @@
 ## 更新日志
+### V3.6.4(2022-01-06)
+
+一、修复docker使用ipad协议时的报错
+
 ### V3.5.9(2021-07-09)
 
 一、更新weChaty，wechaty-web-panel, wechaty-puppet-wechat版本，优化异常处理

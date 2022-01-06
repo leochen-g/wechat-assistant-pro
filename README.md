@@ -173,26 +173,26 @@ docker pull aibotk/wechat-assistant
 
 web协议启动
 ```shell
-docker run -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatBot aibotk/wechat-assistant
+docker run -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatbot aibotk/wechat-assistant
 
 ```
 
 ipadlocal 协议启动
 ```shell
-docker run -e PAD_LOCAL_TOKEN="你申请的ipdalocaltoken" AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatBot aibotk/wechat-assistant
+docker run -e PAD_LOCAL_TOKEN="你申请的ipdalocaltoken" -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatbot aibotk/wechat-assistant
 
 ```
 
 2、这个命令可以在后台运行，多了一个`-d`
 web协议启动
 ```shell
-docker run -d -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatBot aibotk/wechat-assistant
+docker run -d -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatbot aibotk/wechat-assistant
 
 ```
 
 ipadlocal 协议启动
 ```shell
-docker run -d -e PAD_LOCAL_TOKEN="你申请的ipdalocaltoken" AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatBot aibotk/wechat-assistant
+docker run -d -e PAD_LOCAL_TOKEN="你申请的ipdalocaltoken" -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatbot aibotk/wechat-assistant
 
 ```
 
@@ -208,7 +208,7 @@ docker build -t wechat-assistant .
 #web协议
 docker run -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" wechat-assistant 
 #ipadlocal协议
-docker run -d -e PAD_LOCAL_TOKEN="你申请的ipdalocaltoken" AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" wechat-assistant 
+docker run -e PAD_LOCAL_TOKEN="你申请的ipdalocaltoken" -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" wechat-assistant 
 
 ```
 
@@ -223,8 +223,6 @@ npm i wechaty-puppet-padlocal
 
   ```javascript
 const {Wechaty} = require('wechaty');
-const {PuppetPadlocal} = require('wechaty-puppet-padlocal');
-
 const WechatyWebPanelPlugin = require('wechaty-web-panel');
 
 const name = 'wechat-assistant-pro';
@@ -238,12 +236,12 @@ if (process.env['PAD_LOCAL_TOKEN']) {
 
 if (padLocalToken) {
   console.log('读取到你已经配置ipadLocalToken，启用ipad协议')
-  const puppet = new PuppetPadlocal({
-    token: padLocalToken,
-  });
   bot = new Wechaty({
     name,
-    puppet,
+    puppet: 'wechaty-puppet-padlocal',
+    puppetOptions: {
+      token: padLocalToken
+    }
   });
 } else {
   console.log('默认使用web版微信协议，如无法登录，请检测自己的微信是否能登陆网页版协议')
