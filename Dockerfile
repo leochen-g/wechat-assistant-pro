@@ -1,4 +1,4 @@
-FROM wechaty/wechaty:0.57
+FROM wechaty/wechaty:0.56
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 RUN echo 'Asia/Shanghai' >/etc/timezone
