@@ -1,7 +1,7 @@
 {
   "name": "wechat-assistant-1.x",
-  "version": "4.0.1",
-  "description": "微信小助手4.0.1",
+  "version": "4.0.2",
+  "description": "微信小助手4.0.2",
   "main": "index.js",
   "scripts": {
     "pm2": "pm2 start pm2.json",
@@ -25,7 +25,7 @@
   "dependencies": {
     "wechaty": "^1.13.7",
     "wechaty-puppet-wechat": "^1.11.12",
-    "wechaty-web-panel": "^1.0.1"
+    "wechaty-web-panel": "^1.0.2"
   },
   "devDependencies": {
     "pm2": "^4.2.3"

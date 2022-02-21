@@ -1,5 +1,5 @@
 [![ 由Wechaty提供 ](https://img.shields.io/badge/Powered%20By-Wechaty-blue.svg)](https://github.com/wechaty/wechaty)
-[![node version](https://img.shields.io/badge/node-%3E%3D14-blue.svg)](http://nodejs.cn/download/)
+[![node version](https://img.shields.io/badge/node-%3E%3D16-blue.svg)](http://nodejs.cn/download/)
 ![](https://img.shields.io/badge/Window-green.svg)
 ![](https://img.shields.io/badge/Mac-yellow.svg)
 ![](https://img.shields.io/badge/Centos-blue.svg)
@@ -137,8 +137,7 @@ node 版本 >16
 
 #### Step 1: 安装
 
-克隆本项目，并进入项目根目录执行 `npm install`安装项目依赖(
-如果安装比较慢，可以使用` npm i --canvas_binary_host_mirror=https://npm.taobao.org/mirrors/node-canvas-prebuilt/`)
+克隆本项目，并进入项目根目录执行 `npm install`安装项目依赖
 
 #### Step 2: 配置
 
@@ -153,41 +152,7 @@ node 版本 >16
 在[智能微秘书](https://wechat.aibotk.com)中配置你需要的功能后，给启动的微信发送`更新`关键词即可拉取最新配置（或者你自己设置的更新关键词，初始关键词是`更新`，**
 每次修改配置后，请记得一定发送关键词更新配置**
 
-### 直接拉取镜像（推荐）
-
-由于自己构建部分依赖安装比较慢，或者经常会卡住，所以本项目已经提前构建好发布到dockerhub了，直接pull就行了
-
-#### step1： 拉取镜像
-
-```shell
-
-docker pull aibotk/wechat-assistant-1x
-
-```
-
-#### step2： 启动docker
-
-以下两个命令自己选择一个执行就行，执行的时候会下载puppet，可能会比较慢，耐心等待一下即可
-
-1、请在项目根目录执行，这个命令是前台执行可以直接看到log日志的，但是没法关闭，只能销毁终端实例
-
-web协议启动
-```shell
-docker run -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatbot aibotk/wechat-assistant-1x
-
-```
-
-2、这个命令可以在后台运行，多了一个`-d`
-web协议启动
-```shell
-docker run -d -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatbot aibotk/wechat-assistant-1x
-
-```
-
-
-[如何查看docker日志](https://www.cnblogs.com/mydesky2012/p/11430394.html)
-
-### 自行构建docker镜像 （不建议）
+### 自行构建docker镜像
 
 需要提前安装 docker 环境，项目根目录执行一下命令
 
