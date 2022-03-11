@@ -1,7 +1,7 @@
 {
-  "name": "wechat-assistant",
-  "version": "3.6.5",
-  "description": "微信小助手3.6.5",
+  "name": "wechat-assistant-1.x",
+  "version": "4.0.2",
+  "description": "微信小助手4.0.2",
   "main": "index.js",
   "scripts": {
     "pm2": "pm2 start pm2.json",
@@ -14,6 +14,7 @@
   "author": "Leo_chen",
   "license": "MIT",
   "keywords": [
+    "wechaty1.x",
     "wechaty",
     "mongoose",
     "微信机器人",
@@ -22,9 +23,8 @@
     "js"
   ],
   "dependencies": {
-    "wechaty": "^0.68.1",
-    "wechaty-puppet": "^0.41.1",
-    "wechaty-puppet-padlocal": "^0.4.2",
+    "wechaty": "^1.15.4",
+    "wechaty-puppet-wechat": "^1.11.12",
     "wechaty-web-panel": "^1.0.3-beta.0"
   },
   "devDependencies": {

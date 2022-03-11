@@ -1,5 +1,5 @@
 [![ 由Wechaty提供 ](https://img.shields.io/badge/Powered%20By-Wechaty-blue.svg)](https://github.com/wechaty/wechaty)
-[![node version](https://img.shields.io/badge/node-%3E%3D14-blue.svg)](http://nodejs.cn/download/)
+[![node version](https://img.shields.io/badge/node-%3E%3D16-blue.svg)](http://nodejs.cn/download/)
 ![](https://img.shields.io/badge/Window-green.svg)
 ![](https://img.shields.io/badge/Mac-yellow.svg)
 ![](https://img.shields.io/badge/Centos-blue.svg)
@@ -13,7 +13,7 @@
 
 由于UOS桌面版协议微信已经关闭了，没法再继续用桌面版协议登录了，现在只能换回web协议了。可以登录网页版微信的账号可以继续用，不能登录网页版协议的就不能用了。或者你可以申请Wechaty 的ipad local协议的token可以免费试用7天 。申请地址:  https://github.com/padlocal/wechaty-puppet-padlocal
 
-## 智能微秘书-插件版-ipad协议版
+## 智能微秘书-插件版 (Wechaty 1.x版本)
 
 让你闲置的微信号成为你的日常小秘书（没有闲置的也没关系，添加我的小助手微信号，她就能成为你的智能微秘书）。
 
@@ -25,7 +25,7 @@
 
 ## 依赖
 
-node 版本 14.17.6 ，不要太高，太高安装依赖会有问题
+node 版本 >16
 
 ## 项目说明
 
@@ -152,117 +152,21 @@ node 版本 14.17.6 ，不要太高，太高安装依赖会有问题
 在[智能微秘书](https://wechat.aibotk.com)中配置你需要的功能后，给启动的微信发送`更新`关键词即可拉取最新配置（或者你自己设置的更新关键词，初始关键词是`更新`，**
 每次修改配置后，请记得一定发送关键词更新配置**
 
-### 直接拉取镜像（推荐）
-
-由于自己构建部分依赖安装比较慢，或者经常会卡住，所以本项目已经提前构建好发布到dockerhub了，直接pull就行了
-
-#### step1： 拉取镜像
-
-```shell
-
-docker pull aibotk/wechat-assistant
-
-```
-
-#### step2： 启动docker
-
-以下两个命令自己选择一个执行就行，执行的时候会下载puppet，可能会比较慢，耐心等待一下即可
-
-1、请在项目根目录执行，这个命令是前台执行可以直接看到log日志的，但是没法关闭，只能销毁终端实例
-
-web协议启动
-```shell
-docker run -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatbot aibotk/wechat-assistant
-
-```
-
-ipadlocal 协议启动
-```shell
-docker run -e PAD_LOCAL_TOKEN="你申请的ipdalocaltoken" -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatbot aibotk/wechat-assistant
-
-```
-
-2、这个命令可以在后台运行，多了一个`-d`
-web协议启动
-```shell
-docker run -d -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatbot aibotk/wechat-assistant
-
-```
-
-ipadlocal 协议启动
-```shell
-docker run -d -e PAD_LOCAL_TOKEN="你申请的ipdalocaltoken" -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatbot aibotk/wechat-assistant
-
-```
-
-
-[如何查看docker日志](https://www.cnblogs.com/mydesky2012/p/11430394.html)
-
-### 自行构建docker镜像 （不建议）
+### 自行构建docker镜像
 
 需要提前安装 docker 环境，项目根目录执行一下命令
 
 ```shell script
-docker build -t wechat-assistant .
+docker build -t wechat-assistant-1x .
 #web协议
-docker run -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" wechat-assistant 
-#ipadlocal协议
-docker run -e PAD_LOCAL_TOKEN="你申请的ipdalocaltoken" -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" wechat-assistant 
-
+docker run -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" wechat-assistant-1x 
 ```
 
 其他步骤同上
 
 ### 其他协议运行
 
-```shell
-npm i wechaty-puppet-padlocal
-```
-`src/index.js`代码中配置`APIKEY`和`APISECRET`以及`token`
-
-  ```javascript
-const {Wechaty} = require('wechaty');
-const WechatyWebPanelPlugin = require('wechaty-web-panel');
-
-const name = 'wechat-assistant-pro';
-let bot = '';
-let padLocalToken = '' // 如果申请了ipadlocal的token,可以直接填入
-
-if (process.env['PAD_LOCAL_TOKEN']) {
-  console.log('读取到环境变量中的ipadLocalToken')
-  padLocalToken = process.env['PAD_LOCAL_TOKEN']
-}
-
-if (padLocalToken) {
-  console.log('读取到你已经配置ipadLocalToken，启用ipad协议')
-  bot = new Wechaty({
-    name,
-    puppet: 'wechaty-puppet-padlocal',
-    puppetOptions: {
-      token: padLocalToken
-    }
-  });
-} else {
-  console.log('默认使用web版微信协议，如无法登录，请检测自己的微信是否能登陆网页版协议')
-  bot = new Wechaty({
-    name, // generate xxxx.memory-card.json and save login data for the next login
-    puppet: 'wechaty-puppet-wechat',
-  });
-}
-
-
-bot
-        .use(
-                WechatyWebPanelPlugin({
-                  apiKey: '智能微秘书平台的apiKey',
-                  apiSecret: '智能微秘书平台的apiSecret',
-                })
-        )
-        .start()
-        .catch((e) => console.error(e));
-
-
-```
+Wechaty1.x版本暂不支持ipad协议，后续更新后会支持
 
 ## 体验与交流
 
