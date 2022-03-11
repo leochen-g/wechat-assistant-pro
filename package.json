@@ -23,9 +23,9 @@
     "js"
   ],
   "dependencies": {
-    "wechaty": "^1.13.7",
+    "wechaty": "^1.15.4",
     "wechaty-puppet-wechat": "^1.11.12",
-    "wechaty-web-panel": "^1.0.2"
+    "wechaty-web-panel": "^1.0.3-beta.0"
   },
   "devDependencies": {
     "pm2": "^4.2.3"

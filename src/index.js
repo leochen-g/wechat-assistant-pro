@@ -12,13 +12,12 @@ bot = WechatyBuilder.build({
 });
 
 
-bot
-    .use(
+bot.use(
         WechatyWebPanelPlugin({
             apiKey: '智能微秘书平台的apiKey',
             apiSecret: '智能微秘书平台的apiSecret',
         })
     )
-    .start()
+bot.start()
     .catch((e) => console.error(e));
 
