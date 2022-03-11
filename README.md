@@ -13,7 +13,7 @@
 
 由于UOS桌面版协议微信已经关闭了，没法再继续用桌面版协议登录了，现在只能换回web协议了。可以登录网页版微信的账号可以继续用，不能登录网页版协议的就不能用了。或者你可以申请Wechaty 的ipad local协议的token可以免费试用7天 。申请地址:  https://github.com/padlocal/wechaty-puppet-padlocal
 
-## 智能微秘书-插件版
+## 智能微秘书-插件版-ipad协议版
 
 让你闲置的微信号成为你的日常小秘书（没有闲置的也没关系，添加我的小助手微信号，她就能成为你的智能微秘书）。
 
@@ -137,8 +137,7 @@ node 版本 14.17.6 ，不要太高，太高安装依赖会有问题
 
 #### Step 1: 安装
 
-克隆本项目，并进入项目根目录执行 `npm install`安装项目依赖(
-如果安装比较慢，可以使用` npm i --canvas_binary_host_mirror=https://npm.taobao.org/mirrors/node-canvas-prebuilt/`)
+克隆本项目，并进入项目根目录执行 `npm install`安装项目依赖
 
 #### Step 2: 配置
 
