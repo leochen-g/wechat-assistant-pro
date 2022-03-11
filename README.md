@@ -153,14 +153,46 @@ node 版本 >16
 每次修改配置后，请记得一定发送关键词更新配置**
 
 
+### 直接拉取镜像（推荐）
+
+由于自己构建部分依赖安装比较慢，或者经常会卡住，所以本项目已经提前构建好发布到dockerhub了，直接pull就行了，本镜像暂不支持ipad协议，请切换ipad分支
+
+#### step1： 拉取镜像
+
+```shell
+
+docker pull aibotk/wechat-assistant
+
+```
+
+#### step2： 启动docker
+
+以下两个命令自己选择一个执行就行，执行的时候会下载puppet，可能会比较慢，耐心等待一下即可
+
+1、请在项目根目录执行，这个命令是前台执行可以直接看到log日志的，但是没法关闭，只能销毁终端实例
+
+```shell
+docker run -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatbot aibotk/wechat-assistant
+
+```
+
+2、这个命令可以在后台运行，多了一个`-d`
+
+```shell
+docker run -d -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatbot aibotk/wechat-assistant
+
+```
+
+[如何查看docker日志](https://www.cnblogs.com/mydesky2012/p/11430394.html)
+
 ### 自行构建docker镜像
 
 需要提前安装 docker 环境，项目根目录执行一下命令
 
 ```shell script
-docker build -t wechat-assistant-1x .
+docker build -t wechat-assistant .
 #web协议
-docker run -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" wechat-assistant-1x 
+docker run -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" wechat-assistant
 ```
 
 其他步骤同上
