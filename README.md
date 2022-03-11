@@ -199,7 +199,7 @@ docker run -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret"
 
 ### 其他协议运行
 
-Wechaty1.x版本暂不支持ipad协议，如需ipad协议运行，请切换分支到ipad
+Wechaty1.x版本暂不支持ipad协议，如需ipad协议运行，请移步：[https://github.com/leochen-g/wechat-assistant-pro-ipad](https://github.com/leochen-g/wechat-assistant-pro-ipad)
 
 ## 体验与交流
 

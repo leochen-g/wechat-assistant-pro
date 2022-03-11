@@ -9,8 +9,7 @@ WORKDIR /bot
 
 COPY package.json .
 RUN jq 'del(.dependencies.wechaty)' package.json | sponge package.json \
-    && npm install \
-    && sudo rm -fr /tmp/* ~/.npm \
+    && npm install
 RUN npm run puppet-install
 COPY . .
 
