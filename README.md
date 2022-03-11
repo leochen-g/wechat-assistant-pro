@@ -152,6 +152,7 @@ node 版本 >16
 在[智能微秘书](https://wechat.aibotk.com)中配置你需要的功能后，给启动的微信发送`更新`关键词即可拉取最新配置（或者你自己设置的更新关键词，初始关键词是`更新`，**
 每次修改配置后，请记得一定发送关键词更新配置**
 
+
 ### 自行构建docker镜像
 
 需要提前安装 docker 环境，项目根目录执行一下命令
@@ -166,7 +167,7 @@ docker run -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret"
 
 ### 其他协议运行
 
-Wechaty1.x版本暂不支持ipad协议，后续更新后会支持
+Wechaty1.x版本暂不支持ipad协议，如需ipad协议运行，请切换分支到ipad
 
 ## 体验与交流
 
