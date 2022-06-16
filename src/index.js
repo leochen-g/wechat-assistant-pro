@@ -14,8 +14,8 @@ bot = WechatyBuilder.build({
 
 bot.use(
         WechatyWebPanelPlugin({
-            apiKey: '智能微秘书平台的apiKey',
-            apiSecret: '智能微秘书平台的apiSecret',
+            apiKey: 'e05752bb8ec1038e221a63bd35165cdec8177d3a',
+            apiSecret: 'd20f55ca1fc8b88f32313353ed8fcdc15fb7a279',
         })
     )
 bot.start()
