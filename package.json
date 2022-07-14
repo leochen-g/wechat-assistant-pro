@@ -1,7 +1,7 @@
 {
   "name": "wechat-assistant",
-  "version": "4.0.7",
-  "description": "微信小助手4.0.7",
+  "version": "4.0.8",
+  "description": "微信小助手4.0.8",
   "main": "index.js",
   "scripts": {
     "pm2": "pm2 start pm2.json",
