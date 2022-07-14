@@ -28,8 +28,9 @@
   },
   "dependencies": {
     "wechaty": "^1.20.2",
+    "wechaty-fanli": "^0.1.18",
     "wechaty-puppet-wechat": "^1.18.4",
-    "wechaty-web-panel": "^1.0.4"
+    "wechaty-web-panel": "^1.0.5"
   },
   "devDependencies": {
     "pm2": "^4.2.3"
