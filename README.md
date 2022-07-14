@@ -5,13 +5,14 @@
 ![](https://img.shields.io/badge/Centos-blue.svg)
 [![](https://img.shields.io/badge/Docker-red.svg)]()
 
-# ~~最新通知 喜大普奔~~
+# 最新通知 喜大普奔
 
-~~由于Wechaty的升级，现已支持所有微信登录，就算你的微信之前不能登录web版，现在也可以用了，赶快来体验吧。~~
+由于Wechaty的升级，现已支持所有微信登录，就算你的微信之前不能登录web版，现在也可以用了，赶快来体验吧。
 
-# 遗憾的通知
+# ~~遗憾的通知~~
 
-由于UOS桌面版协议微信已经关闭了，没法再继续用桌面版协议登录了，现在只能换回web协议了。可以登录网页版微信的账号可以继续用，不能登录网页版协议的就不能用了。或者你可以申请Wechaty 的ipad local协议的token可以免费试用7天 。申请地址:  https://github.com/padlocal/wechaty-puppet-padlocal
+uos 协议又可以重新使用了
+~~由于UOS桌面版协议微信已经关闭了，没法再继续用桌面版协议登录了，现在只能换回web协议了。可以登录网页版微信的账号可以继续用，不能登录网页版协议的就不能用了。或者你可以申请Wechaty 的ipad local协议的token可以免费试用7天 。申请地址:  https://github.com/padlocal/wechaty-puppet-padlocal~~
 
 ## 智能微秘书-插件版 (Wechaty 1.x版本)
 

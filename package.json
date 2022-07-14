@@ -1,6 +1,6 @@
 {
   "name": "wechat-assistant",
-  "version": "4.0.5",
+  "version": "4.0.6",
   "description": "微信小助手4.0.5",
   "main": "index.js",
   "scripts": {
@@ -24,7 +24,7 @@
   ],
   "dependencies": {
     "wechaty": "^1.20.2",
-    "wechaty-puppet-wechat": "^1.18.1",
+    "wechaty-puppet-wechat": "^1.18.4",
     "wechaty-web-panel": "^1.0.3-beta.3"
   },
   "devDependencies": {
