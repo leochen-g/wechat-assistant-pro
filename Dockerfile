@@ -8,8 +8,7 @@ ENV NODE_ENV $NODE_ENV
 WORKDIR /bot
 
 COPY package.json .
-RUN jq 'del(.dependencies.wechaty)' package.json | sponge package.json \
-    && npm install
+RUN npm install
 COPY . .
 
 CMD [ "npm", "start" ]
