@@ -229,7 +229,7 @@ Wechaty1.x版本暂不支持ipad协议，如需ipad协议运行，请移步：[h
 
 ## 常见问题处理
 
-参见[https://www.xkboke.com/web-inn/wechatBot/#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86](https://www.xkboke.com/web-inn/wechatBot/#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86)
+参见[http://wechat.aibotk.com/docs/question](http://wechat.aibotk.com/docs/question)
 
 ## 面板预览
 
