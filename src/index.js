@@ -1,5 +1,5 @@
-const { WechatyBuilder } = require('wechaty')
-const WechatyWebPanelPlugin = require('wechaty-web-panel');
+import { WechatyBuilder } from 'wechaty'
+import { WechatyWebPanelPlugin } from 'wechaty-web-panel'
 
 const name = 'wechat-assistant-pro';
 let bot = '';
