@@ -11,7 +11,7 @@
 
 # ~~遗憾的通知~~
 
-uos 协议又可以重新使用了
+uos 协议又可以重新使用了，同时已经适配wechaty-puupet-padloacl的协议
 ~~由于UOS桌面版协议微信已经关闭了，没法再继续用桌面版协议登录了，现在只能换回web协议了。可以登录网页版微信的账号可以继续用，不能登录网页版协议的就不能用了。或者你可以申请Wechaty 的ipad local协议的token可以免费试用7天 。申请地址:  https://github.com/padlocal/wechaty-puppet-padlocal~~
 
 ## 智能微秘书-插件版 (Wechaty 1.x版本)
@@ -201,7 +201,15 @@ docker run -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret"
 
 ### 其他协议运行
 
-Wechaty1.x版本暂不支持ipad协议，如需ipad协议运行，请移步：[https://github.com/leochen-g/wechat-assistant-pro-ipad](https://github.com/leochen-g/wechat-assistant-pro-ipad)
+~~Wechaty1.x版本暂不支持ipad协议，如需ipad协议运行，请移步：[https://github.com/leochen-g/wechat-assistant-pro-ipad](https://github.com/leochen-g/wechat-assistant-pro-ipad)~~
+
+如果你有ipad的token，可以执行以下命令
+
+```shell
+
+docker run -d -e PAD_LOCAL_TOKEN="你申请的ipadlocal token" -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatbot aibotk/wechat-assistant
+
+```
 
 ## 体验与交流
 
@@ -237,7 +245,6 @@ Wechaty1.x版本暂不支持ipad协议，如需ipad协议运行，请移步：[h
 ![](./doc/img/index.png)
 ![](./doc/img/roomasync.png)
 ![](./doc/img/everyday.png)
-![](./doc/img/schedule.png)
 ![](./doc/img/event.png)
 ![](./doc/img/material.png)
 
@@ -251,11 +258,11 @@ Wechaty1.x版本暂不支持ipad协议，如需ipad协议运行，请移步：[h
 
 群消息同步
 
-![](./doc/img/async.png)
+<img src="./doc/img/async.png" width="300">
 
 群合影
 
-![](./doc/img/group.jpeg)
+<img src="./doc/img/group.jpeg" width="300">
 
 
 

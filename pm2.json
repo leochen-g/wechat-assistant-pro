@@ -4,6 +4,7 @@
       "name": "wechaty-pro",
       "cwd": "./",
       "script": "./index.js",
+      "cron_restart": "0 0 * * *",
       "log_date_format": "YYYY-MM-DD HH:mm Z",
       "error_file": "./logs/app-err.log",
       "out_file": "./logs/app-out.log",
