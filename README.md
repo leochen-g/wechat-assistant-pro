@@ -11,7 +11,7 @@
 
 # ~~遗憾的通知~~
 
-uos 协议又可以重新使用了，同时已经适配wechaty-puupet-padloacl的协议
+uos 协议又可以重新使用了，同时已经适配wechaty-puupet-padlocal的协议
 ~~由于UOS桌面版协议微信已经关闭了，没法再继续用桌面版协议登录了，现在只能换回web协议了。可以登录网页版微信的账号可以继续用，不能登录网页版协议的就不能用了。或者你可以申请Wechaty 的ipad local协议的token可以免费试用7天 。申请地址:  https://github.com/padlocal/wechaty-puppet-padlocal~~
 
 ## 智能微秘书-插件版 (Wechaty 1.x版本)
@@ -199,6 +199,16 @@ docker run -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret"
 
 其他步骤同上
 
+### 使用Gitpod 在线运行测试
+
+现智能微秘书已经适配Gitpod，如果你想测试自己的账号是否能够正常登录，可以在线运行一下测试，此环境仅做测试，不建议作为生产环境使用。
+
+Gitpod 是一个在线和开源平台，用于自动化和现成代码的开发环境。您可以点击下面的按钮在gitpod 上访问wechat-assistant-pro的完整设置。如果您以前从未使用过 gitpod，则需要使用您的 gitHub 帐户登录。
+
+[![GitPod Ready-to-Code][gitpod_img]][gitpod_link]
+
+更多关于Gitpod的信息可以参考: https://wechaty.js.org/2021/02/06/wechaty-getting-started-without-leave-your-browser/
+
 ### 其他协议运行
 
 ~~Wechaty1.x版本暂不支持ipad协议，如需ipad协议运行，请移步：[https://github.com/leochen-g/wechat-assistant-pro-ipad](https://github.com/leochen-g/wechat-assistant-pro-ipad)~~
@@ -275,3 +285,6 @@ docker run -d -e PAD_LOCAL_TOKEN="你申请的ipadlocal token" -e AIBOTK_KEY="�
 请遵守国家法律政策，请勿用于非法犯罪行为！
 
 请合理使用，一切不良行为和后果均与作者无关！
+
+[gitpod_img]: https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod
+[gitpod_link]: https://gitpod.io/#https://github.com/leochen-g/wechat-assistant-pro

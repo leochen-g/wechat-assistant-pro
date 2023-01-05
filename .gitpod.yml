@@ -1,0 +1,46 @@
+image:
+  file: .gitpod.dockerfile
+
+# List the ports you want to expose and what to do when they are served. See https://www.gitpod.io/docs/config-ports/
+#   https://www.gitpod.io/docs/config-ports/
+ports:
+  - port: 8080
+    onOpen: open-preview
+
+# List the start up tasks. You can start them in parallel in multiple terminals. See https://www.gitpod.io/docs/config-start-tasks/
+#   https://www.gitpod.io/docs/config-start-tasks/
+tasks:
+  - name: Wechat Assistant pro
+    openIn: main
+    openMode: split-right
+    #
+    # Huan(202002): `npm install` will fail the gitpod loading in browser
+    #   https://github.com/wechaty/getting-started/issues/160
+    #
+    init: |
+      echo '`npm install` will fail the gitpod loading in browser'
+      echo 'See: https://github.com/wechaty/getting-started/issues/160'
+    command: |
+      npm install
+      # WECHATY_PUPPET_SERVICE_TOKEN=XXX npm run start:puppet:service
+      # WECHATY_PUPPET_PADLOCAL_TOKEN=XXX npm run start:wechat:padlocal
+      # npm run start
+      npm run start
+github:
+  prebuilds:
+    # enable for the master/default branch (defaults to true)
+    master: true
+    # enable for all branches in this repo (defaults to false)
+    branches: false
+    # enable for pull requests coming from this repo (defaults to true)
+    pullRequests: true
+    # enable for pull requests coming from forks (defaults to false)
+    pullRequestsFromForks: false
+    # add a "Review in Gitpod" button as a comment to pull requests (defaults to true)
+    addComment: true
+    # add a "Review in Gitpod" button to pull requests (defaults to false)
+    addBadge: false
+    # add a label once the prebuild is ready to pull requests (defaults to false)
+    addLabel: false
+    # add a check to pull requests (defaults to true)
+    addCheck: true
