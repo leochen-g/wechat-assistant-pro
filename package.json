@@ -1,7 +1,7 @@
 {
   "name": "wechat-assistant",
-  "version": "4.2.8",
-  "description": "微信小助手4.2.8",
+  "version": "4.4.0",
+  "description": "智能微秘书4.4.0",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -20,6 +20,10 @@
     "mongoose",
     "微信机器人",
     "微信助手",
+    "chatgpt",
+    "微秘书",
+    "智能机器人",
+    "对话机器人",
     "node",
     "js"
   ],
@@ -31,18 +35,18 @@
     "wechaty": "^1.20.2",
     "wechaty-puppet": "^1.21.1",
     "wechaty-puppet-padlocal": "^1.20.1",
-    "wechaty-puppet-wechat": "^1.18.4",
-    "wechaty-web-panel": "^1.2.12"
+    "wechaty-puppet-wechat4u": "^1.13.12",
+    "wechaty-web-panel": "^1.4.0"
   },
   "devDependencies": {
     "pm2": "^4.2.3"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gengchen528/wechat-assistant-pro.git"
+    "url": "git+https://github.com/leochen-g/wechat-assistant-pro.git"
   },
   "bugs": {
-    "url": "https://github.com/gengchen528/wechat-assistant-pro/issues"
+    "url": "https://github.com/leochen-g/wechat-assistant-pro/issues"
   },
-  "homepage": "https://github.com/gengchen528/wechat-assistant-pro#readme"
+  "homepage": "https://github.com/leochen-g/wechat-assistant-pro#readme"
 }
