@@ -225,22 +225,7 @@ docker run -d -e PAD_LOCAL_TOKEN="你申请的ipadlocal token" -e AIBOTK_KEY="�
 
 扫描下方二维码，添加智能微秘书，体验以上所有功能，发送加群关键词即可进入交流群
 
-![](https://user-gold-cdn.xitu.io/2019/2/28/1693401c6c3e6b02?w=430&h=430&f=png&s=53609)
-
-## 捐助
-
-如果您认为这个项目对你有所帮助，可以扫描以下二维码进行捐助，
-
-不管钱多钱少，您的捐助将会激励我持续开发新的功能！🎉
-
-感谢您的支持！
-
-捐助方法如下：
-
-<div style="display: flex;justify-content: flex-start">
-<img width="300" height="350" src="http://image.xkboke.com/web-inn/aibotk-weixin.png" />
-<img width="300" height="350" src="http://image.xkboke.com/web-inn/aibotk-alipay.png" />
-</div>
+![](http://image.xkboke.com/picgo/202301141927005.png)
 
 ## 更新日志
 
