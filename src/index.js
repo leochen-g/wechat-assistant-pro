@@ -20,12 +20,10 @@ if (padLocalToken) {
     });
 
 } else {
-    console.log('默认使用uos web协议启动')
+    console.log('默认使用wechat4u协议启动')
     bot = WechatyBuilder.build({
         name, // generate xxxx.memory-card.json and save login data for the next login
-        puppetOptions: {
-            uos: true
-        }, puppet: 'wechaty-puppet-wechat',
+        puppet: 'wechaty-puppet-wechat4u',
     });
 }
 

@@ -1,7 +1,7 @@
 {
   "name": "wechat-assistant",
-  "version": "4.4.1",
-  "description": "智能微秘书4.4.1",
+  "version": "4.4.2",
+  "description": "智能微秘书4.4.2",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -9,8 +9,7 @@
     "stop": "pm2 stop wechaty-pro",
     "restart": "pm2 restart wechat-pro",
     "start": "node index.js",
-    "test": "node src/index.template.js",
-    "puppet-install": "node node_modules/.bin/wechaty-puppet-install"
+    "test": "node src/index.template.js"
   },
   "author": "Leo_chen",
   "license": "MIT",
@@ -38,7 +37,7 @@
     "wechaty-puppet": "^1.21.1",
     "wechaty-puppet-padlocal": "^1.20.1",
     "wechaty-puppet-wechat4u": "^1.13.12",
-    "wechaty-web-panel": "^1.4.2"
+    "wechaty-web-panel": "^1.4.3"
   },
   "devDependencies": {
     "pm2": "^4.2.3"
