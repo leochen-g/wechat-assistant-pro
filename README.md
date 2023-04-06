@@ -221,6 +221,47 @@ docker run -d -e PAD_LOCAL_TOKEN="你申请的ipadlocal token" -e AIBOTK_KEY="�
 
 ```
 
+### 公众号部署
+
+公众号部署目前仅只支持源码部署配置
+
+修改文件`src/office.js`文件变量
+
+```javascript
+import {WechatyBuilder} from 'wechaty'
+import {WechatyWebPanelPlugin} from 'wechaty-web-panel'
+import {PuppetOA} from 'wechaty-puppet-official-account'
+const name = 'office-assistant-pro';
+let bot = '';
+const oa = new PuppetOA({
+    appId           : '公众号appid',
+    appSecret       : '公众号appSecret',
+    token           : '公众号加密token',
+    // port 和 webhookProxyUrl 自己选择一个
+    // port: 8077, // 有自己域名或者服务器 可以启用这个 服务启动的端口 自己映射好配到公众号后台机就行
+    webhookProxyUrl: 'https://****.loca.lt'  // 如果没有自己的域名可以直接用默认自带穿透代理服务localtunnel ***替换成随机字符串即可  这个域名记得配置到公众号后台
+})
+
+
+bot = WechatyBuilder.build({
+    name, // generate xxxx.memory-card.json and save login data for the next login
+    puppet: oa,
+});
+
+
+bot
+    .use(
+        WechatyWebPanelPlugin({
+            apiKey: '****',
+            apiSecret: '****'
+        }
+    ))
+bot.start()
+    .catch((e) => console.error(e));
+```
+
+执行命令：`npm run office`
+
 ## 体验与交流
 
 扫描下方二维码，添加智能微秘书，体验以上所有功能，发送加群关键词即可进入交流群
