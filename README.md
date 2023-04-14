@@ -213,6 +213,12 @@ Gitpod 是一个在线和开源平台，用于自动化和现成代码的开发�
 
 更多关于Gitpod的信息可以参考: https://wechaty.js.org/2021/02/06/wechaty-getting-started-without-leave-your-browser/
 
+### Railway部署
+
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/w6W1s-?referralCode=2rS9In)
+
+环境变量：AIBOTK_KEY和AIBOTK_SECRET必填
+
 ### 其他协议运行
 
 ~~Wechaty1.x版本暂不支持ipad协议，如需ipad协议运行，请移步：[https://github.com/leochen-g/wechat-assistant-pro-ipad](https://github.com/leochen-g/wechat-assistant-pro-ipad)~~
