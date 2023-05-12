@@ -10,6 +10,7 @@
     "restart": "pm2 restart wechat-pro",
     "start": "node index.js",
     "office": "node src/office.js",
+    "engine": "node src/engine.js",
     "test": "node src/index.template.js"
   },
   "author": "Leo_chen",

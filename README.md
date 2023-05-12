@@ -222,10 +222,7 @@ Gitpod 是一个在线和开源平台，用于自动化和现成代码的开发�
 
 环境变量：AIBOTK_KEY和AIBOTK_SECRET必填
 
-### 其他协议运行
-
-~~Wechaty1.x版本暂不支持ipad协议，如需ipad协议运行，请移步：[https://github.com/leochen-g/wechat-assistant-pro-ipad](https://github.com/leochen-g/wechat-assistant-pro-ipad)~~
-
+### ipad协议运行
 如果你有ipad的token，可以执行以下命令
 
 ```shell
@@ -234,6 +231,7 @@ docker run -d -e PAD_LOCAL_TOKEN="你申请的ipadlocal token" -e AIBOTK_KEY="�
 
 ```
 
+### 企微协议运行
 如果你有企微的token，可以执行以下命令
 
 ```shell
@@ -241,6 +239,39 @@ docker run -d -e PAD_LOCAL_TOKEN="你申请的ipadlocal token" -e AIBOTK_KEY="�
 docker run -d -e WORK_PRO_TOKEN="你申请的企微 token" -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatbot aibotk/wechat-assistant
 
 ```
+### engine 大恩协议源码运行
+
+其他安装步骤参考：[engine协议部署](https://wechat.aibotk.com/docs/puppet-engine)，此处仅为源码运行说明
+
+修改文件`src/engine.js`文件变量
+
+```javascript
+import {WechatyBuilder}  from 'wechaty'
+import {WechatyWebPanelPlugin}  from 'wechaty-web-panel'
+import {PuppetEngine} from 'wechaty-puppet-engine'
+
+
+const name = 'wechat-assistant-engine';
+let bot = ''
+console.log('使用puppet-engine协议启动，默认使用大恩wxhook，请在windows 环境下使用')
+
+bot = WechatyBuilder.build({
+    name,
+    puppet: new PuppetEngine({
+        port: '8089', // 对应注入器中的 callBackUrl=http://localhost:8089/wechat/
+        httpServer: 'http://127.0.0.1:8055', // 对应注入器参数port=8055
+        runLocal: true
+    })
+});
+
+bot.use(WechatyWebPanelPlugin({
+    apiKey: '填入微秘书平台apikey', apiSecret: '填入微秘书平台apisecret',
+}))
+bot.start()
+    .catch((e) => console.error(e));
+```
+
+项目根目录执行命令：`npm run engine`
 
 ### 公众号部署
 
