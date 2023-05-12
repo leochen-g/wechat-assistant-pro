@@ -49,6 +49,9 @@ node 版本 >16
 - [x] 图灵机器人
 - [x] 微信开放对话平台
 - [x] 火出圈的ChatGPT
+  - [x] 支持多种模型在线切换，代理在线配置
+  - [x] 自定义对话配置， 不同群，不同好友，不同的对话配置
+  - [x] prompts 市场，设定不同角色
 - [ ] 更多
 
 * 群定时任务
@@ -228,6 +231,14 @@ Gitpod 是一个在线和开源平台，用于自动化和现成代码的开发�
 ```shell
 
 docker run -d -e PAD_LOCAL_TOKEN="你申请的ipadlocal token" -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatbot aibotk/wechat-assistant
+
+```
+
+如果你有企微的token，可以执行以下命令
+
+```shell
+
+docker run -d -e WORK_PRO_TOKEN="你申请的企微 token" -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatbot aibotk/wechat-assistant
 
 ```
 
