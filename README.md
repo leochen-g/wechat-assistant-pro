@@ -101,7 +101,7 @@ node 版本 >16
 
 ### 注册智能微秘书管理账号
 
-1. 注册：[智能微秘书](https://wechat.aibotk.com/#/signup)
+1. 注册：[智能微秘书](https://wechat.aibotk.com/#/signup?r=dBL0Bn)
 
 2. 初始化配置文件`小助手配置->基础配置`，修改后保存
 
