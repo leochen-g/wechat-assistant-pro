@@ -40,7 +40,7 @@
     "wechaty-puppet-padlocal": "^1.20.1",
     "wechaty-puppet-service": "^1.18.2",
     "wechaty-puppet-wechat4u": "^1.14.1",
-    "wechaty-web-panel": "^1.6.15"
+    "wechaty-web-panel": "^1.6.17"
   },
   "devDependencies": {
     "pm2": "^4.2.3"
