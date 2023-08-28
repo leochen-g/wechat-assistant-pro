@@ -22,12 +22,9 @@ jobs:
       - name: Get the version
         id: vars
         run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
-      - name: Build and push multi-arch image
-        uses: docker/build-push-action@v2
-        with:
-          driver: buildx
-          context: .
-          file: ./Dockerfile
-          platforms: linux/amd64,linux/arm/v7
-          push: true
-          tags: ${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.tag}},${{ env.IMAGE_NAME }}:latest
+      - name: Set up Docker Buildx
+        run: docker buildx create --name mybuilder --use
+      - name: Enable Docker Buildx
+        run: docker buildx use mybuilder
+      - name: Build and push
+        run: docker buildx build --platform linux/amd64,linux/amd64/v8,linux/arm/v7 -t ${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.tag }} . --push
