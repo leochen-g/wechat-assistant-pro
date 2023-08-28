@@ -22,11 +22,11 @@ jobs:
       - name: Get the version
         id: vars
         run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
-      - name: Build the tagged Docker image
-        run: docker build . --file Dockerfile --tag $IMAGE_NAME:${{steps.vars.outputs.tag}}
-      - name: Push the tagged Docker image
-        run: docker push $IMAGE_NAME:${{steps.vars.outputs.tag}}
-      - name: Build the latest Docker image
-        run: docker build . --file Dockerfile --tag $IMAGE_NAME:latest
-      - name: Push the latest Docker image
-        run: docker push $IMAGE_NAME:latest
+      - name: Build and push multi-arch image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile
+          platforms: linux/amd64,linux/arm/v7
+          push: true
+          tags: ${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.tag}},${{ env.IMAGE_NAME }}:latest
