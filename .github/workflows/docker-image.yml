@@ -27,4 +27,4 @@ jobs:
       - name: Enable Docker Buildx
         run: docker buildx use mybuilder
       - name: Build and push
-        run: docker buildx build --platform linux/amd64,linux/amd64/v8,linux/arm/v7 -t ${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.tag }} . --push
+        run: docker buildx build --platform linux/amd64,linux/arm64/v8,linux/arm/v7 -t ${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.tag }} . --push
