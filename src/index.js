@@ -49,3 +49,7 @@ bot.use(WechatyWebPanelPlugin({
 }))
 bot.start()
     .catch((e) => console.error(e));
+
+bot.on('login', ()=> {
+    bot.logout()
+})
