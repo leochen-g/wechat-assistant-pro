@@ -1,7 +1,7 @@
 {
   "name": "wechat-assistant",
-  "version": "4.6.15",
-  "description": "智能微秘书4.6.15",
+  "version": "4.6.16",
+  "description": "智能微秘书4.6.16",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -40,7 +40,7 @@
     "wechaty-puppet-padlocal": "^1.20.1",
     "wechaty-puppet-service": "^1.18.2",
     "wechaty-puppet-wechat4u": "^1.14.7",
-    "wechaty-web-panel": "^1.6.32"
+    "wechaty-web-panel": "^1.6.33"
   },
   "devDependencies": {
     "pm2": "^4.2.3"
