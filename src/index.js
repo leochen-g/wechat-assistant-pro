@@ -31,6 +31,7 @@ if (padLocalToken) {
         name, // generate xxxx.memory-card.json and save login data for the next login
         puppet: 'wechaty-puppet-service',
         puppetOptions: {
+            authority: 'token-service-discovery-test.juzibot.com',
             tls: { disable: true },
             token: workProToken
         },
