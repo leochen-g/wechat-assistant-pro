@@ -20,7 +20,7 @@ uos 协议又可以重新使用了，同时已经适配wechaty-puupet-padlocal�
 
 帮你创建私人定时任务，每日提醒，纪念日提醒，当日提醒。当然基础的给女朋友的每日说功能也是必备的，而且小助手版每日说为那些非常优秀的程序员准备了多女朋友定时发送提醒功能。
 
-同时自带微信机器人功能，chatGPT对话，群资讯消息定时发送，群定时提醒功能，群机器人聊天，垃圾分类，天气查询，土情话查询，老黄历查询，顺口溜查询，rss订阅推送等众多功能。
+同时自带智能机器人功能，ChatGPT对话，FastGPT，Dify无缝对接。跨群聊天，公告群发，群资讯消息定时发送，群定时提醒功能，群机器人聊天，垃圾分类，天气查询，土情话查询，老黄历查询，顺口溜查询，rss订阅推送等众多功能。
 
 此项目直接使用的是Wechaty的面板插件，当然这个插件也是作者开发的，如果有兴趣研究源码，可以移步[插件源码](https://github.com/leochen-g/wechaty-web-panel) ，觉得有用记得点个star
 
@@ -34,6 +34,8 @@ node 版本 >16
 文档可以移步：[wechaty 介绍](https://wechaty.js.org/docs/howto/)
 
 ## 更多功能说明
+
+![](./doc/img/aibot.png)
 
 - [x] 微信每日说,定时给女朋友发送每日天气提醒，以及每日一句
 
@@ -52,23 +54,25 @@ node 版本 >16
   - [x] 支持多种模型在线切换，代理在线配置
   - [x] 自定义对话配置， 不同群，不同好友，不同的对话配置
   - [x] prompts 市场，设定不同角色
-  - [x] 无缝对接dify和fastgpt向量知识库平台
+  - [x] 无缝对接Dify和FastGPT向量知识库平台
+  - [x] GPT-4V识图功能
 - [ ] 更多
 
 * 定时任务
 
-- [x] 新闻定时发送
-- [x] 消息定时发送
+- [x] 不同新闻资讯定时发送
+- [x] 付费定制个性化内容定时发送
+- [x] 固定素材内容定时发送
 - [x] 倒计时提醒
 - [x] rss订阅推送
 - [ ] 更多功能等你来 pr
 
 * 关键词
 
-- [x] 关键词加好友
-- [x] 关键词加群
+- [x] 关键词加好友，加好友欢迎词设置
+- [x] 关键词加群，群欢迎词设置
 - [x] 关键词回复
-- [x] 关键词事件
+- [x] 技能中心
     - [x] 天气查询 例："上海天气"
     - [x] 垃圾分类 例："?香蕉皮"
     - [x] 名人名言 例： "名人名言"
@@ -90,12 +94,13 @@ node 版本 >16
 
 * 特色功能
 
-- [x] 主动发送消息
+- [x] api发送消息
 - [x] 主动更新配置
 - [x] 主动同步好友和群列表
-- [x] 多群消息同步
+- [x] 跨群聊天，自动转发消息
+- [x] 不同好友或者群组设置不同的ChatGPT角色，实现千人千面
 
-更多详情介绍：[传送门](https://www.xkboke.com/web-inn/secretary/client.html#%E5%B0%8F%E5%8A%A9%E6%89%8B%E5%8A%9F%E8%83%BD%E4%B8%80%E8%A7%88)
+更多详情介绍：[功能概览](https://help.aibotk.com/?plugin=czw_emDoc&post=2)
 
 ## 提前准备
 
@@ -119,28 +124,33 @@ node 版本 >16
 
 必选接口
 
-* [天行机器人](https://www.tianapi.com/apiview/47)
-* [天气](https://www.tianapi.com/apiview/72)
-* [新闻](https://www.tianapi.com/apiview/51)
-* [垃圾分类](https://www.tianapi.com/apiview/97)
+* [天行机器人](https://www.tianapi.com/apiview/47): https://www.tianapi.com/apiview/47
+* [天气](https://www.tianapi.com/apiview/72):https://www.tianapi.com/apiview/72
+* [新闻](https://www.tianapi.com/apiview/51) : https://www.tianapi.com/apiview/51 ** (新闻资讯只需要申请这个接口即可，不需要申请具体的分类接口，务必记着)**
+* [垃圾分类](https://www.tianapi.com/apiview/97): https://www.tianapi.com/apiview/97
 
 可选接口（如果想使用相应的功能还是必须申请的），但是如果默认使用了天行机器人，以下功能接口无需申请也可以，机器人会直接返回对应信息
 
-* [土味情话](https://www.tianapi.com/apiview/80)
-* [名人名言](https://www.tianapi.com/apiview/92)
-* [星座运势](https://www.tianapi.com/apiview/78)
-* [姓氏起源](https://www.tianapi.com/apiview/94)
-* [顺口溜](https://www.tianapi.com/apiview/54)
-* [老黄历](https://www.tianapi.com/apiview/45)
-* [神回复](https://www.tianapi.com/apiview/39)
-* [歇后语](https://www.tianapi.com/apiview/38)
-* [绕口令](https://www.tianapi.com/apiview/37)
-* [疫情](https://www.tianapi.com/apiview/169)
-* [网络取名](https://www.tianapi.com/apiview/36)
+* [土味情话](https://www.tianapi.com/apiview/80):https://www.tianapi.com/apiview/80
+* [名人名言](https://www.tianapi.com/apiview/92):https://www.tianapi.com/apiview/92
+* [星座运势](https://www.tianapi.com/apiview/78):https://www.tianapi.com/apiview/78
+* [姓氏起源](https://www.tianapi.com/apiview/94):https://www.tianapi.com/apiview/94
+* [顺口溜](https://www.tianapi.com/apiview/54):https://www.tianapi.com/apiview/54
+* [老黄历](https://www.tianapi.com/apiview/45):https://www.tianapi.com/apiview/45
+* [神回复](https://www.tianapi.com/apiview/39):https://www.tianapi.com/apiview/39
+* [歇后语](https://www.tianapi.com/apiview/38):https://www.tianapi.com/apiview/38
+* [绕口令](https://www.tianapi.com/apiview/37):https://www.tianapi.com/apiview/37
+* [疫情](https://www.tianapi.com/apiview/169):https://www.tianapi.com/apiview/169
+* [网络取名](https://www.tianapi.com/apiview/36):https://www.tianapi.com/apiview/36
+
+目前平台只适配了以上天行数据的接口，其他接口暂未适配，如有需要，可以联系定制
+
 
 ## 开始
 
-### 直接运行
+### 源码运行
+
+需要node版本>16，如果是windows 系统，请使用win10及以上版本
 
 #### Step 1: 安装
 
@@ -160,7 +170,7 @@ node 版本 >16
 每次修改配置后，请记得一定发送关键词更新配置**
 
 
-### 直接拉取镜像（推荐）
+### Docker部署
 
 由于自己构建部分依赖安装比较慢，或者经常会卡住，所以本项目已经提前构建好发布到dockerhub了，直接pull就行了
 
@@ -168,6 +178,11 @@ node 版本 >16
 
 ![](https://img.aibotk.com/picgo/202304141139150.png)
 
+可以在[https://hub.docker.com/r/aibotk/wechat-assistant/tags](https://hub.docker.com/r/aibotk/wechat-assistant/tags) 这里查看到最新的 tag版本
+
+[![](https://img.aibotk.com/aibotk/help/7NOgdA20240112114359.png)](https://img.aibotk.com/aibotk/help/7NOgdA20240112114359.png)
+
+拉取完毕的大小大概不到 500M ,如果你拉取的大小超过 1G，大概率是拉取错版本了，请切换成官方源拉取
 #### step1： 拉取镜像
 
 ```shell
@@ -178,23 +193,17 @@ docker pull aibotk/wechat-assistant
 
 #### step2： 启动docker
 
-以下两个命令自己选择一个执行就行，执行的时候会下载puppet，可能会比较慢，耐心等待一下即可
-
-1、请在项目根目录执行，这个命令是前台执行可以直接看到log日志的，但是没法关闭，只能销毁终端实例
-
-```shell
-docker run -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatbot aibotk/wechat-assistant
-
-```
-
-2、这个命令可以在后台运行，多了一个`-d`
 
 ```shell
 docker run -d -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatbot aibotk/wechat-assistant
 
 ```
 
-[如何查看docker日志](https://www.cnblogs.com/mydesky2012/p/11430394.html)
+查看docker日志
+
+```
+docker logs  wechatbot
+```
 
 ### 自行构建docker镜像
 
@@ -241,36 +250,11 @@ docker run -d -e PAD_LOCAL_TOKEN="你申请的ipadlocal token" -e AIBOTK_KEY="�
 docker run -d -e WORK_PRO_TOKEN="你申请的企微 token" -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatbot aibotk/wechat-assistant
 
 ```
-### engine 大恩协议源码运行
 
-其他安装步骤参考：[engine协议部署](https://wechat.aibotk.com/docs/puppet-engine)，此处仅为源码运行说明
+### windows协议
 
-修改文件`src/engine.js`文件变量
-
-```javascript
-import {WechatyBuilder}  from 'wechaty'
-import {WechatyWebPanelPlugin}  from 'wechaty-web-panel'
-import {PuppetEngine} from 'wechaty-puppet-engine'
-
-
-const name = 'wechat-assistant-engine';
-let bot = ''
-console.log('使用puppet-engine协议启动，默认使用大恩wxhook，请在windows 环境下使用')
-
-bot = WechatyBuilder.build({
-    name,
-    puppet: new PuppetEngine({
-        port: '8089', // 对应注入器中的 callBackUrl=http://localhost:8089/wechat/
-        httpServer: 'http://127.0.0.1:8055', // 对应注入器参数port=8055
-        runLocal: true
-    })
-});
-
-bot.use(WechatyWebPanelPlugin({
-    apiKey: '填入微秘书平台apikey', apiSecret: '填入微秘书平台apisecret',
-}))
-bot.start()
-    .catch((e) => console.error(e));
+```
+参考：[engine协议部署](https://help.aibotk.com/?plugin=czw_emDoc&post=8)
 ```
 
 项目根目录执行命令：`npm run engine`
@@ -319,7 +303,7 @@ bot.start()
 
 ## 体验与交流
 
-扫描下方二维码，添加智能微秘书，体验以上所有功能，发送加群关键词即可进入交流群
+扫描下方二维码，添加智能微秘书，体验以上所有功能，发送加群关键词即可进入交流群，如果微信无法添加可以先进QQ群：1045575073
 
 ![](http://image.xkboke.com/picgo/202301141927005.png)
 
@@ -347,14 +331,9 @@ bot.start()
 
 ![](./doc/img/func.jpeg)
 
-群消息同步
+跨群聊天
 
 <img src="./doc/img/async.png" width="300">
-
-群合影
-
-<img src="./doc/img/group.jpeg" width="300">
-
 
 
 ## 免责声明
@@ -366,6 +345,8 @@ bot.start()
 请遵守国家法律政策，请勿用于非法犯罪行为！
 
 请合理使用，一切不良行为和后果均与作者无关！
+
+本项目不参与解析任何底层代码，只是适配层，所有底层协议均为第三方提供，与本人无关！
 
 [gitpod_img]: https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod
 [gitpod_link]: https://gitpod.io/#https://github.com/leochen-g/wechat-assistant-pro
