@@ -14,24 +14,28 @@
 uos 协议又可以重新使用了，同时已经适配wechaty-puupet-padlocal的协议
 ~~由于UOS桌面版协议微信已经关闭了，没法再继续用桌面版协议登录了，现在只能换回web协议了。可以登录网页版微信的账号可以继续用，不能登录网页版协议的就不能用了。或者你可以申请Wechaty 的ipad local协议的token可以免费试用7天 。申请地址:  https://github.com/padlocal/wechaty-puppet-padlocal~~
 
-## 智能微秘书-插件版 (Wechaty 1.x版本)
+## 智能微秘书客户端
 
 让你闲置的微信号成为你的日常小秘书（没有闲置的也没关系，添加我的小助手微信号，她就能成为你的智能微秘书）。
 
 帮你创建私人定时任务，每日提醒，纪念日提醒，当日提醒。当然基础的给女朋友的每日说功能也是必备的，而且小助手版每日说为那些非常优秀的程序员准备了多女朋友定时发送提醒功能。
 
-同时自带智能机器人功能，ChatGPT对话，FastGPT，Dify无缝对接。跨群聊天，公告群发，群资讯消息定时发送，群定时提醒功能，群机器人聊天，垃圾分类，天气查询，土情话查询，老黄历查询，顺口溜查询，rss订阅推送等众多功能。
+同时自带智能机器人功能，ChatGPT对话，FastGPT，Dify无缝对接。文字绘图，图片识别，GPT联网，网站内容爬取总结，跨群聊天，公告群发，群资讯消息定时发送，群定时提醒功能，群机器人聊天，垃圾分类，天气查询，土情话查询，老黄历查询，顺口溜查询，rss订阅推送等众多功能。
+
+支持 Docker部署，宝塔面板部署，Sealos 部署，windows 安装包启动
 
 此项目直接使用的是Wechaty的面板插件，当然这个插件也是作者开发的，如果有兴趣研究源码，可以移步[插件源码](https://github.com/leochen-g/wechaty-web-panel) ，觉得有用记得点个star
 
 ## 依赖
 
-node 版本 >16
+node 版本 >18
 
 ## 项目说明
 
-本项目是基于[wechaty](https://github.com/wechaty/wechaty) 的个人开源智能机器人项目，更多关于`wechaty`项目说明及 api
+本项目是基于[wechaty](https://github.com/wechaty/wechaty) 的开源智能机器人项目，更多关于`Wechaty`项目说明及 api 
 文档可以移步：[wechaty 介绍](https://wechaty.js.org/docs/howto/)
+
+微秘书部署详细教程链接地址：[微秘书文档](https://help.aibotk.com/?plugin=czw_emDoc&post=5)
 
 ## 更多功能说明
 
@@ -56,6 +60,8 @@ node 版本 >16
   - [x] prompts 市场，设定不同角色
   - [x] 无缝对接Dify和FastGPT向量知识库平台
   - [x] GPT-4V识图功能
+  - [x] DALL-E3绘图功能
+  - [x] 多模态，Dify插件，联网模式，爬取网站内容
 - [ ] 更多
 
 * 定时任务
@@ -340,7 +346,7 @@ bot.start()
 
 本软件依据github上开源项目 Wechaty
 
-通过简单的设置UI和交互，运行微信机器人。
+通过简单的设置UI和交互，运行IM机器人。
 
 请遵守国家法律政策，请勿用于非法犯罪行为！
 
