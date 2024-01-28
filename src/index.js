@@ -1,52 +1,43 @@
 import {WechatyBuilder} from 'wechaty'
 import {WechatyWebPanelPlugin} from 'wechaty-web-panel'
+import {startPadLocal} from "./padlocal.js";
+import {startOffice} from "./office.js";
+import {startWorker} from "./worker.js";
+import {startEngine} from "./engine.js";
+import {startWechat4u} from "./wechat4u.js";
 
 const name = 'wechat-assistant-pro';
-let bot = '';
-let padLocalToken = '' // 如果申请了ipadlocal的token,可以直接填入
-let workProToken = '' // 如果申请了企业微信的token 可以直接填入
 
-if (process.env['PAD_LOCAL_TOKEN']) {
-    console.log('读取到环境变量中的ipadLocalToken')
-    padLocalToken = process.env['PAD_LOCAL_TOKEN']
-}
+/**
+ * 必填项
+ * @type {string}
+ */
 
-if (process.env['WORK_PRO_TOKEN']) {
-    console.log('读取到环境变量中的企微token')
-    workProToken = process.env['WORK_PRO_TOKEN']
-}
+let apiKey = '' // 微秘书平台 apiKey
+let apiSecret = '' // 微秘书平台 apiSecret
 
-if (padLocalToken) {
-    console.log('读取到环境变量中的ipad token 使用ipad协议启动')
-    bot = WechatyBuilder.build({
-        name, // generate xxxx.memory-card.json and save login data for the next login
-        puppetOptions: {
-            token: padLocalToken
-        }, puppet: 'wechaty-puppet-padlocal',
-    });
 
-} else if(workProToken) {
-    console.log('读取到环境变量中的企微 token 使用企业微信协议启动')
-    bot = WechatyBuilder.build({
-        name, // generate xxxx.memory-card.json and save login data for the next login
-        puppet: 'wechaty-puppet-service',
-        puppetOptions: {
-            authority: 'token-service-discovery-test.juzibot.com',
-            tls: { disable: true },
-            token: workProToken
-        },
-    });
+/**
+ * 选填项，根据自己想要使用的协议使用
+ * @type {string}
+ */
+
+// 如果申请了padLocal的token,可以直接填入
+let padLocalToken = ''
+
+// 如果申请了企业微信的token 可以直接填入
+let workProToken = ''
+
+// 如果使用 windows engine 协议，需要填入以下参数
+
+if (process.env['PAD_LOCAL_TOKEN'] || padLocalToken) {
+    console.log('读取到padLocal token')
+    startPadLocal({apiKey, apiSecret, token: padLocalToken || process.env['PAD_LOCAL_TOKEN']})
+} else if (process.env['WORK_PRO_TOKEN'] || workProToken) {
+    console.log('读取到企微token')
+    startWorker({apiKey, apiSecret, token: workProToken || process.env['WORK_PRO_TOKEN']})
+} else if (process.env['ENGINE']) {
+
 } else {
-    console.log('默认使用wechat4u协议启动')
-    bot = WechatyBuilder.build({
-        name, // generate xxxx.memory-card.json and save login data for the next login
-        puppet: 'wechaty-puppet-wechat4u',
-    });
+    startWechat4u()
 }
-
-
-bot.use(WechatyWebPanelPlugin({
-    apiKey: '***', apiSecret: '****',
-}))
-bot.start()
-    .catch((e) => console.error(e));

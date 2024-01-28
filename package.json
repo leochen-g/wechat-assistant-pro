@@ -1,30 +1,34 @@
 {
   "name": "wechat-assistant",
   "version": "4.6.22",
-  "description": "智能微秘书4.6.22",
+  "description": "智能微秘书客户端",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "pm2": "pm2 start pm2.json",
-    "stop": "pm2 stop wechaty-pro",
-    "restart": "pm2 restart wechat-pro",
+    "pm2Win": "pm2 start pm2-win.json",
+    "stop": "pm2 stop ai-assistant",
+    "stopWin": "pm2 stop windows-bot",
+    "restart": "pm2 restart ai-assistant",
+    "restartWin": "pm2 restart windows-bot",
     "start": "node index.js",
-    "office": "node src/office.js",
-    "engine": "node src/engine.js",
+    "startWin": "node windows.js",
     "test": "node src/index.template.js"
   },
   "author": "Leo_chen",
   "license": "MIT",
   "keywords": [
-    "wechaty1.x",
-    "wechaty",
-    "mongoose",
+    "Wechaty",
     "微信机器人",
     "微信助手",
-    "chatgpt",
+    "ChatGPT",
+    "FastGPT",
+    "Dify",
     "微秘书",
     "智能机器人",
     "对话机器人",
+    "智能微秘书",
+    "微秘书客户端",
     "node",
     "js"
   ],
@@ -33,17 +37,19 @@
     "npm": ">=7"
   },
   "dependencies": {
+    "@juzi/wechaty": "^1.0.93",
+    "@juzi/wechaty-puppet": "^1.0.82",
+    "@juzi/wechaty-puppet-service": "^1.0.90",
     "wechaty": "^1.20.2",
     "wechaty-puppet": "^1.21.1",
     "wechaty-puppet-engine": "^1.0.25",
     "wechaty-puppet-official-account": "^1.10.7",
     "wechaty-puppet-padlocal": "^1.20.1",
-    "wechaty-puppet-service": "^1.18.2",
     "wechaty-puppet-wechat4u": "^1.14.12",
     "wechaty-web-panel": "^1.6.40"
   },
   "devDependencies": {
-    "pm2": "^4.2.3"
+    "pm2": "^4.5.6"
   },
   "repository": {
     "type": "git",
