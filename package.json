@@ -40,6 +40,7 @@
     "@juzi/wechaty": "^1.0.93",
     "@juzi/wechaty-puppet": "^1.0.82",
     "@juzi/wechaty-puppet-service": "^1.0.90",
+    "@juzi/wechaty-puppet-whatsapp": "^1.0.31",
     "wechaty": "^1.20.2",
     "wechaty-puppet": "^1.21.1",
     "wechaty-puppet-engine": "^1.0.25",

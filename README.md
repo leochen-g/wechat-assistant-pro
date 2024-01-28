@@ -5,14 +5,13 @@
 ![](https://img.shields.io/badge/Centos-blue.svg)
 [![](https://img.shields.io/badge/Docker-red.svg)]()
 
-# 最新通知 喜大普奔
+# 支持协议
 
-由于Wechaty的升级，现已支持所有微信登录，就算你的微信之前不能登录web版，现在也可以用了，赶快来体验吧。
-
-# ~~遗憾的通知~~
-
-uos 协议又可以重新使用了，同时已经适配wechaty-puupet-padlocal的协议
-~~由于UOS桌面版协议微信已经关闭了，没法再继续用桌面版协议登录了，现在只能换回web协议了。可以登录网页版微信的账号可以继续用，不能登录网页版协议的就不能用了。或者你可以申请Wechaty 的ipad local协议的token可以免费试用7天 。申请地址:  https://github.com/padlocal/wechaty-puppet-padlocal~~
+* 企微
+* 个微(默认 web uos协议，都可以用，需要实名认证)
+* 公众号
+* 5G消息
+* WhatsApp
 
 ## 智能微秘书客户端
 
@@ -156,7 +155,7 @@ node 版本 >18
 
 ### 源码运行
 
-需要node版本>16，如果是windows 系统，请使用win10及以上版本
+需要node版本>18，如果是windows 系统，请使用win10及以上版本
 
 #### Step 1: 安装
 
@@ -211,18 +210,6 @@ docker run -d -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecr
 docker logs  wechatbot
 ```
 
-### 自行构建docker镜像
-
-需要提前安装 docker 环境，项目根目录执行一下命令
-
-```shell script
-docker build -t wechat-assistant .
-#web协议
-docker run -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" wechat-assistant
-```
-
-其他步骤同上
-
 ### 使用Gitpod 在线运行测试
 
 现智能微秘书已经适配Gitpod，如果你想测试自己的账号是否能够正常登录，可以在线运行一下测试，此环境仅做测试，不建议作为生产环境使用。
@@ -244,7 +231,7 @@ Gitpod 是一个在线和开源平台，用于自动化和现成代码的开发�
 
 ```shell
 
-docker run -d -e PAD_LOCAL_TOKEN="你申请的ipadlocal token" -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatbot aibotk/wechat-assistant
+docker run -d -e PAD_LOCAL_TOKEN="你申请的ipadlocal token" -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=padbot aibotk/wechat-assistant
 
 ```
 
@@ -253,59 +240,17 @@ docker run -d -e PAD_LOCAL_TOKEN="你申请的ipadlocal token" -e AIBOTK_KEY="�
 
 ```shell
 
-docker run -d -e WORK_PRO_TOKEN="你申请的企微 token" -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatbot aibotk/wechat-assistant
+docker run -d -e WORK_PRO_TOKEN="你申请的企微 token" -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=workerbot aibotk/wechat-assistant
 
 ```
 
 ### windows协议
 
-```
-参考：[engine协议部署](https://help.aibotk.com/?plugin=czw_emDoc&post=8)
-```
+[windows 协议部署](./WINDOWS.md)
 
-项目根目录执行命令：`npm run engine`
+### 公众号协议
 
-### 公众号部署
-
-公众号部署目前仅只支持源码部署配置
-
-修改文件`src/office.js`文件变量
-
-```javascript
-import {WechatyBuilder} from 'wechaty'
-import {WechatyWebPanelPlugin} from 'wechaty-web-panel'
-import {PuppetOA} from 'wechaty-puppet-official-account'
-const name = 'office-assistant-pro';
-let bot = '';
-const oa = new PuppetOA({
-    appId           : '公众号appid',
-    appSecret       : '公众号appSecret',
-    token           : '公众号加密token',
-    // personalMode: true, // 如果你是个人订阅号或者未认证 请开启此项
-    // port 和 webhookProxyUrl 自己选择一个
-    // port: 8077, // 有自己域名或者服务器 可以启用这个 服务启动的端口 自己映射好配到公众号后台机就行
-    webhookProxyUrl: 'https://****.loca.lt'  // 如果没有自己的域名可以直接用默认自带穿透代理服务localtunnel ***替换成随机字符串即可  这个域名记得配置到公众号后台
-})
-
-
-bot = WechatyBuilder.build({
-    name, // generate xxxx.memory-card.json and save login data for the next login
-    puppet: oa,
-});
-
-
-bot
-    .use(
-        WechatyWebPanelPlugin({
-            apiKey: '****',
-            apiSecret: '****'
-        }
-    ))
-bot.start()
-    .catch((e) => console.error(e));
-```
-
-执行命令：`npm run office`
+[公众号 协议部署](./OFFICE.md)
 
 ## 体验与交流
 
@@ -319,7 +264,7 @@ bot.start()
 
 ## 常见问题处理
 
-参见[http://wechat.aibotk.com/docs/question](http://wechat.aibotk.com/docs/question)
+参见[https://help.aibotk.com/?plugin=czw_emDoc&post=4](https://help.aibotk.com/?plugin=czw_emDoc&post=4)
 
 ## 面板预览
 

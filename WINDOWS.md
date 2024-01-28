@@ -1,10 +1,4 @@
-[![ 由Wechaty提供 ](https://img.shields.io/badge/Powered%20By-Wechaty-blue.svg)](https://github.com/wechaty/wechaty)
-[![node version](https://img.shields.io/badge/node-%3E%3D16-blue.svg)](http://nodejs.cn/download/)
-![](https://img.shields.io/badge/Window-green.svg)
-
-# 智能微秘书客户端-windows 协议使用
-
-## 关于puppet-engine windows协议
+## windows 协议运行
 
 puppet-engine是为了适配市面支持http调用的IM接口而产生的一款puppet，名称来源Wechaty作者@Huan，此puppet作为一个引擎模版，可以引入一个ts文件，来
 达到适配多种http IM协议,只能部署在windows环境下
