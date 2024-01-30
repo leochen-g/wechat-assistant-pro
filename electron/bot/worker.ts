@@ -11,8 +11,7 @@ import {WechatyWebPanelPlugin} from 'wechaty-web-panel'
 export function startWorker({apiKey = '', apiSecret = '', token}) {
     console.log('启动企微服务')
     const name = 'worker-assistant';
-    let bot = '';
-    bot = WechatyBuilder.build({
+    const bot = WechatyBuilder.build({
         name, // generate xxxx.memory-card.json and save login data for the next login
         puppet: '@juzi/wechaty-puppet-service',
         puppetOptions: {
@@ -27,5 +26,6 @@ export function startWorker({apiKey = '', apiSecret = '', token}) {
     }))
     bot.start()
         .catch((e) => console.error(e));
+    return bot;
 }
 

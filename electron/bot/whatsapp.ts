@@ -12,9 +12,8 @@ import {WechatyWebPanelPlugin} from 'wechaty-web-panel'
 export function startWhatsApp({apiKey = '', apiSecret = ''}) {
     console.log('启动WhatsApp服务')
     const name = 'whatsapp-assistant';
-    let bot = '';
     const puppet  = new PuppetWhatsapp()
-    bot = WechatyBuilder.build({
+    const bot = WechatyBuilder.build({
         name,
         puppet
     });
@@ -24,5 +23,6 @@ export function startWhatsApp({apiKey = '', apiSecret = ''}) {
     }))
     bot.start()
         .catch((e) => console.error(e));
+    return bot
 }
 

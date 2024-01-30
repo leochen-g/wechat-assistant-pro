@@ -15,7 +15,6 @@ import {PuppetOA} from 'wechaty-puppet-official-account'
 export function startOffice({apiKey = '', apiSecret = '', appId = '', appSecret = '', appToken = '', personalMode = false, port = 8077 }) {
     console.log('启动微信公众号服务')
     const name = 'office-assistant';
-    let bot = '';
     const oa = new PuppetOA({
         appId           : appId,
         appSecret       : appSecret,
@@ -26,7 +25,7 @@ export function startOffice({apiKey = '', apiSecret = '', appId = '', appSecret 
         // webhookProxyUrl: 'https://****.loca.lt'  // 如果没有自己的域名可以直接用默认自带穿透代理服务localtunnel ***替换成随机字符串即可  这个域名记得配置到公众号后台
     })
 
-    bot = WechatyBuilder.build({
+    const bot = WechatyBuilder.build({
         name, // generate xxxx.memory-card.json and save login data for the next login
         puppet: oa,
     });
@@ -40,5 +39,6 @@ export function startOffice({apiKey = '', apiSecret = '', appId = '', appSecret 
             ))
     bot.start()
         .catch((e) => console.error(e));
+    return bot;
 }
 

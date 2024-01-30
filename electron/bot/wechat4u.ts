@@ -2,21 +2,17 @@ import {WechatyBuilder} from 'wechaty'
 import {WechatyWebPanelPlugin} from 'wechaty-web-panel'
 
 /**
- * 启动ipad local服务
+ * 启动web协议服务
  * @param apiKey
  * @param apiSecret
- * @param token
  */
 
-export function startPadLocal({apiKey = '', apiSecret = '', token}) {
-    console.log('启动ipad个微服务')
-    const name = 'padlocal-assistant';
-    let bot = '';
-    bot = WechatyBuilder.build({
+export function startWechat4u({apiKey = '', apiSecret = ''}) {
+    console.log('启动web协议个微服务')
+    const name = 'wechat4u-assistant';
+    const bot = WechatyBuilder.build({
         name, // generate xxxx.memory-card.json and save login data for the next login
-        puppetOptions: {
-            token: token
-        }, puppet: 'wechaty-puppet-padlocal',
+        puppet: 'wechaty-puppet-wechat4u',
     });
 
     bot.use(WechatyWebPanelPlugin({
@@ -24,5 +20,6 @@ export function startPadLocal({apiKey = '', apiSecret = '', token}) {
     }))
     bot.start()
         .catch((e) => console.error(e));
+    return bot
 }
 

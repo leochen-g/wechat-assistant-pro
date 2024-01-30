@@ -1,15 +1,43 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+dist-electron
+release
+*.local
+
+# Editor directories and files
+.vscode/.debug.env
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# lockfile
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
 *.vscode
 */.settings
 */target
 *target
-*/.settings
-*/target
 *.project
 *.classpath
 *.idea
 *.iml
 *.DS_Store
-*.log
 /build/
 /bin/
 */output
@@ -17,7 +45,6 @@
 */log
 .env
 *.memory-card.json
-package-lock.json
 # Runtime data
 pids
 *.pid
@@ -29,3 +56,4 @@ wechat.config.json
 room.db
 .wwebjs_auth
 .wwebjs_cache
+.vscode
