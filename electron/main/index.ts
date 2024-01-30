@@ -1,4 +1,4 @@
-import { app, BrowserWindow, shell, ipcMain } from 'electron'
+import { app, BrowserWindow, shell, ipcMain, Menu, Tray } from 'electron'
 import { release } from 'node:os'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -9,6 +9,9 @@ import path from 'node:path'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
+
+let tray = null;  // 用来存放系统托盘
+
 
 const creatLogFile = (apikey: string)=> {
   const TEMPPATH = 'temp'
@@ -63,11 +66,12 @@ let win: BrowserWindow | null = null
 const preload = join(__dirname, '../preload/index.mjs')
 const url = process.env.VITE_DEV_SERVER_URL
 const indexHtml = join(process.env.DIST, 'index.html')
-
+Menu.setApplicationMenu(null)
 async function createWindow() {
   win = new BrowserWindow({
-    title: 'Main window',
+    title: '智能微秘书客户端',
     icon: join(process.env.VITE_PUBLIC, 'favicon.ico'),
+    resizable: false,
     webPreferences: {
       preload,
       // Warning: Enable nodeIntegration and disable contextIsolation is not secure in production
@@ -77,11 +81,65 @@ async function createWindow() {
       contextIsolation: false,
     },
   })
+  // 创建系统托盘
+  tray = new Tray(join(process.env.VITE_PUBLIC, 'logo.png'),);
+  // 菜单模板
+  let menu = [
+    {
+      label: '显示主窗口',
+      id: 'show-window',
+      enabled: !win.show,
+      click() {
+        win.show();
+      }
+    },
+    {
+      label: '退出',
+      role: 'quit'
+    }
+  ];
+
+  // 构建菜单
+  menu = Menu.buildFromTemplate(menu);
+  // 给系统托盘设置菜单
+  tray.setContextMenu(menu);
+  // 给托盘图标设置气球提示
+  tray.setToolTip('智能微秘书');
+
+  // 窗口最小化
+  win.on('minimize', ev => {
+    // 阻止最小化
+    ev.preventDefault();
+    // 隐藏窗口
+    win.hide();
+  });
+
+  // 托盘图标被双击
+  tray.on('double-click', () => {
+    // 显示窗口
+    win.show();
+  });
+
+  // 窗口隐藏
+  win.on('hide', () => {
+    // 启用菜单的显示主窗口项
+    menu.getMenuItemById('show-window').enabled = true;
+    // 重新设置系统托盘菜单
+    tray.setContextMenu(menu);
+  });
+
+  // 窗口显示
+  win.on('show', () => {
+    // 禁用显示主窗口项
+    menu.getMenuItemById('show-window').enabled = false;
+    // 重新设置系统托盘菜单
+    tray.setContextMenu(menu);
+  });
 
   if (process.env.VITE_DEV_SERVER_URL) { // electron-vite-vue#298
     win.loadURL(url)
     // Open devTool if the app is not packaged
-    win.webContents.openDevTools()
+    // win.webContents.openDevTools()
   } else {
     win.loadFile(indexHtml)
   }
@@ -93,7 +151,7 @@ async function createWindow() {
 
   // Make all links open with the browser, not with the application
   win.webContents.setWindowOpenHandler(({ url }) => {
-    if (url.startsWith('https:')) shell.openExternal(url)
+    if (url.startsWith('https:') || url.startsWith('http:')) shell.openExternal(url)
     return { action: 'deny' }
   })
   // win.webContents.on('will-navigate', (event, url) => { }) #344

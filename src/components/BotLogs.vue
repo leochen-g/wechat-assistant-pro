@@ -64,12 +64,10 @@ const openLog = async () => {
 
 <template>
   <div class="tw-text-gray-500">
-    <div>日志路径：{{logPath}}(只显示最新的日志，历史日志请直接查看日志文件)</div>
-    <div><Button class="tw-text-app-blue-3">打开日志</Button></div>
-    <div v-if="logPath" class="tw-max-h-[460px] tw-rounded tw-mt-4 tw-overflow-y-auto tw-break-words tw-whitespace-pre-wrap tw-y tw-bg-[rgba(3,32,41,1)]">
-      {{logs}}
+    <div>日志路径(只显示最新的日志，历史日志请点击打开日志)：{{logPath}}<Button v-if="logPath" type="primary" size="small" @click="openLog">打开日志</Button></div>
+    <div class="tw-h-[460px] tw-rounded tw-mt-4 tw-overflow-y-auto tw-break-words tw-whitespace-pre-wrap tw-y tw-bg-[rgba(3,32,41,1)] tw-p-3">
+      {{logPath?logs:'程序未启动,暂无日志'}}
     </div>
-    <div v-else>程序未启动</div>
   </div>
 </template>
 

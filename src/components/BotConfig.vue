@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {reactive, ref, computed, defineEmits, onMounted } from 'vue'
 import {ipcRenderer} from 'electron'
-import {Button, Form, FormItem, Input, RadioGroup, Radio, Select, SelectOption, Switch, Tooltip, } from "ant-design-vue";
+import {Button, Form, FormItem, Input, RadioGroup, Radio, Select, SelectOption, Switch, Tooltip, Row, Col } from "ant-design-vue";
 import {PuppetTypeEnum} from "../const";
 import { InfoCircleOutlined } from '@ant-design/icons-vue';
 
@@ -62,17 +62,22 @@ const onFinish = async (values: any) => {
 
 const stopBot = () => {
   ipcRenderer.send('stopBot')
+  living.value = false;
+}
+
+const openAibotk = () => {
+  window.open('https://wechat.aibotk.com?r=zDp3Vz&source=client')
 }
 
 
 </script>
 
 <template>
-  <div class="tw-pt-[50px]">
+  <div class="tw-pt-[10px]">
     <Form
         :model="formState"
         name="basic"
-        :label-col="{ span: 5 }"
+        :label-col="{ span: 6 }"
         :wrapper-col="{ span: 16 }"
         autocomplete="off"
         :disabled="living"
@@ -87,13 +92,16 @@ const stopBot = () => {
         </Select>
       </FormItem>
       <FormItem
-          label="apiKey"
+          label="微秘书apiKey"
           name="apiKey"
           :rules="[{ required: true, message: '请输入微秘书平台apikey' }]"
       >
         <Input v-model:value="formState.apiKey" placeholder="微秘书平台apikey">
           <template #suffix>
-            <tooltip title="登录智能微秘书官网获取">
+            <tooltip>
+              <template #title>
+                <p class="tw-text-[12px] tw-text-app-grey-1">登录<span class="tw-text-app-blue-3 tw-cursor-pointer" @click="openAibotk">智能微秘书官网</span>获取</p>
+              </template>
               <info-circle-outlined style="color: rgba(0, 0, 0, 0.45)" />
             </tooltip>
           </template>
@@ -101,13 +109,16 @@ const stopBot = () => {
       </FormItem>
 
       <FormItem
-          label="apiSecret"
+          label="微秘书apiSecret"
           name="apiSecret"
           :rules="[{ required: true, message: '请输入微秘书平台apiSecret' }]"
       >
         <Input v-model:value="formState.apiSecret" placeholder="微秘书平台apiSecret">
           <template #suffix>
-            <tooltip title="登录智能微秘书官网获取">
+            <tooltip>
+              <template #title>
+                <p class="tw-text-[12px] tw-text-app-grey-1">登录<span class="tw-text-app-blue-3 tw-cursor-pointer" @click="openAibotk">智能微秘书官网</span>获取</p>
+              </template>
               <info-circle-outlined style="color: rgba(0, 0, 0, 0.45)" />
             </tooltip>
           </template>
@@ -120,11 +131,11 @@ const stopBot = () => {
           name="token"
           :rules="[{ required: true, message: '请输入购买的token' }]"
       >
-        <Input v-model:value="formState.padToken" placeholder="请输入购买的padLocal token">
+        <Input v-model:value="formState.padToken" placeholder="请输入购买的padLocal Token">
           <template #suffix>
             <tooltip>
               <template #title>
-                <a class="tw-text-app-blue-3" target="_blank" href="http://pad-local.com/#/login?aff=aibotk">点击申请</a>
+                <a class="tw-text-app-blue-3 tw-text-xs" target="_blank" href="http://pad-local.com/#/login?aff=aibotk&source=client">点击申请</a>
               </template>
               <info-circle-outlined style="color: rgba(0, 0, 0, 0.45)" />
             </tooltip>
@@ -138,7 +149,16 @@ const stopBot = () => {
           name="token"
           :rules="[{ required: true, message: '请输入购买的token' }]"
       >
-        <Input v-model:value="formState.workerToken" placeholder="请输入购买的企微token"/>
+        <Input v-model:value="formState.workerToken" placeholder="请输入购买的企微token">
+          <template #suffix>
+            <tooltip>
+              <template #title>
+                <a class="tw-text-app-blue-3 tw-text-xs" target="_blank" href="https://tss.rpachat.com/?aff=aibotk&source=client">点击申请</a>
+              </template>
+              <info-circle-outlined style="color: rgba(0, 0, 0, 0.45)" />
+            </tooltip>
+          </template>
+        </Input>
       </FormItem>
       <!--  windows 协议    -->
       <template v-if="formState.puppetType === PuppetTypeEnum.windows">
@@ -169,11 +189,11 @@ const stopBot = () => {
           </radio-group>
         </FormItem>
         <FormItem
-            label="公众号appId"
+            label="公众号AppId"
             name="appId"
             :rules="[{ required: true, message: 'appId 必填' }]"
         >
-          <Input v-model:value="formState.appId">
+          <Input v-model:value="formState.appId" placeholder="请输入公众号AppId">
             <template #suffix>
               <tooltip title="公众号后台开发与设置自行查找">
                 <info-circle-outlined style="color: rgba(0, 0, 0, 0.45)" />
@@ -182,14 +202,16 @@ const stopBot = () => {
           </Input>
         </FormItem>
         <FormItem
-            label="公众号appSecret"
+            label="公众号AppSecret"
             name="appSecret"
-            :rules="[{ required: true, message: 'appSecret 必填' }]"
+            :rules="[{ required: true, message: 'AppSecret 必填' }]"
         >
-          <Input v-model:value="formState.appSecret">
+          <Input v-model:value="formState.appSecret" placeholder="请输入公众号AppSecret">
+            <template #suffix>
             <tooltip title="公众号后台-开发与设置-基础信息">
               <info-circle-outlined style="color: rgba(0, 0, 0, 0.45)" />
             </tooltip>
+            </template>
           </Input>
         </FormItem>
         <FormItem
@@ -197,10 +219,12 @@ const stopBot = () => {
             name="appToken"
             :rules="[{ required: true, message: '加密Token 必填' }]"
         >
-          <Input v-model:value="formState.appToken">
+          <Input v-model:value="formState.appToken"  placeholder="请输入公众号加密Token">
+            <template #suffix>
             <tooltip title="公众号后台开发与设置自行查找">
               <info-circle-outlined style="color: rgba(0, 0, 0, 0.45)" />
             </tooltip>
+            </template>
           </Input>
         </FormItem>
         <FormItem
@@ -209,18 +233,25 @@ const stopBot = () => {
             :rules="[{ required: true, message: '使用默认端口即可' }]"
         >
           <Input v-model:value="formState.appPort">
+            <template #suffix>
             <tooltip title="保持默认即可，除非端口冲突，或者你理解这个东西是什么，否则保持默认即可">
               <info-circle-outlined style="color: rgba(0, 0, 0, 0.45)" />
             </tooltip>
+            </template>
           </Input>
         </FormItem>
       </template>
-      <FormItem :wrapper-col="{ offset: 8, span: 16 }">
-        <Button v-if="!living" html-type="submit">启动</Button>
+      <FormItem v-if="!living"  :wrapper-col="{ offset: 6, span: 16 }">
+        <Button type="primary" size="middle" html-type="submit">启动客户端</Button>
       </FormItem>
     </Form>
-    <div class="tw-text-center">
-      <Button v-if="living" @click="stopBot">停止</Button>
+    <Row>
+      <Col :offset="6">
+        <Button v-if="living" @click="stopBot" type="primary" danger>停止客户端</Button>
+      </Col>
+    </Row>
+    <div class="tw-absolute tw-bottom-2 tw-text-xs tw-text-app-grey-1 tw-p-2">
+      本客户端需搭配智能微秘书平台使用，所有协议均为第三方提供，与本平台无关，请在法律允许范围内使用本客户端，此客户端仅供微秘书平台使用，请勿随意传播
     </div>
   </div>
 </template>
