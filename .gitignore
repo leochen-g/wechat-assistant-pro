@@ -27,3 +27,4 @@ env.json
 wechat.config.json
 *.template.js
 room.db
+dist-electron
