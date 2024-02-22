@@ -1,0 +1,74 @@
+name: "🕷️ Bug report"
+description: Report errors or unexpected behavior
+labels:
+  - bug
+body:
+  - type: checkboxes
+    attributes:
+      label: Self Checks
+      description: "To make sure we get to you in time, please check the following :)"
+      options:
+        - label: I have searched for existing issues [search for existing issues](https://github.com/leochen-g/wechat-assistant-pro/issues) and [help Doc](https://help.aibotk.com/?plugin=czw_emDoc&post=5), including closed ones.
+          required: true
+
+  - type: input
+    attributes:
+      label: Panel Version
+      placeholder: 1.6.41
+      description: See about [Home](https://wechat.aibotk.com/dashboard/main)
+    validations:
+      required: true
+
+  - type: dropdown
+    attributes:
+      label: 协议
+      description: 你使用的协议，默认是 web协议?
+      multiple: false
+      options:
+        - web 协议
+        - ipad 协议
+        - windows 协议
+        - 企微协议
+        - 公众号
+        - WhatsApp
+        - 5G消息
+    validations:
+      required: true
+
+  - type: dropdown
+    attributes:
+      label: 部署方式
+      description: 你的客户端部署在哪里?
+      multiple: false
+      options:
+        - 源码部署
+        - Docker 部署
+        - Sealos 部署
+        - 宝塔部署
+        - 群晖Nas部署
+        - windows微秘书客户端
+        - 其他
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: 问题及复现步骤
+      description: 请描述问题，并给出问题的截图和微秘书客户端日志.
+      placeholder: 方便开发者进行复现.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: ✔️ 预计结果
+      placeholder: 你期望出现的结果?
+    validations:
+      required: false
+
+  - type: textarea
+    attributes:
+      label: ❌ 实际结果
+      placeholder: 实际出现的结果?
+    validations:
+      required: false
