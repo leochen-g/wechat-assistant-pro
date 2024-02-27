@@ -1,7 +1,7 @@
 {
   "name": "wechat-assistant",
-  "version": "4.6.24",
-  "description": "智能微秘书4.6.24",
+  "version": "4.6.25",
+  "description": "智能微秘书4.6.25",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -34,6 +34,7 @@
   },
   "dependencies": {
     "wechaty": "^1.20.2",
+    "@grpc/grpc-js": "1.9.14",
     "wechaty-puppet": "^1.21.1",
     "wechaty-puppet-engine": "^1.0.25",
     "wechaty-puppet-official-account": "^1.10.7",
