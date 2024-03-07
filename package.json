@@ -1,7 +1,7 @@
 {
   "name": "wechat-assistant",
-  "version": "4.6.25",
-  "description": "智能微秘书4.6.25",
+  "version": "4.6.26",
+  "description": "智能微秘书，一个全能的微信机器人管理平台，最简单的方式接入 ChatGPT，FastGPT，Dify知识库，支持绘图，联网查询，语音识别，各种定时任务，支持企微、个微、公众号、5G 消息、WhatsApp",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -18,6 +18,7 @@
   "keywords": [
     "wechaty1.x",
     "wechaty",
+    "whatsApp",
     "mongoose",
     "微信机器人",
     "微信助手",
@@ -37,11 +38,11 @@
     "@grpc/grpc-js": "1.9.14",
     "wechaty-puppet": "^1.21.1",
     "wechaty-puppet-engine": "^1.0.25",
-    "wechaty-puppet-official-account": "^1.10.7",
+    "wechaty-puppet-official-account": "^1.10.9",
     "wechaty-puppet-padlocal": "^1.20.1",
     "wechaty-puppet-service": "^1.18.2",
     "wechaty-puppet-wechat4u": "^1.14.12",
-    "wechaty-web-panel": "^1.6.42"
+    "wechaty-web-panel": "^1.6.43"
   },
   "devDependencies": {
     "pm2": "^4.2.3"
