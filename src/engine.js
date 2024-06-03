@@ -1,5 +1,5 @@
 import {WechatyBuilder}  from 'wechaty'
-import {WechatyWebPanelPlugin}  from 'wechaty-web-panel'
+import {WechatyWebPanelPlugin, WechatyMessageRecordPlugin}  from 'wechaty-web-panel'
 import {PuppetEngine} from 'wechaty-puppet-engine'
 
 
@@ -19,5 +19,6 @@ bot = WechatyBuilder.build({
 bot.use(WechatyWebPanelPlugin({
     apiKey: '填入微秘书平台apikey', apiSecret: '填入微秘书平台apisecret',
 }))
+bot.use(WechatyMessageRecordPlugin())
 bot.start()
     .catch((e) => console.error(e));

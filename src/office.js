@@ -1,5 +1,5 @@
 import {WechatyBuilder} from 'wechaty'
-import {WechatyWebPanelPlugin} from 'wechaty-web-panel'
+import {WechatyWebPanelPlugin, WechatyMessageRecordPlugin} from 'wechaty-web-panel'
 import {PuppetOA} from 'wechaty-puppet-official-account'
 const name = 'office-assistant-pro';
 let bot = '';
@@ -27,5 +27,6 @@ bot
             apiSecret: '****'
         }
     ))
+bot.use(WechatyMessageRecordPlugin())
 bot.start()
     .catch((e) => console.error(e));
