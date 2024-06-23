@@ -1,0 +1,36 @@
+name: Ali Docker Image CI
+
+on:
+  push:
+    tags:
+      - 'v*'
+      # 每次 push tag 时进行构建，不需要每次 push 都构建。使用通配符匹配每次 tag 的提交，记得 tag 名一定要以 v 开头
+
+env:
+  # 设置 docker 镜像名
+  DOCKERHUB_USER: ${{ secrets.ALI_DOCKERHUB_USER }}
+  DOCKERHUB_TOKEN: ${{ secrets.ALI_DOCKERHUB_TOKEN }}
+  DOCKERHUB_REGISTRY: ${{ secrets.ALI_DOCKERHUB_REGISTRY }}
+  IMAGE_NAME: registry.cn-hangzhou.aliyuncs.com/aibotk/wechat-assistant
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.DOCKERHUB_REGISTRY }}
+          username: ${{ env.DOCKERHUB_USER }}
+          password: ${{ env.DOCKERHUB_TOKEN }}
+      - name: Get the version
+        id: vars
+        run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
+      - name: Set up Docker Buildx
+        run: docker buildx create --name mybuilder --use
+      - name: Enable Docker Buildx
+        run: docker buildx use mybuilder
+      - name: Build and push
+        run: docker buildx build --platform linux/amd64,linux/arm64/v8,linux/arm/v7 -t ${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.tag }} -t ${{ env.IMAGE_NAME }}:latest . --push

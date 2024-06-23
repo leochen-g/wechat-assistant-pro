@@ -9,7 +9,7 @@
 
 智能机器人配置管理平台，一键接入ChatGPT对话，无缝适配Dify,FastGPT,Coze知识库！
 
-支持群组，个人定义不同的角色，灵活配置各种对话模式，绘图，识图，联网查询，GPTs，语音分析，技能丰富多样！拥有各种定时任务，Rss订阅，倒计时提醒，新闻咨询发送，批量群发，转发，跨群聊天，提醒功能，Api发送消息
+支持群组，个人定义不同的角色，灵活配置各种对话模式，绘图，识图，联网查询，GPTs，语音分析，技能丰富多样！拥有各种定时任务，RSS订阅，倒计时提醒，新闻咨询发送，批量群发，转发，跨群聊天，提醒功能，API发送消息
 
 配合智能微秘书客户端可以一键接入公众号，企业微信，Gitter，Lark，WhatsApp，5G消息等Wechaty所支持的协议
 
@@ -48,7 +48,7 @@ node 版本 >18
 - [x] 火出圈的ChatGPT
   - [x] 支持多种模型在线切换，代理在线配置
   - [x] 自定义对话配置， 不同群，不同好友，不同的对话配置
-  - [x] prompts 市场，设定不同角色
+  - [x] Prompts 市场，设定不同角色
   - [x] 无缝对接Dify和FastGPT向量知识库平台
   - [x] GPT-4V识图功能
   - [x] DALL-E3绘图功能
@@ -183,7 +183,7 @@ node 版本 >18
 #### step1： 拉取镜像
 
 ```shell
-
+# docker pull registry.cn-hangzhou.aliyuncs.com/aibotk/wechat-assistant
 docker pull aibotk/wechat-assistant
 
 ```
@@ -231,30 +231,12 @@ Gitpod 是一个在线和开源平台，用于自动化和现成代码的开发�
 环境变量：AIBOTK_KEY和AIBOTK_SECRET必填
 
 ### ipad协议运行
-如果你有ipad的token，可以执行以下命令
 
-```shell
-
-docker run -d -e PAD_LOCAL_TOKEN="你申请的ipadlocal token" -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatbot aibotk/wechat-assistant
-
-```
+查看：[如何使用padlocal协议](https://github.com/leochen-g/wechat-assistant-pro/issues/61)
 
 ### 企微协议运行
-如果你有企微的token，可以执行以下命令
 
-```shell
-
-docker run -d -e WORK_PRO_TOKEN="你申请的企微 token" -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatbot aibotk/wechat-assistant
-
-```
-
-### windows协议
-
-```
-参考：[engine协议部署](https://help.aibotk.com/?plugin=czw_emDoc&post=8)
-```
-
-项目根目录执行命令：`npm run engine`
+查看：[如何使用企微部署](https://github.com/leochen-g/wechat-assistant-pro/issues/60)
 
 ### 公众号部署
 
@@ -310,7 +292,7 @@ bot.start()
 
 ## 常见问题处理
 
-参见[http://wechat.aibotk.com/docs/question](http://wechat.aibotk.com/docs/question)
+参见[https://help.aibotk.com](https://help.aibotk.com/?plugin=czw_emDoc&post=5)
 
 ## 面板预览
 
@@ -328,9 +310,6 @@ bot.start()
 
 ![](./doc/img/func.jpeg)
 
-跨群聊天
-
-<img src="./doc/img/async.png" width="300">
 
 
 ## 免责声明
