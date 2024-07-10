@@ -1,4 +1,4 @@
-import {WechatyBuilder}  from 'wechaty'
+import {WechatyBuilder}  from '@juzi/wechaty'
 import {WechatyWebPanelPlugin, WechatyMessageRecordPlugin}  from 'wechaty-web-panel'
 import {PuppetEngine} from 'wechaty-puppet-engine'
 

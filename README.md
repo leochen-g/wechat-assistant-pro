@@ -180,10 +180,14 @@ node 版本 >18
 [![](https://img.aibotk.com/aibotk/help/7NOgdA20240112114359.png)](https://img.aibotk.com/aibotk/help/7NOgdA20240112114359.png)
 
 拉取完毕的大小大概不到 500M ,如果你拉取的大小超过 1G，大概率是拉取错版本了，请切换成官方源拉取
+
+> 国内用户可以用这个镜像地址进行拉取 registry.cn-hangzhou.aliyuncs.com/aibotk/wechat-assistant:latest
+
 #### step1： 拉取镜像
 
 ```shell
-# docker pull registry.cn-hangzhou.aliyuncs.com/aibotk/wechat-assistant
+# docker pull registry.cn-hangzhou.aliyuncs.com/aibotk/wechat-assistant:latest
+
 docker pull aibotk/wechat-assistant
 
 ```
@@ -192,8 +196,9 @@ docker pull aibotk/wechat-assistant
 
 
 ```shell
-docker run -d -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatbot aibotk/wechat-assistant
+# docker run -d -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatbot registry.cn-hangzhou.aliyuncs.com/aibotk/wechat-assistant:latest
 
+docker run -d -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" --name=wechatbot aibotk/wechat-assistant
 ```
 
 查看docker日志
