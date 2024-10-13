@@ -3,9 +3,11 @@ import {startWorkpro} from "./workpro.js";
 import {startPadlocal} from "./padlocal.js";
 import {startWechat4u} from "./wechat4u.js";
 import {startOffice} from "./office.js";
+import {startMatrix} from "./matrix.js";
 
 let bot = '';
 let padLocalToken = '' // 如果申请了ipadlocal的token,可以直接填入
+let matrixToken = '' // 如果申请了matrix的token,可以直接填入
 let workProToken = '' // 如果申请了企业微信的token 可以直接填入
 
 // 公众号相关配置
@@ -18,6 +20,11 @@ let officePort = 8077 // 是否是个人订阅号 如果是填写为true
 if (process.env['PAD_LOCAL_TOKEN']) {
     console.log('读取到环境变量中的ipadLocalToken')
     padLocalToken = process.env['PAD_LOCAL_TOKEN']
+}
+
+if (process.env['MATRIX_TOKEN']) {
+    console.log('读取到环境变量中的ipad matrix token')
+    matrixToken = process.env['MATRIX_TOKEN']
 }
 
 if (process.env['WORK_PRO_TOKEN']) {
@@ -44,6 +51,8 @@ if (officeAppId) {
     })
 } else if (padLocalToken) {
     bot = startPadlocal(padLocalToken)
+}  else if (matrixToken) {
+    bot = startMatrix(matrixToken)
 } else if(workProToken) {
     bot = startWorkpro(workProToken)
 } else {
