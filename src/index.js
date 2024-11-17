@@ -8,6 +8,7 @@ import {startMatrix} from "./matrix.js";
 let bot = '';
 let padLocalToken = '' // 如果申请了ipadlocal的token,可以直接填入
 let matrixToken = '' // 如果申请了matrix的token,可以直接填入
+let matrixBridgeId = '' // 代理id
 let workProToken = '' // 如果申请了企业微信的token 可以直接填入
 
 // 公众号相关配置
@@ -25,6 +26,7 @@ if (process.env['PAD_LOCAL_TOKEN']) {
 if (process.env['MATRIX_TOKEN']) {
     console.log('读取到环境变量中的ipad matrix token')
     matrixToken = process.env['MATRIX_TOKEN']
+    matrixBridgeId = process.env['MATRIX_BRIDGE_ID']
 }
 
 if (process.env['WORK_PRO_TOKEN']) {
@@ -52,7 +54,7 @@ if (officeAppId) {
 } else if (padLocalToken) {
     bot = startPadlocal(padLocalToken)
 }  else if (matrixToken) {
-    bot = startMatrix(matrixToken)
+    bot = startMatrix(matrixToken, matrixBridgeId)
 } else if(workProToken) {
     bot = startWorkpro(workProToken)
 } else {
