@@ -1,6 +1,6 @@
 {
   "name": "wechat-assistant",
-  "version": "5.0.13",
+  "version": "5.0.14",
   "description": "智能微秘书，一个全能的微信机器人管理平台，最简单的方式接入 ChatGPT，FastGPT，Dify，Coze知识库，支持绘图，联网查询，语音识别，各种定时任务，支持企微、个微、公众号、5G 消息、WhatsApp",
   "main": "index.js",
   "type": "module",

@@ -1,4 +1,4 @@
-import {WechatyMessageRecordPlugin, WechatyWebPanelPlugin} from 'wechaty-web-panel'
+import {WechatyMessageRecordPlugin, WechatyWebPanelPlugin, WechatyMessageCallBackPlugin} from 'wechaty-web-panel'
 import {startWorkpro} from "./workpro.js";
 import {startPadlocal} from "./padlocal.js";
 import {startWechat4u} from "./wechat4u.js";
@@ -66,5 +66,6 @@ bot.use(WechatyWebPanelPlugin({
     apiKey: '填入微秘书平台apikey', apiSecret: '填入微秘书平台apisecret',
 }))
 bot.use(WechatyMessageRecordPlugin())
+bot.use(WechatyMessageCallBackPlugin())
 bot.start()
     .catch((e) => console.error(e));
