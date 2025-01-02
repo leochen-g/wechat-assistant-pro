@@ -42,7 +42,7 @@
     "wechaty-puppet-official-account": "^1.10.12",
     "wechaty-puppet-padlocal": "^1.20.1",
     "wechaty-puppet-wechat4u": "^1.14.12",
-    "wechaty-puppet-matrix": "^0.0.9",
+    "wechaty-puppet-matrix": "^0.0.14",
     "@juzi/wechaty": "^1.0.104",
     "@juzi/wechaty-puppet": "^1.0.98",
     "@juzi/wechaty-puppet-service": "^1.0.103",
