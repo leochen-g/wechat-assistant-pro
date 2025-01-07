@@ -304,10 +304,15 @@ Gitpod 是一个在线和开源平台，用于自动化和现成代码的开发�
 #### 启动命令
 
 参数说明
+
 AIBOTK_KEY: 微秘书apikey
+
 AIBOTK_SECRET: 微秘书apiSecret
+
 OFFICE_APPID: 公众号AppId
+
 OFFICE_TOKEN: 公众号自己随机写的token
+
 OFFICE_IS_PERSON: 是不是个人订阅号或者未认证的服务号，如果是个人号或者未认证的服务号，3s内必须响应消息，否则无法发出消息。如果是认证的服务号，使用的是客服回复接口，不受回复时间限制
 
 认证服务号或者认证非个人订阅号启动方式
