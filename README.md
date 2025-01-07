@@ -296,45 +296,32 @@ Gitpod 是一个在线和开源平台，用于自动化和现成代码的开发�
 
 ### 公众号部署
 
-公众号部署目前仅只支持源码部署配置
+#### 提前准备
 
-修改文件`src/office.js`文件变量
+1、必须有一个备案好的域名，绑定映射到容器的端口8077，否则无法在公众号后台配置
+2、需要在公众号开发配置里添加运行容器的ip白名单，否则消息无法调通
 
-```javascript
-import {WechatyBuilder} from 'wechaty'
-import {WechatyWebPanelPlugin} from 'wechaty-web-panel'
-import {PuppetOA} from 'wechaty-puppet-official-account'
-const name = 'office-assistant-pro';
-let bot = '';
-const oa = new PuppetOA({
-    appId           : '公众号appid',
-    appSecret       : '公众号appSecret',
-    token           : '公众号加密token',
-    // personalMode: true, // 如果你是个人订阅号或者未认证 请开启此项
-    // port 和 webhookProxyUrl 自己选择一个
-    // port: 8077, // 有自己域名或者服务器 可以启用这个 服务启动的端口 自己映射好配到公众号后台机就行
-    webhookProxyUrl: 'https://****.loca.lt'  // 如果没有自己的域名可以直接用默认自带穿透代理服务localtunnel ***替换成随机字符串即可  这个域名记得配置到公众号后台
-})
+#### 启动命令
 
+参数说明
+AIBOTK_KEY: 微秘书apikey
+AIBOTK_SECRET: 微秘书apiSecret
+OFFICE_APPID: 公众号AppId
+OFFICE_TOKEN: 公众号自己随机写的token
+OFFICE_IS_PERSON: 是不是个人订阅号或者未认证的服务号，如果是个人号或者未认证的服务号，3s内必须响应消息，否则无法发出消息。如果是认证的服务号，使用的是客服回复接口，不受回复时间限制
 
-bot = WechatyBuilder.build({
-    name, // generate xxxx.memory-card.json and save login data for the next login
-    puppet: oa,
-});
+认证服务号或者认证非个人订阅号启动方式
 
-
-bot
-    .use(
-        WechatyWebPanelPlugin({
-            apiKey: '****',
-            apiSecret: '****'
-        }
-    ))
-bot.start()
-    .catch((e) => console.error(e));
+```
+docker run -d -e OFFICE_APPID="公众号AppId" -e OFFICE_TOKEN="公众号自定义的Token" -e OFFICE_IS_PERSON="false"  -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" -p 8077:8077 --name=officebot registry.cn-hangzhou.aliyuncs.com/aibotk/wechat-assistant:latest
 ```
 
-执行命令：`npm run office`
+个人订阅号或者非认证服务号启动方式
+
+```
+docker run -d -e OFFICE_APPID="公众号AppId" -e OFFICE_TOKEN="公众号自定义的Token" -e OFFICE_IS_PERSON="true"  -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" -p 8077:8077 --name=officebot registry.cn-hangzhou.aliyuncs.com/aibotk/wechat-assistant:latest
+```
+
 
 ## 体验与交流
 
