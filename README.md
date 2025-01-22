@@ -311,6 +311,8 @@ AIBOTK_SECRET: 微秘书apiSecret
 
 OFFICE_APPID: 公众号AppId
 
+OFFICE_APPSECRET: 公众号AppSecret
+
 OFFICE_TOKEN: 公众号自己随机写的token
 
 OFFICE_IS_PERSON: 是不是个人订阅号或者未认证的服务号，如果是个人号或者未认证的服务号，3s内必须响应消息，否则无法发出消息。如果是认证的服务号，使用的是客服回复接口，不受回复时间限制
@@ -318,13 +320,13 @@ OFFICE_IS_PERSON: 是不是个人订阅号或者未认证的服务号，如果�
 认证服务号或者认证非个人订阅号启动方式
 
 ```
-docker run -d -e OFFICE_APPID="公众号AppId" -e OFFICE_TOKEN="公众号自定义的Token" -e OFFICE_IS_PERSON="false"  -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" -p 8077:8077 --name=officebot registry.cn-hangzhou.aliyuncs.com/aibotk/wechat-assistant:latest
+docker run -d -e OFFICE_APPID="公众号AppId" -e OFFICE_APPSECRET="公众号AppSecret" -e OFFICE_TOKEN="公众号自定义的Token" -e OFFICE_IS_PERSON="false"  -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" -p 8077:8077 --name=officebot registry.cn-hangzhou.aliyuncs.com/aibotk/wechat-assistant:latest
 ```
 
 个人订阅号或者非认证服务号启动方式
 
 ```
-docker run -d -e OFFICE_APPID="公众号AppId" -e OFFICE_TOKEN="公众号自定义的Token" -e OFFICE_IS_PERSON="true"  -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" -p 8077:8077 --name=officebot registry.cn-hangzhou.aliyuncs.com/aibotk/wechat-assistant:latest
+docker run -d -e OFFICE_APPID="公众号AppId" -e OFFICE_APPSECRET="公众号AppSecret" -e OFFICE_TOKEN="公众号自定义的Token" -e OFFICE_IS_PERSON="true"  -e AIBOTK_KEY="微秘书apikey" -e AIBOTK_SECRET="微秘书apiSecret" -p 8077:8077 --name=officebot registry.cn-hangzhou.aliyuncs.com/aibotk/wechat-assistant:latest
 ```
 
 
