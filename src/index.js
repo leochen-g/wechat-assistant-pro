@@ -6,6 +6,7 @@ import {startOffice} from "./office.js";
 import {startMatrix} from "./matrix.js";
 
 let bot = '';
+let needWeb = ''; // 是否默认强制开启网页版协议登录
 let padLocalToken = '' // 如果申请了ipadlocal的token,可以直接填入
 let matrixToken = '' // 如果申请了matrix的token,可以直接填入
 let matrixBridgeId = '' // 代理id
@@ -18,6 +19,10 @@ let officeToken = '公众号加密token' // 公众号随机填写的加密token
 let officePerson = '是否个人订阅号' // 是否是个人订阅号 如果是填写为true
 let officePort = 8077 // 是否是个人订阅号 如果是填写为true
 
+if(process.env['NEED_WEB']) {
+    console.log('你已选择强制开启默认网页版协议登录，可能导致的封号结果自行负责！')
+    needWeb = true
+}
 if (process.env['PAD_LOCAL_TOKEN']) {
     console.log('读取到环境变量中的ipadLocalToken')
     padLocalToken = process.env['PAD_LOCAL_TOKEN']
@@ -58,14 +63,19 @@ if (officeAppId) {
 } else if(workProToken) {
     bot = startWorkpro(workProToken)
 } else {
-    bot = startWechat4u()
+    if(needWeb) {
+        bot = startWechat4u()
+    }
+    console.log('由于默认免费网页版协议，最近封号严重，基本登录必封！为了用户的账号安全，暂时不再提供默认免费版协议登录，可以加群联系购买获取稳定版个微协议或企微协议！')
 }
 
+if(bot) {
+    bot.use(WechatyWebPanelPlugin({
+        apiKey: '填入微秘书平台apikey', apiSecret: '填入微秘书平台apisecret',
+    }))
+    bot.use(WechatyMessageRecordPlugin())
+    bot.use(WechatyMessageCallBackPlugin())
+    bot.start()
+        .catch((e) => console.error(e));
+}
 
-bot.use(WechatyWebPanelPlugin({
-    apiKey: '填入微秘书平台apikey', apiSecret: '填入微秘书平台apisecret',
-}))
-bot.use(WechatyMessageRecordPlugin())
-bot.use(WechatyMessageCallBackPlugin())
-bot.start()
-    .catch((e) => console.error(e));
