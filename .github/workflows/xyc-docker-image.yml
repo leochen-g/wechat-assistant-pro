@@ -1,0 +1,39 @@
+name: Ali Docker Image CI
+
+on:
+  push:
+    tags:
+      - 'c*'
+      # 每次 push tag 时进行构建，不需要每次 push 都构建。使用通配符匹配每次 tag 的提交，记得 tag 名一定要以 c 开头
+
+env:
+  # 设置 ali docker 镜像名
+  ALI_DOCKERHUB_USER: ${{ secrets.ALI_DOCKERHUB_USER }}
+  ALI_DOCKERHUB_TOKEN: ${{ secrets.ALI_DOCKERHUB_TOKEN }}
+  ALI_DOCKERHUB_REGISTRY: ${{ secrets.ALI_DOCKERHUB_REGISTRY }}
+  ALI_IMAGE_NAME: registry.cn-hangzhou.aliyuncs.com/xycaicn/chat-assistant
+  # 设置 dockerhub 镜像名
+  DOCKERHUB_IMAGE_NAME: xycaicn/chat-assistant
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Get the version
+        id: vars
+        run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10} | sed 's/^c/v/')
+      - name: Set up Docker Buildx
+        run: docker buildx create --name mybuilder --use
+      - name: Enable Docker Buildx
+        run: docker buildx use mybuilder
+      - name: Build and push to Ali Docker Hub
+        run: |
+          echo "${{ env.ALI_DOCKERHUB_TOKEN }}" | docker login ${{ env.ALI_DOCKERHUB_REGISTRY }} -u ${{ env.ALI_DOCKERHUB_USER }} --password-stdin
+          docker buildx build . --file Dockerfile --platform linux/amd64,linux/arm64/v8,linux/arm/v7 -t ${{ env.ALI_IMAGE_NAME }}:${{ steps.vars.outputs.tag }} -t ${{ env.ALI_IMAGE_NAME }}:latest --push
+      - name: Build and push to Docker Hub
+        run: |
+          echo "${{ secrets.XYC_TOKEN }}" | docker login -u xycaicn --password-stdin
+          docker buildx build . --file Dockerfile --platform linux/amd64,linux/arm64/v8,linux/arm/v7 -t ${{ env.DOCKERHUB_IMAGE_NAME }}:${{ steps.vars.outputs.tag }} -t ${{ env.DOCKERHUB_IMAGE_NAME }}:latest --push
