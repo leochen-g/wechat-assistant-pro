@@ -7,11 +7,16 @@ on:
       # 每次 push tag 时进行构建，不需要每次 push 都构建。使用通配符匹配每次 tag 的提交，记得 tag 名一定要以 v 开头
 
 env:
-  # 设置 docker 镜像名
-  DOCKERHUB_USER: ${{ secrets.ALI_DOCKERHUB_USER }}
-  DOCKERHUB_TOKEN: ${{ secrets.ALI_DOCKERHUB_TOKEN }}
-  DOCKERHUB_REGISTRY: ${{ secrets.ALI_DOCKERHUB_REGISTRY }}
-  IMAGE_NAME: registry.cn-hangzhou.aliyuncs.com/aibotk/wechat-assistant
+  # 设置 ali docker 镜像名
+  ALI_DOCKERHUB_USER: ${{ secrets.ALI_DOCKERHUB_USER }}
+  ALI_DOCKERHUB_TOKEN: ${{ secrets.ALI_DOCKERHUB_TOKEN }}
+  ALI_DOCKERHUB_REGISTRY: ${{ secrets.ALI_DOCKERHUB_REGISTRY }}
+  ALI_IMAGE_NAME: registry.cn-hangzhou.aliyuncs.com/aibotk/wechat-assistant
+  # 设置 dockerhub 镜像名
+  DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
+  DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+  DOCKERHUB_REGISTRY: ${{ secrets.DOCKERHUB_REGISTRY }}
+  DOCKERHUB_IMAGE_NAME: aibotk/wechat-assistant
 
 jobs:
 
@@ -20,8 +25,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Log into registry
-        run: echo "${{ env.DOCKERHUB_TOKEN }}" | docker login ${{ env.DOCKERHUB_REGISTRY }} -u ${{ env.DOCKERHUB_USER }} --password-stdin
       - name: Get the version
         id: vars
         run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
@@ -29,5 +32,11 @@ jobs:
         run: docker buildx create --name mybuilder --use
       - name: Enable Docker Buildx
         run: docker buildx use mybuilder
-      - name: Build and push
-        run: ls & docker buildx build . --file Dockerfile --platform linux/amd64,linux/arm64/v8,linux/arm/v7 -t ${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.tag }} -t ${{ env.IMAGE_NAME }}:latest --push
+      - name: Build and push to Ali Docker Hub
+        run: |
+          echo "${{ env.ALI_DOCKERHUB_TOKEN }}" | docker login ${{ env.ALI_DOCKERHUB_REGISTRY }} -u ${{ env.ALI_DOCKERHUB_USER }} --password-stdin
+          docker buildx build . --file Dockerfile --platform linux/amd64,linux/arm64/v8,linux/arm/v7 -t ${{ env.ALI_IMAGE_NAME }}:${{ steps.vars.outputs.tag }} -t ${{ env.ALI_IMAGE_NAME }}:latest --push
+      - name: Build and push to Docker Hub
+        run: |
+          echo "${{ env.DOCKERHUB_TOKEN }}" | docker login ${{ env.DOCKERHUB_REGISTRY }} -u ${{ env.DOCKERHUB_USER }} --password-stdin
+          docker buildx build . --file Dockerfile --platform linux/amd64,linux/arm64/v8,linux/arm/v7 -t ${{ env.DOCKERHUB_IMAGE_NAME }}:${{ steps.vars.outputs.tag }} -t ${{ env.DOCKERHUB_IMAGE_NAME }}:latest --push
