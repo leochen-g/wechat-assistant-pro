@@ -13,9 +13,6 @@ env:
   ALI_DOCKERHUB_REGISTRY: ${{ secrets.ALI_DOCKERHUB_REGISTRY }}
   ALI_IMAGE_NAME: registry.cn-hangzhou.aliyuncs.com/aibotk/wechat-assistant
   # 设置 dockerhub 镜像名
-  DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
-  DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
-  DOCKERHUB_REGISTRY: ${{ secrets.DOCKERHUB_REGISTRY }}
   DOCKERHUB_IMAGE_NAME: aibotk/wechat-assistant
 
 jobs:
@@ -38,5 +35,5 @@ jobs:
           docker buildx build . --file Dockerfile --platform linux/amd64,linux/arm64/v8,linux/arm/v7 -t ${{ env.ALI_IMAGE_NAME }}:${{ steps.vars.outputs.tag }} -t ${{ env.ALI_IMAGE_NAME }}:latest --push
       - name: Build and push to Docker Hub
         run: |
-          echo "${{ env.DOCKERHUB_TOKEN }}" | docker login ${{ env.DOCKERHUB_REGISTRY }} -u ${{ env.DOCKERHUB_USER }} --password-stdin
+          echo "${{ secrets.ACCESS_TOKEN }}" | docker login -u aibotk --password-stdin
           docker buildx build . --file Dockerfile --platform linux/amd64,linux/arm64/v8,linux/arm/v7 -t ${{ env.DOCKERHUB_IMAGE_NAME }}:${{ steps.vars.outputs.tag }} -t ${{ env.DOCKERHUB_IMAGE_NAME }}:latest --push
