@@ -1,4 +1,4 @@
-name: Ali Docker Image CI
+name: XYC Image CI
 
 on:
   push:
