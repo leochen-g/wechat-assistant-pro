@@ -42,11 +42,11 @@
     "wechaty-puppet-official-account": "^1.10.14",
     "wechaty-puppet-padlocal": "^1.20.1",
     "wechaty-puppet-wechat4u": "^1.14.12",
-    "wechaty-puppet-matrix": "^0.0.20",
+    "wechaty-puppet-matrix": "^0.0.21",
     "@juzi/wechaty": "^1.0.108",
     "@juzi/wechaty-puppet": "^1.0.100",
     "@juzi/wechaty-puppet-service": "^1.0.105",
-    "wechaty-web-panel": "^1.6.75"
+    "wechaty-web-panel": "^1.6.76"
   },
   "devDependencies": {
     "pm2": "^4.2.3"
