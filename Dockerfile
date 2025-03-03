@@ -6,7 +6,7 @@ RUN echo 'Asia/Shanghai' >/etc/timezone
 WORKDIR /bot
 
 COPY package.json .
-RUN npm install
+RUN npm install --force
 COPY . .
 
 CMD [ "npm", "start" ]
