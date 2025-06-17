@@ -1,6 +1,6 @@
 {
   "name": "wechat-assistant",
-  "version": "5.0.45",
+  "version": "5.0.46",
   "description": "智能微秘书，一个全能的微信机器人管理平台，最简单的方式接入 ChatGPT，FastGPT，Dify，Coze知识库，支持绘图，联网查询，语音识别，各种定时任务，支持企微、个微、公众号、5G 消息、WhatsApp",
   "main": "index.js",
   "type": "module",
@@ -46,7 +46,7 @@
     "@juzi/wechaty": "^1.0.108",
     "@juzi/wechaty-puppet": "^1.0.100",
     "@juzi/wechaty-puppet-service": "^1.0.105",
-    "wechaty-web-panel": "^1.6.97"
+    "wechaty-web-panel": "^1.6.98"
   },
   "devDependencies": {
     "pm2": "^4.2.3"
